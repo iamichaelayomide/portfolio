@@ -10,7 +10,7 @@ const builds = [
   },
   {
     name: "Chillington (Sharamawa) - Multi-location site",
-    url: "https://replace-with-chillington-url.com",
+    url: "https://chillington.vercel.app",
     description:
       "A live brand website translated from design direction into a shipped experience with AI-assisted build support.",
   },

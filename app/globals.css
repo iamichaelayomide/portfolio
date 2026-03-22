@@ -87,11 +87,11 @@
   }
 
   .section-shell {
-    @apply mx-auto w-full max-w-site px-6;
+    @apply mx-auto w-full max-w-site px-5 sm:px-6;
   }
 
   .section-space {
-    @apply py-16 md:py-24 xl:py-32;
+    @apply py-14 md:py-24 xl:py-32;
   }
 
   .section-label {

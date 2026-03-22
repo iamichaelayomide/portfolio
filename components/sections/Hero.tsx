@@ -47,7 +47,7 @@ export default function Hero() {
         className="pointer-events-none absolute left-[-120px] top-16 hidden h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,var(--accent-rose-soft),transparent_62%)] blur-3xl lg:block"
       />
 
-      <div className="section-shell grid w-full items-center gap-12 py-24 lg:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="section-shell grid w-full items-center gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-12">
         <motion.div
           initial={reducedMotion ? false : "hidden"}
           animate="visible"
@@ -66,7 +66,7 @@ export default function Hero() {
                 transition: { duration: 0.5, delay: 0.1, ease: EASE_DEFAULT },
               },
             }}
-            className="mb-6 inline-flex items-center gap-3 rounded-full border border-border-default bg-bg-elevated/80 px-4 py-2 font-body text-body-xs text-text-secondary"
+            className="mb-5 inline-flex max-w-full items-center gap-3 rounded-full border border-border-default bg-bg-elevated/80 px-4 py-2 font-body text-body-xs text-text-secondary"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inset-0 rounded-full bg-[var(--status-online-soft)]" />
@@ -83,7 +83,7 @@ export default function Hero() {
                 transition: { duration: 0.4, delay: 0.3, ease: EASE_DEFAULT },
               },
             }}
-            className="mb-4 font-display text-xl font-normal text-text-secondary"
+            className="mb-3 font-display text-lg font-normal text-text-secondary sm:text-xl"
           >
             <AnimatedText text="Hi, I'm Michael Ayomide" />
           </motion.div>
@@ -97,7 +97,7 @@ export default function Hero() {
                 transition: { duration: 0.55, delay: 0.6, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-[15ch] font-display text-[clamp(44px,5vw,68px)] leading-[1.06] font-semibold tracking-[-0.03em] text-text-primary"
+            className="max-w-[14ch] text-balance font-display text-[clamp(36px,7vw,68px)] leading-[1.04] font-semibold tracking-[-0.03em] text-text-primary sm:max-w-[15ch]"
           >
             I design clear, premium product experiences that convert and ship fast.
           </motion.h1>
@@ -111,7 +111,7 @@ export default function Hero() {
                 transition: { duration: 0.5, delay: 0.75, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-6 max-w-[560px] font-body text-body-lg text-text-secondary"
+            className="mt-5 max-w-[36rem] text-balance font-body text-[17px] leading-[1.7] text-text-secondary sm:text-body-lg"
           >
             For SaaS teams, founders, and ambitious brands, I turn messy flows into sharp UX, polished UI, and live websites shipped through modern AI workflows.
           </motion.p>
@@ -125,7 +125,7 @@ export default function Hero() {
                 transition: { duration: 0.45, delay: 0.9, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-8 space-y-3"
+            className="mt-7 space-y-3"
           >
             <div className="flex flex-wrap gap-3">
               <Link href="/work" className={buttonStyles({ variant: "primary", size: "md" })}>
@@ -136,6 +136,43 @@ export default function Hero() {
             <p className="font-body text-body-xs text-text-muted">Typically replies within 3 hours</p>
           </motion.div>
 
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.45, delay: 1, ease: EASE_DEFAULT },
+              },
+            }}
+            className="mt-8 lg:hidden"
+          >
+            <div className="premium-panel relative overflow-hidden rounded-[28px] border border-border-default bg-bg-surface p-3 shadow-card">
+              <div className="relative overflow-hidden rounded-[22px] border border-border-default bg-bg-base/60">
+                <div className="relative aspect-[4/4.6]">
+                  <Image
+                    src={PROFILE_IMAGE}
+                    alt="Portrait of Michael Ayomide"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 360px"
+                    className="object-cover object-center"
+                    placeholder="blur"
+                    blurDataURL={createBlurDataURL("#120b1c")}
+                    priority
+                  />
+                </div>
+                <div className="absolute inset-x-3 bottom-3 rounded-2xl border border-border-default bg-bg-base/80 p-4 backdrop-blur-md">
+                  <p className="font-body text-body-xs uppercase tracking-[0.12em] text-accent-warm">
+                    Product Designer
+                  </p>
+                  <p className="mt-2 font-display text-xl font-medium leading-tight text-text-primary">
+                    Premium taste. Clear thinking. Real product outcomes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           <motion.p
             variants={{
               hidden: { opacity: 0 },
@@ -144,7 +181,7 @@ export default function Hero() {
                 transition: { duration: 0.45, delay: 1.1, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-12 font-body text-body-xs uppercase tracking-[0.05em] text-text-muted"
+            className="mt-10 font-body text-body-xs uppercase tracking-[0.05em] text-text-muted sm:mt-12"
           >
             {proof.join("  ·  ")}
           </motion.p>
@@ -165,7 +202,7 @@ export default function Hero() {
                     alt="Portrait of Michael Ayomide"
                     fill
                     sizes="360px"
-                    className="object-cover"
+                    className="object-cover object-center"
                     placeholder="blur"
                     blurDataURL={createBlurDataURL("#120b1c")}
                     priority

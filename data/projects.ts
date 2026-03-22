@@ -374,7 +374,7 @@ export const projects: Project[] = [
     heroImage: "/images/work/chillington-hero.svg",
     outcome:
       "A more polished live brand experience that brought multiple locations under one coherent digital system.",
-    liveUrl: "https://replace-with-chillington-url.com",
+    liveUrl: "https://chillington.vercel.app",
     sections: [
       {
         id: "overview",
