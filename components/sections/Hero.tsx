@@ -6,7 +6,6 @@ import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
-import BrandMark from "@/components/ui/BrandMark";
 import { buttonStyles } from "@/components/ui/Button";
 import CalendlyButton from "@/components/ui/CalendlyButton";
 import { EASE_DEFAULT } from "@/lib/motion";
@@ -20,6 +19,8 @@ const PROFILE_IMAGE =
 export default function Hero() {
   const reducedMotion = useReducedMotion();
   const [hideScrollCue, setHideScrollCue] = useState(false);
+  const [pointer, setPointer] = useState({ x: 0.72, y: 0.28 });
+  const [pulse, setPulse] = useState({ x: 0.72, y: 0.28, key: 0 });
   const sectionRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -36,18 +37,91 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return (
-    <section ref={sectionRef} className="relative flex min-h-[100svh] items-center overflow-hidden">
-      <motion.div
-        style={reducedMotion ? undefined : { y: orbY, opacity: glowOpacity }}
-        className="pointer-events-none absolute -right-20 top-20 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,var(--accent-warm-soft),transparent_58%)] blur-3xl"
-      />
-      <motion.div
-        style={reducedMotion ? undefined : { y: panelY }}
-        className="pointer-events-none absolute left-[-120px] top-16 hidden h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,var(--accent-rose-soft),transparent_62%)] blur-3xl lg:block"
-      />
+  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    if (reducedMotion) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    setPointer({ x, y });
+  };
 
-      <div className="section-shell grid w-full items-center gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-12">
+  const handlePointerLeave = () => {
+    if (reducedMotion) return;
+    setPointer({ x: 0.72, y: 0.28 });
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLElement>) => {
+    if (reducedMotion) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    setPointer({ x, y });
+    setPulse((current) => ({ x, y, key: current.key + 1 }));
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-[100svh] items-center overflow-hidden"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      onPointerDown={handlePointerDown}
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px] opacity-40" />
+        <motion.div
+          style={reducedMotion ? undefined : { y: orbY, opacity: glowOpacity }}
+          className="absolute -right-20 top-20 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,var(--accent-warm-soft),transparent_58%)] blur-3xl"
+        />
+        <motion.div
+          style={reducedMotion ? undefined : { y: panelY }}
+          className="absolute left-[-120px] top-16 hidden h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,var(--accent-rose-soft),transparent_62%)] blur-3xl lg:block"
+        />
+        {!reducedMotion ? (
+          <>
+            <motion.div
+              animate={{
+                left: `${pointer.x * 100}%`,
+                top: `${pointer.y * 100}%`,
+              }}
+              transition={{ duration: 0.35, ease: EASE_DEFAULT }}
+              className="absolute h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(254,1,220,0.16),transparent_68%)] blur-2xl"
+            />
+            <motion.div
+              animate={{
+                left: `${(pointer.x * 0.82 + 0.1) * 100}%`,
+                top: `${(pointer.y * 0.76 + 0.12) * 100}%`,
+              }}
+              transition={{ duration: 0.45, ease: EASE_DEFAULT }}
+              className="absolute h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-border-accent bg-accent-glow/40 blur-sm"
+            />
+            <motion.div
+              key={pulse.key}
+              initial={{
+                opacity: 0.35,
+                scale: 0.2,
+                left: `${pulse.x * 100}%`,
+                top: `${pulse.y * 100}%`,
+              }}
+              animate={{ opacity: 0, scale: 1.9 }}
+              transition={{ duration: 0.7, ease: EASE_DEFAULT }}
+              className="absolute h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-border-accent"
+            />
+          </>
+        ) : null}
+        <motion.div
+          animate={reducedMotion ? undefined : { y: [0, -10, 0] }}
+          transition={reducedMotion ? undefined : { duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[22%] right-[12%] h-16 w-28 rounded-full border border-border-subtle bg-bg-surface/50"
+        />
+        <motion.div
+          animate={reducedMotion ? undefined : { y: [0, 14, 0] }}
+          transition={reducedMotion ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+          className="absolute left-[8%] top-[18%] h-10 w-10 rounded-full border border-border-subtle bg-bg-surface/50"
+        />
+      </div>
+
+      <div className="section-shell relative z-raised grid w-full items-center gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-12">
         <motion.div
           initial={reducedMotion ? false : "hidden"}
           animate="visible"
@@ -198,7 +272,6 @@ export default function Hero() {
           <div className="premium-panel relative overflow-hidden rounded-[32px] border border-border-default bg-bg-surface p-6 shadow-card">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_36%)]" />
             <div className="relative space-y-6">
-              <BrandMark withName />
               <div className="relative overflow-hidden rounded-[24px] border border-border-default bg-bg-base/60">
                 <div className="relative aspect-[4/5]">
                   <Image
