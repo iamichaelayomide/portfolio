@@ -1,0 +1,10 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0A0A0A"/>
+  <rect x="88" y="96" width="1424" height="708" rx="44" fill="#111111" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="150" y="156" width="1300" height="38" rx="19" fill="#F0EDE8" fill-opacity="0.08"/>
+  <rect x="150" y="248" width="380" height="336" rx="34" fill="#C4956A" fill-opacity="0.16"/>
+  <rect x="566" y="248" width="380" height="336" rx="34" fill="#191919"/>
+  <rect x="982" y="248" width="468" height="336" rx="34" fill="#B76E79" fill-opacity="0.16"/>
+  <rect x="150" y="626" width="1300" height="54" rx="18" fill="#F0EDE8" fill-opacity="0.05"/>
+  <text x="150" y="762" fill="#F0EDE8" font-family="Arial, sans-serif" font-size="76">Ayomide Stores</text>
+</svg>

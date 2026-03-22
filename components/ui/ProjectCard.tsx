@@ -1,0 +1,89 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import type { Project } from "@/data/projects";
+import { EASE_DEFAULT } from "@/lib/motion";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { createBlurDataURL, formatProjectCategory } from "@/lib/utils";
+
+export default function ProjectCard({
+  project,
+  featured = false,
+}: {
+  project: Project;
+  featured?: boolean;
+}) {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <Link href={`/work/${project.slug}`} className="block focus-visible:outline-none">
+      <motion.article
+        whileHover={
+          reducedMotion
+            ? undefined
+            : {
+                y: -4,
+                boxShadow: "0 4px 24px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3)",
+                borderColor: "var(--border-default)",
+              }
+        }
+        transition={{ duration: 0.25, ease: EASE_DEFAULT }}
+        className="group overflow-hidden rounded-xl border border-border-subtle bg-bg-surface shadow-card"
+      >
+        <div className={`relative overflow-hidden bg-bg-elevated ${featured ? "aspect-[21/9]" : "aspect-[16/10]"}`}>
+          <motion.div
+            whileHover={reducedMotion ? undefined : { scale: 1.03 }}
+            transition={{ duration: 0.4, ease: EASE_DEFAULT }}
+            className="h-full w-full"
+          >
+            <Image
+              src={project.thumbnail}
+              alt={`${project.title} project preview`}
+              fill
+              sizes={featured ? "(max-width: 1024px) 100vw, 1200px" : "(max-width: 1024px) 100vw, 50vw"}
+              className="object-cover"
+              placeholder="blur"
+              blurDataURL={createBlurDataURL()}
+            />
+          </motion.div>
+        </div>
+        <div className="space-y-4 px-6 pb-6 pt-5">
+          <div className="flex flex-wrap gap-2">
+            {featured ? (
+              <span className="rounded-full border border-border-accent bg-accent-glow px-3 py-1 font-body text-body-xs font-medium uppercase tracking-caps text-accent-rose">
+                Featured
+              </span>
+            ) : null}
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-[var(--accent-warm-10)] px-3 py-1 font-body text-body-xs text-text-secondary"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div className="flex items-start justify-between gap-4">
+            <div className="space-y-2">
+              <h3 className="font-display text-display-sm font-medium text-text-primary">
+                {project.title}
+              </h3>
+              <p className="font-body text-body-sm text-text-secondary">
+                {project.description}
+              </p>
+              <p className="font-body text-body-xs uppercase tracking-[0.05em] text-text-muted">
+                {formatProjectCategory(project.tags)}
+              </p>
+            </div>
+            <span className="pt-1 text-text-secondary transition-all duration-200 ease-default group-hover:translate-x-1 group-hover:opacity-100 md:opacity-0">
+              <ArrowUpRight className="h-5 w-5" />
+            </span>
+          </div>
+        </div>
+      </motion.article>
+    </Link>
+  );
+}

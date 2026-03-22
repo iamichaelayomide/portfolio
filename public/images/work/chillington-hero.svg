@@ -1,0 +1,10 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0A0A0A"/>
+  <circle cx="1360" cy="740" r="180" fill="#C4956A" fill-opacity="0.12"/>
+  <rect x="86" y="94" width="1428" height="712" rx="44" fill="#111111" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="150" y="150" width="1300" height="250" rx="34" fill="#B76E79" fill-opacity="0.14"/>
+  <rect x="150" y="434" width="405" height="250" rx="30" fill="#191919"/>
+  <rect x="597" y="434" width="405" height="250" rx="30" fill="#191919"/>
+  <rect x="1044" y="434" width="406" height="250" rx="30" fill="#C4956A" fill-opacity="0.14"/>
+  <text x="150" y="282" fill="#F0EDE8" font-family="Arial, sans-serif" font-size="84">Chillington</text>
+</svg>

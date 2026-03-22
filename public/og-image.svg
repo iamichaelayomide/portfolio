@@ -1,0 +1,11 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#06030A"/>
+  <circle cx="990" cy="108" r="150" fill="#FE01DC" fill-opacity="0.14"/>
+  <circle cx="260" cy="536" r="190" fill="#620F85" fill-opacity="0.2"/>
+  <rect x="64" y="64" width="1072" height="502" rx="36" fill="#0D0814" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="96" y="96" width="62" height="62" rx="31" fill="#151021" stroke="rgba(255,255,255,0.08)"/>
+  <text x="112" y="136" fill="#FE01DC" font-family="Arial, sans-serif" font-size="24">MA</text>
+  <text x="96" y="248" fill="#F4EEF8" font-family="Arial, sans-serif" font-size="72">Michael Ayomide</text>
+  <text x="96" y="324" fill="#C9BDD5" font-family="Arial, sans-serif" font-size="34">Premium product design, UX systems, and conversion-led web experiences.</text>
+  <text x="96" y="424" fill="#FE01DC" font-family="Arial, sans-serif" font-size="28">Product Design   ·   UX   ·   Web   ·   Design Systems</text>
+</svg>

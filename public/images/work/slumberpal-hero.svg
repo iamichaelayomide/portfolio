@@ -1,0 +1,11 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0A0A0A"/>
+  <circle cx="1260" cy="170" r="190" fill="#C4956A" fill-opacity="0.16"/>
+  <rect x="140" y="120" width="360" height="660" rx="52" fill="#191919" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="182" y="182" width="276" height="30" rx="15" fill="#F0EDE8" fill-opacity="0.08"/>
+  <rect x="182" y="264" width="276" height="160" rx="32" fill="#B76E79" fill-opacity="0.18"/>
+  <rect x="182" y="452" width="276" height="102" rx="24" fill="#F0EDE8" fill-opacity="0.05"/>
+  <rect x="182" y="582" width="276" height="102" rx="24" fill="#F0EDE8" fill-opacity="0.05"/>
+  <text x="600" y="370" fill="#F0EDE8" font-family="Arial, sans-serif" font-size="80">SlumberPal</text>
+  <text x="600" y="452" fill="#B8B3AB" font-family="Arial, sans-serif" font-size="34">Audio-led wellness interface</text>
+</svg>
