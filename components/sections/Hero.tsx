@@ -171,9 +171,9 @@ export default function Hero() {
                 transition: { duration: 0.55, delay: 0.6, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-[17ch] text-balance font-display text-[clamp(24px,4.8vw,48px)] leading-[1.02] font-semibold tracking-[-0.03em] text-text-primary"
+            className="max-w-none text-pretty font-display text-[clamp(22px,4vw,42px)] leading-[1.04] font-semibold tracking-[-0.03em] text-text-primary lg:whitespace-nowrap"
           >
-            Need a stronger website or store?
+            Need a better website or store?
           </motion.h1>
 
           <motion.p
@@ -185,7 +185,7 @@ export default function Hero() {
                 transition: { duration: 0.5, delay: 0.75, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-4 max-w-[38rem] text-balance font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
+            className="mt-4 max-w-[36rem] text-pretty font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
           >
             I design SaaS products, websites, and ecommerce experiences that help
             people trust faster, understand faster, and take action faster.
