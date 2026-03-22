@@ -47,7 +47,7 @@ export default function Hero() {
         className="pointer-events-none absolute left-[-120px] top-16 hidden h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,var(--accent-rose-soft),transparent_62%)] blur-3xl lg:block"
       />
 
-      <div className="section-shell grid w-full items-center gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-12">
+      <div className="section-shell grid w-full items-center gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-12">
         <motion.div
           initial={reducedMotion ? false : "hidden"}
           animate="visible"
