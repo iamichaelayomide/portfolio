@@ -11,7 +11,7 @@ import WhatIDo from "@/components/sections/WhatIDo";
 export const metadata: Metadata = {
   title: "Michael Ayomide - Product Designer",
   description:
-    "Product designer specializing in UX, UI, design systems, and high-conversion web experiences.",
+    "Product designer for SaaS, websites, and ecommerce experiences that need stronger trust, cleaner UX, and better conversion.",
 };
 
 export default function HomePage() {

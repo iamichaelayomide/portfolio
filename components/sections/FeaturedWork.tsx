@@ -23,7 +23,7 @@ export default function FeaturedWork() {
             Selected Work
           </p>
           <h2 className="font-display text-display-md font-semibold text-text-primary">
-            Things I&apos;ve built.
+            Selected work with real commercial intent.
           </h2>
         </ScrollReveal>
         <div className="space-y-6">
@@ -40,7 +40,7 @@ export default function FeaturedWork() {
         </div>
         <div className="mt-10 text-center">
           <Link href="/work" className={buttonStyles({ variant: "secondary", size: "md" })}>
-            View All Work →
+            {"View All Work ->"}
           </Link>
         </div>
       </div>
@@ -49,8 +49,7 @@ export default function FeaturedWork() {
 }
 
 export function WorkShowcase() {
-  const [activeFilter, setActiveFilter] =
-    useState<(typeof projectFilters)[number]>("All");
+  const [activeFilter, setActiveFilter] = useState<(typeof projectFilters)[number]>("All");
 
   const filteredProjects =
     activeFilter === "All"

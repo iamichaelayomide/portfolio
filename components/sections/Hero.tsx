@@ -173,7 +173,7 @@ export default function Hero() {
             }}
             className="max-w-[17ch] text-balance font-display text-[clamp(24px,4.8vw,48px)] leading-[1.02] font-semibold tracking-[-0.03em] text-text-primary"
           >
-            Need a better website or store?
+            Need a stronger website or store?
           </motion.h1>
 
           <motion.p
@@ -187,7 +187,8 @@ export default function Hero() {
             }}
             className="mt-4 max-w-[38rem] text-balance font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
           >
-            I design SaaS products, WordPress websites, WooCommerce stores, Shopify experiences, and high-conversion pages that feel clear, credible, and ready to ship.
+            I design SaaS products, websites, and ecommerce experiences that help
+            people trust faster, understand faster, and take action faster.
           </motion.p>
 
           <motion.div
@@ -211,7 +212,9 @@ export default function Hero() {
                 className="border-border-accent bg-accent-warm text-bg-base hover:border-border-accent hover:bg-accent-warm hover:text-bg-base sm:bg-bg-elevated sm:text-text-primary"
               />
             </div>
-            <p className="font-body text-body-xs text-text-muted">Typically replies within 3 hours</p>
+            <p className="font-body text-body-xs text-text-muted">
+              Typically replies within 3 hours
+            </p>
           </motion.div>
 
           <motion.div
@@ -244,7 +247,7 @@ export default function Hero() {
                     Product Designer
                   </p>
                   <p className="mt-2 font-display text-xl font-medium leading-tight text-text-primary">
-                    SaaS, websites, ecommerce, and conversion-led design.
+                    Strategic design for SaaS, websites, and ecommerce.
                   </p>
                 </div>
               </div>
@@ -261,7 +264,7 @@ export default function Hero() {
             }}
             className="mt-10 font-body text-body-xs uppercase tracking-[0.05em] text-text-muted sm:mt-12"
           >
-            {proof.join("  ·  ")}
+            {proof.join("  /  ")}
           </motion.p>
         </motion.div>
 
@@ -290,7 +293,7 @@ export default function Hero() {
                     Product Designer
                   </p>
                   <p className="mt-2 font-display text-2xl font-medium text-text-primary">
-                    SaaS, websites, ecommerce, and conversion-led design.
+                    Strategic design for SaaS, websites, and ecommerce.
                   </p>
                 </div>
               </div>
@@ -298,7 +301,7 @@ export default function Hero() {
                 {[
                   "SaaS product design",
                   "WordPress, WooCommerce, and Shopify builds",
-                  "AI-assisted execution with strong product judgment",
+                  "AI-assisted execution with product-level thinking",
                 ].map((item) => (
                   <div
                     key={item}

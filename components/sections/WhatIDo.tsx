@@ -5,22 +5,22 @@ const services = [
   {
     icon: LayoutPanelTop,
     title: "Product Design",
-    description: "SaaS flows, product structure, and polished UI built around clarity and action.",
+    description: "Product strategy, flows, and UI direction shaped to make complex products easier to trust and use.",
   },
   {
     icon: Compass,
     title: "UX Research & Strategy",
-    description: "User understanding, journey mapping, and product decisions grounded in evidence.",
+    description: "Insight, journey mapping, and sharper product decisions before visual polish begins.",
   },
   {
     icon: Blocks,
     title: "Web & Ecommerce Builds",
-    description: "WordPress, WooCommerce, Shopify, and high-conversion websites shaped to perform.",
+    description: "WordPress, WooCommerce, Shopify, and conversion-focused websites built to move people to action.",
   },
   {
     icon: SquareStack,
     title: "Design Systems",
-    description: "Scalable component libraries, tokens, and structure built for consistency.",
+    description: "Design tokens, reusable components, and systems that keep teams fast and consistent.",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function WhatIDo() {
             What I Do
           </p>
           <h2 className="font-display text-display-md font-semibold text-text-light">
-            The full picture.
+            Design support that goes beyond the mockup.
           </h2>
         </ScrollReveal>
         <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">

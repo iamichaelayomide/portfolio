@@ -29,7 +29,7 @@ export default function FinalCTA() {
             <h2 className="font-display text-display-lg font-semibold text-text-primary">
               Have a product, website, or store
               <br />
-              that needs better design?
+              that needs to convert better?
               <br />
               Let&apos;s talk.
             </h2>

@@ -6,13 +6,13 @@ const builds = [
     name: "Ayomide Stores - E-commerce",
     url: "https://ayomidestores.vercel.app",
     description:
-      "A live storefront shaped through product design and AI-assisted CLI workflows for faster execution.",
+      "A conversion-focused storefront shaped in design and executed with AI-assisted CLI workflows.",
   },
   {
     name: "Chillington (Sharamawa) - Multi-location site",
     url: "https://chillington.vercel.app",
     description:
-      "A live brand website translated from design direction into a shipped experience with AI-assisted build support.",
+      "A multi-location brand site turned from design direction into a live experience with AI-assisted build support.",
   },
 ];
 
@@ -29,7 +29,8 @@ export default function LiveBuilds() {
             Shipped. Running. Real.
           </h2>
           <p className="mt-4 max-w-[640px] font-body text-body-lg text-text-secondary">
-            Live products built through design-led, AI-assisted workflows. Real sites, not static mockups.
+            Live websites and stores translated from design thinking into launch-ready
+            experiences with AI-assisted execution.
           </p>
         </ScrollReveal>
         <div className="grid gap-6 lg:grid-cols-2">
@@ -47,7 +48,7 @@ export default function LiveBuilds() {
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-border-default bg-bg-surface px-3 py-1 font-body text-body-xs text-text-secondary">
                     <span className="h-2 w-2 rounded-full bg-status-online" />
-                    Live ↗
+                    {"Live ->"}
                   </div>
                 </div>
                 <div className="rounded-xl border border-border-subtle bg-bg-base p-6">

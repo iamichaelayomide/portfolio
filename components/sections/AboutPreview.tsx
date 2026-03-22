@@ -28,23 +28,26 @@ export default function AboutPreview() {
           </p>
           <div className="max-w-[620px] space-y-5">
             <p className="font-display text-display-md font-semibold text-text-primary">
-              I&apos;m Michael Ayomide - a product designer focused on clarity, strong judgment, and work that performs in the real world.
+              I&apos;m Michael Ayomide, a product designer focused on work that feels
+              premium, makes sense fast, and earns trust early.
             </p>
             <p className="font-body text-body-md text-text-secondary">
-              I work across SaaS, consumer products, WordPress sites, WooCommerce stores, Shopify builds, and conversion-led web projects with the same principle every time: make the product easier to understand and harder to ignore.
+              I work across SaaS, websites, WooCommerce, Shopify, and
+              conversion-focused web projects with one priority every time: make the
+              offer clearer and the experience easier to act on.
             </p>
             <Link
               href="/about"
               className="inline-flex items-center gap-2 font-body text-body-sm text-text-primary transition-colors hover:text-accent-warm"
             >
-              More About Me →
+              {"More About Me ->"}
             </Link>
           </div>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <motion.div
             style={reducedMotion ? undefined : { y: imageY }}
-            className="relative overflow-hidden rounded-[28px] border border-border-default premium-panel p-3 shadow-card"
+            className="premium-panel relative overflow-hidden rounded-[28px] border border-border-default p-3 shadow-card"
           >
             <motion.div
               style={reducedMotion ? undefined : { scale: imageScale }}
@@ -65,7 +68,7 @@ export default function AboutPreview() {
                 Based in Nigeria
               </p>
               <p className="mt-2 font-display text-2xl font-medium text-text-primary">
-                SaaS, websites, and ecommerce builds.
+                Design for SaaS, websites, and ecommerce.
               </p>
             </div>
           </motion.div>

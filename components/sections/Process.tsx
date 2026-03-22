@@ -4,26 +4,22 @@ const steps = [
   {
     number: "01",
     title: "Understand",
-    description:
-      "I learn your users, business goals, and constraints before touching a single pixel.",
+    description: "I get clear on your users, goals, offer, and constraints before design starts.",
   },
   {
     number: "02",
     title: "Structure",
-    description:
-      "Information architecture, flows, and logic — before aesthetics.",
+    description: "I shape the information, flow, and decision points before styling anything.",
   },
   {
     number: "03",
     title: "Design",
-    description:
-      "High-fidelity UI that communicates the logic through visual clarity.",
+    description: "I turn the strategy into polished UI that feels premium and easy to follow.",
   },
   {
     number: "04",
     title: "Deliver",
-    description:
-      "Handoff-ready files, design systems, or fully built web products.",
+    description: "You get handoff-ready files or a live build, depending on the engagement.",
   },
 ];
 
@@ -37,7 +33,7 @@ export default function Process() {
             How I Work
           </p>
           <h2 className="font-display text-display-md font-semibold text-text-primary">
-            The process behind the work.
+            A process built for speed and good decisions.
           </h2>
         </ScrollReveal>
         <div className="grid gap-6 lg:grid-cols-4">
@@ -47,7 +43,9 @@ export default function Process() {
                 {index < steps.length - 1 ? (
                   <div className="absolute right-[-24px] top-10 hidden h-px w-12 border-t border-dashed border-border-default lg:block" />
                 ) : null}
-                <p className="font-display text-5xl font-medium text-[var(--text-muted-60)]">{step.number}</p>
+                <p className="font-display text-5xl font-medium text-[var(--text-muted-60)]">
+                  {step.number}
+                </p>
                 <h3 className="mt-6 font-display text-2xl font-medium text-text-primary">
                   {step.title}
                 </h3>
