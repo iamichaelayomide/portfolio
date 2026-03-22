@@ -97,9 +97,9 @@ export default function Hero() {
                 transition: { duration: 0.55, delay: 0.6, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-[14ch] text-balance font-display text-[clamp(36px,7vw,68px)] leading-[1.04] font-semibold tracking-[-0.03em] text-text-primary sm:max-w-[15ch]"
+            className="max-w-[11ch] text-balance font-display text-[clamp(30px,5.8vw,58px)] leading-[1.02] font-semibold tracking-[-0.03em] text-text-primary sm:max-w-[12ch]"
           >
-            I design clear, premium product experiences that convert and ship fast.
+            Need better product design?
           </motion.h1>
 
           <motion.p
@@ -111,9 +111,9 @@ export default function Hero() {
                 transition: { duration: 0.5, delay: 0.75, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-5 max-w-[36rem] text-balance font-body text-[17px] leading-[1.7] text-text-secondary sm:text-body-lg"
+            className="mt-4 max-w-[33rem] text-balance font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
           >
-            For SaaS teams, founders, and ambitious brands, I turn messy flows into sharp UX, polished UI, and live websites shipped through modern AI workflows.
+            I help founders and teams turn unclear products into clean UX, stronger trust, and live experiences people actually understand.
           </motion.p>
 
           <motion.div
@@ -125,13 +125,17 @@ export default function Hero() {
                 transition: { duration: 0.45, delay: 0.9, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-7 space-y-3"
+            className="mt-6 space-y-3 sm:mt-7"
           >
             <div className="flex flex-wrap gap-3">
               <Link href="/work" className={buttonStyles({ variant: "primary", size: "md" })}>
                 View My Work
               </Link>
-              <CalendlyButton variant="secondary" label="Book a Call" />
+              <CalendlyButton
+                variant="secondary"
+                label="Book a Call"
+                className="border-border-accent bg-accent-warm text-bg-base hover:border-border-accent hover:bg-accent-warm hover:text-bg-base sm:bg-bg-elevated sm:text-text-primary"
+              />
             </div>
             <p className="font-body text-body-xs text-text-muted">Typically replies within 3 hours</p>
           </motion.div>
