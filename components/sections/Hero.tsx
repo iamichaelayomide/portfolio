@@ -146,7 +146,7 @@ export default function Hero() {
               <span className="absolute inset-0 rounded-full bg-[var(--status-online-soft)]" />
               <span className="relative h-2.5 w-2.5 rounded-full bg-status-online animate-pulse-dot" />
             </span>
-            Available for SaaS, websites, and ecommerce builds
+            Available for freelance projects and product design roles
           </motion.div>
 
           <motion.div
@@ -173,7 +173,7 @@ export default function Hero() {
             }}
             className="max-w-none text-pretty font-display text-[clamp(22px,4vw,42px)] leading-[1.04] font-semibold tracking-[-0.03em] text-text-primary lg:whitespace-nowrap"
           >
-            Need a better website or store?
+            Open to gigs and product roles.
           </motion.h1>
 
           <motion.p
@@ -187,8 +187,8 @@ export default function Hero() {
             }}
             className="mt-4 max-w-[36rem] text-pretty font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
           >
-            I design SaaS products, websites, and ecommerce experiences that help
-            people trust faster, understand faster, and take action faster.
+            I design SaaS products, websites, and ecommerce experiences with the
+            product thinking, visual clarity, and execution teams need to ship well.
           </motion.p>
 
           <motion.div
@@ -203,14 +203,14 @@ export default function Hero() {
             className="mt-6 space-y-3 sm:mt-7"
           >
             <div className="flex flex-wrap gap-3">
-              <Link href="/work" className={buttonStyles({ variant: "primary", size: "md" })}>
+              <CalendlyButton
+                variant="primary"
+                label="Book a Call"
+                className="bg-accent-warm text-bg-base hover:bg-accent-warm hover:text-bg-base"
+              />
+              <Link href="/work" className={buttonStyles({ variant: "secondary", size: "md" })}>
                 View My Work
               </Link>
-              <CalendlyButton
-                variant="secondary"
-                label="Book a Call"
-                className="border-border-accent bg-accent-warm text-bg-base hover:border-border-accent hover:bg-accent-warm hover:text-bg-base sm:bg-bg-elevated sm:text-text-primary"
-              />
             </div>
             <p className="font-body text-body-xs text-text-muted">
               Typically replies within 3 hours
@@ -247,7 +247,7 @@ export default function Hero() {
                     Product Designer
                   </p>
                   <p className="mt-2 font-display text-xl font-medium leading-tight text-text-primary">
-                    Strategic design for SaaS, websites, and ecommerce.
+                    Product design for teams, founders, and growing brands.
                   </p>
                 </div>
               </div>
@@ -293,7 +293,7 @@ export default function Hero() {
                     Product Designer
                   </p>
                   <p className="mt-2 font-display text-2xl font-medium text-text-primary">
-                    Strategic design for SaaS, websites, and ecommerce.
+                    Product design for teams, founders, and growing brands.
                   </p>
                 </div>
               </div>
@@ -301,7 +301,7 @@ export default function Hero() {
                 {[
                   "SaaS product design",
                   "WordPress, WooCommerce, and Shopify builds",
-                  "AI-assisted execution with product-level thinking",
+                  "AI-assisted execution with strong design judgment",
                 ].map((item) => (
                   <div
                     key={item}
