@@ -146,7 +146,7 @@ export default function Hero() {
               <span className="absolute inset-0 rounded-full bg-[var(--status-online-soft)]" />
               <span className="relative h-2.5 w-2.5 rounded-full bg-status-online animate-pulse-dot" />
             </span>
-            Available for freelance projects and product design roles
+            Open to full-time roles and select freelance projects
           </motion.div>
 
           <motion.div
@@ -173,7 +173,7 @@ export default function Hero() {
             }}
             className="max-w-none text-pretty font-display text-[clamp(22px,4vw,42px)] leading-[1.04] font-semibold tracking-[-0.03em] text-text-primary lg:whitespace-nowrap"
           >
-            Open to gigs and product roles.
+            I design product experiences people understand and trust.
           </motion.h1>
 
           <motion.p
@@ -187,8 +187,8 @@ export default function Hero() {
             }}
             className="mt-4 max-w-[36rem] text-pretty font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
           >
-            I design SaaS products, websites, and ecommerce experiences with the
-            product thinking, visual clarity, and execution teams need to ship well.
+            Available for product design roles, SaaS teams, and brands that need
+            sharper UX, stronger trust, and cleaner execution.
           </motion.p>
 
           <motion.div
