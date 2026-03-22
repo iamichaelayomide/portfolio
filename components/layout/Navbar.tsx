@@ -45,7 +45,7 @@ export default function Navbar() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-navbar h-14 transition-all duration-300 ease-default md:h-16",
-          scrolled ? "glass-nav" : "border-b border-transparent bg-transparent",
+          scrolled || open ? "glass-nav" : "border-b border-transparent bg-transparent",
         )}
       >
         <div className="section-shell flex h-full items-center justify-between">
@@ -80,10 +80,13 @@ export default function Navbar() {
           </nav>
           <button
             type="button"
-            className="relative z-[110] flex h-10 w-10 items-center justify-center text-text-primary md:hidden"
+            className={cn(
+              "relative z-[210] flex h-11 w-11 items-center justify-center rounded-full border border-border-default bg-bg-elevated/80 text-text-primary transition-colors duration-200 ease-default md:hidden",
+              open && "border-border-accent bg-accent-glow text-accent-warm",
+            )}
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
-            aria-label="Toggle navigation"
+            aria-label={open ? "Close navigation" : "Open navigation"}
           >
             <span className="relative h-4 w-5">
               <motion.span
@@ -105,6 +108,7 @@ export default function Navbar() {
           </button>
         </div>
       </header>
+
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -112,40 +116,63 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: EASE_DEFAULT }}
-            className="fixed inset-0 z-overlay flex items-center justify-center bg-[var(--bg-base-95)] backdrop-blur-2xl md:hidden"
+            className="fixed inset-0 z-modal bg-[var(--bg-base-95)] backdrop-blur-2xl md:hidden"
           >
-            <nav className="flex flex-col items-center gap-8">
-              <BrandMark withName className="mb-6" />
-              {links.map((link, index) => {
-                const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
-
-                return (
-                  <motion.div
-                    key={link.href}
-                    initial={reducedMotion ? false : { opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.08 + index * 0.04, ease: EASE_DEFAULT }}
-                  >
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        "font-display text-display-md font-medium text-text-secondary",
-                        active && "text-text-primary",
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-              <motion.div
+            <div className="section-shell flex min-h-screen flex-col pb-10 pt-24">
+              <motion.nav
                 initial={reducedMotion ? false : { opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.24, ease: EASE_DEFAULT }}
+                exit={reducedMotion ? undefined : { opacity: 0, y: 12 }}
+                transition={{ duration: 0.28, ease: EASE_DEFAULT }}
+                className="flex flex-1 flex-col"
               >
-                <CalendlyButton label="Book a Call" size="lg" showIcon />
-              </motion.div>
-            </nav>
+                <div className="flex flex-col gap-6 pt-6">
+                  {links.map((link, index) => {
+                    const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
+
+                    return (
+                      <motion.div
+                        key={link.href}
+                        initial={reducedMotion ? false : { opacity: 0, x: -16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: 0.06 + index * 0.04,
+                          ease: EASE_DEFAULT,
+                        }}
+                      >
+                        <Link
+                          href={link.href}
+                          className={cn(
+                            "block border-b border-border-subtle pb-6 font-display text-[clamp(32px,9vw,54px)] font-medium leading-none text-text-secondary transition-colors duration-150 ease-default",
+                            active && "text-text-primary",
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                <motion.div
+                  initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.24, ease: EASE_DEFAULT }}
+                  className="mt-auto space-y-4 pt-10"
+                >
+                  <CalendlyButton
+                    label="Book a Call"
+                    size="lg"
+                    showIcon
+                    className="w-full justify-center border-border-accent bg-accent-warm text-bg-base hover:border-border-accent hover:bg-accent-warm hover:text-bg-base"
+                  />
+                  <p className="font-body text-body-xs text-text-muted">
+                    Typically replies within 3 hours
+                  </p>
+                </motion.div>
+              </motion.nav>
+            </div>
           </motion.div>
         ) : null}
       </AnimatePresence>

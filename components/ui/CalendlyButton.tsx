@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { buttonStyles } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
-const CALENDLY_URL = "https://calendly.com/michaelayomide";
+const BOOKING_URL = "https://calendar.app.google/XokweinKF35im8J88";
 
 export default function CalendlyButton({
   className,
@@ -21,7 +21,7 @@ export default function CalendlyButton({
 }) {
   return (
     <a
-      href={CALENDLY_URL}
+      href={BOOKING_URL}
       target="_blank"
       rel="noreferrer"
       className={cn(buttonStyles({ variant, size }), "gap-2", className)}

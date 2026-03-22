@@ -197,16 +197,25 @@ export default function ContactFormSection() {
                   30-minute call · No commitment
                 </p>
               </div>
-              <div className="min-h-[500px] bg-bg-elevated">
-                <iframe
-                  title="Calendly scheduling"
-                  src="https://calendly.com/michaelayomide"
-                  className="h-[500px] w-full border-0"
+              <div className="space-y-5 bg-bg-elevated px-6 py-8">
+                <div className="rounded-xl border border-border-subtle bg-bg-base/70 p-5">
+                  <p className="font-body text-body-xs uppercase tracking-caps text-accent-warm">
+                    Quickest route
+                  </p>
+                  <p className="mt-3 font-body text-body-sm text-text-secondary">
+                    Use the booking link to pick a time that works for you. It opens directly in Google Calendar scheduling.
+                  </p>
+                </div>
+                <CalendlyButton
+                  label="Open Booking Page"
+                  variant="primary"
+                  showIcon
+                  className="w-full justify-center"
                 />
               </div>
               <div className="border-t border-border-subtle px-6 py-5">
                 <CalendlyButton
-                  label="Open Calendly in New Tab"
+                  label="Open Booking Link in New Tab"
                   variant="secondary"
                   showIcon
                   className="w-full"
