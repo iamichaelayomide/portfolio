@@ -19,11 +19,36 @@ const contactSchema = z.object({
 type ContactValues = z.infer<typeof contactSchema>;
 
 const links = [
-  { icon: Mail, label: "Email", value: "hello@michaelayomide.com", href: "mailto:hello@michaelayomide.com" },
-  { icon: MessageCircleMore, label: "WhatsApp", value: "+234 XXX XXX XXXX", href: "https://wa.me/2340000000000" },
-  { icon: ExternalLink, label: "Behance", value: "behance.net/michaelayomide1", href: "https://behance.net/michaelayomide1" },
-  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/michael-ayomide", href: "https://linkedin.com/in/michael-ayomide" },
-  { icon: ExternalLink, label: "X", value: "@starmikeee", href: "https://x.com/starmikeee" },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "hello@michaelayomide.com",
+    href: "mailto:hello@michaelayomide.com",
+  },
+  {
+    icon: MessageCircleMore,
+    label: "WhatsApp",
+    value: "+234 XXX XXX XXXX",
+    href: "https://wa.me/2340000000000",
+  },
+  {
+    icon: ExternalLink,
+    label: "Behance",
+    value: "behance.net/michaelayomide1",
+    href: "https://behance.net/michaelayomide1",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "linkedin.com/in/michael-ayomide",
+    href: "https://linkedin.com/in/michael-ayomide",
+  },
+  {
+    icon: ExternalLink,
+    label: "X",
+    value: "@starmikeee",
+    href: "https://x.com/starmikeee",
+  },
 ];
 
 export default function ContactFormSection() {
@@ -58,8 +83,8 @@ export default function ContactFormSection() {
           <h1 className="font-display text-display-lg font-semibold text-text-primary">
             Let&apos;s talk.
           </h1>
-          <p className="mt-4 font-body text-body-lg text-text-secondary">
-            Tell me what you&apos;re building. I&apos;ll tell you how I can help.
+          <p className="mt-4 max-w-[40rem] font-body text-body-lg text-text-secondary">
+            Tell me what you&apos;re building. I&apos;ll tell you where the clarity, trust, and conversion gaps are.
           </p>
         </ScrollReveal>
 
@@ -71,7 +96,7 @@ export default function ContactFormSection() {
                   Message received.
                 </h2>
                 <p className="mt-4 max-w-prose font-body text-body-md text-text-secondary">
-                  Thanks for reaching out. I&apos;ll reply within 24 hours with the next step.
+                  Thanks for reaching out. I&apos;ll reply within 3 hours with the next step.
                 </p>
                 <Button className="mt-6" variant="secondary" onClick={() => setSent(false)}>
                   Send another message
@@ -82,6 +107,15 @@ export default function ContactFormSection() {
                 onSubmit={handleSubmit(onSubmit)}
                 className="space-y-5 rounded-xl border border-border-subtle bg-bg-surface p-6 md:p-8"
               >
+                <div className="rounded-xl border border-border-subtle bg-bg-elevated/55 p-4">
+                  <p className="font-body text-body-xs uppercase tracking-caps text-accent-warm">
+                    Best for
+                  </p>
+                  <p className="mt-2 font-body text-body-sm text-text-secondary">
+                    Founders, product teams, and brands that need clearer UX, stronger positioning, or a better-performing web experience.
+                  </p>
+                </div>
+
                 <FormField label="Name" error={errors.name?.message}>
                   <input
                     {...register("name")}
@@ -111,8 +145,8 @@ export default function ContactFormSection() {
                 <FormField label="Message" error={errors.message?.message}>
                   <textarea
                     {...register("message")}
-                    className="min-h-[120px] w-full rounded-md border border-border-default bg-bg-surface px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:border-accent-rose focus:outline-none"
-                    placeholder="Project goals, timeline, context, and what you need help with."
+                    className="min-h-[140px] w-full rounded-md border border-border-default bg-bg-surface px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:border-accent-rose focus:outline-none"
+                    placeholder="What are you building, what feels unclear right now, and what result do you want?"
                   />
                 </FormField>
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
@@ -124,9 +158,7 @@ export default function ContactFormSection() {
 
           <ScrollReveal delay={0.08} className="space-y-6">
             <div className="rounded-xl border border-border-subtle bg-bg-surface p-6">
-              <h2 className="font-display text-2xl font-medium text-text-primary">
-                Contact Info
-              </h2>
+              <h2 className="font-display text-2xl font-medium text-text-primary">Contact Info</h2>
               <div className="mt-6 space-y-4">
                 {links.map((item) => {
                   const Icon = item.icon;
@@ -201,7 +233,9 @@ function FormField({
     <label className="block">
       <span className="mb-2 block font-body text-body-sm text-text-primary">{label}</span>
       {children}
-      {error ? <span className="mt-2 block font-body text-body-xs text-accent-rose">{error}</span> : null}
+      {error ? (
+        <span className="mt-2 block font-body text-body-xs text-accent-rose">{error}</span>
+      ) : null}
     </label>
   );
 }
