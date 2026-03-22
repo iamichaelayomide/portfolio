@@ -5,7 +5,7 @@ const services = [
   {
     icon: LayoutPanelTop,
     title: "Product Design",
-    description: "End-to-end product thinking from flows to polished, decision-ready UI.",
+    description: "SaaS flows, product structure, and polished UI built around clarity and action.",
   },
   {
     icon: Compass,
@@ -14,8 +14,8 @@ const services = [
   },
   {
     icon: Blocks,
-    title: "Web & AI-Assisted Builds",
-    description: "High-conversion websites shaped in design tools and shipped through modern AI workflows.",
+    title: "Web & Ecommerce Builds",
+    description: "WordPress, WooCommerce, Shopify, and high-conversion websites shaped to perform.",
   },
   {
     icon: SquareStack,

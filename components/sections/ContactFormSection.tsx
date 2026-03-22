@@ -22,14 +22,14 @@ const links = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@michaelayomide.com",
-    href: "mailto:hello@michaelayomide.com",
+    value: "iamichaelayomide@gmail.com",
+    href: "mailto:iamichaelayomide@gmail.com",
   },
   {
     icon: MessageCircleMore,
     label: "WhatsApp",
-    value: "+234 XXX XXX XXXX",
-    href: "https://wa.me/2340000000000",
+    value: "07032891651",
+    href: "https://wa.me/2347032891651",
   },
   {
     icon: ExternalLink,
@@ -112,7 +112,7 @@ export default function ContactFormSection() {
                     Best for
                   </p>
                   <p className="mt-2 font-body text-body-sm text-text-secondary">
-                    Founders, product teams, and brands that need clearer UX, stronger positioning, or a better-performing web experience.
+                    Founders, product teams, and brands that need clearer UX, stronger positioning, or a better-performing website, store, or product experience.
                   </p>
                 </div>
 

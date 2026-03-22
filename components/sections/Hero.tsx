@@ -12,7 +12,7 @@ import { EASE_DEFAULT } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { cn, createBlurDataURL } from "@/lib/utils";
 
-const proof = ["Product Design", "AI-Assisted Builds", "Design Systems", "High-Conversion Web"];
+const proof = ["Product Design", "WordPress", "WooCommerce", "Shopify", "AI-Assisted Builds"];
 const PROFILE_IMAGE =
   "https://drive.google.com/uc?export=view&id=1si4jvBANQm2h7wl8xuoztD_eNSrHz8K7";
 
@@ -80,10 +80,7 @@ export default function Hero() {
         {!reducedMotion ? (
           <>
             <motion.div
-              animate={{
-                left: `${pointer.x * 100}%`,
-                top: `${pointer.y * 100}%`,
-              }}
+              animate={{ left: `${pointer.x * 100}%`, top: `${pointer.y * 100}%` }}
               transition={{ duration: 0.35, ease: EASE_DEFAULT }}
               className="absolute h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(254,1,220,0.16),transparent_68%)] blur-2xl"
             />
@@ -111,12 +108,18 @@ export default function Hero() {
         ) : null}
         <motion.div
           animate={reducedMotion ? undefined : { y: [0, -10, 0] }}
-          transition={reducedMotion ? undefined : { duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          transition={
+            reducedMotion ? undefined : { duration: 7, repeat: Infinity, ease: "easeInOut" }
+          }
           className="absolute bottom-[22%] right-[12%] h-16 w-28 rounded-full border border-border-subtle bg-bg-surface/50"
         />
         <motion.div
           animate={reducedMotion ? undefined : { y: [0, 14, 0] }}
-          transition={reducedMotion ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+          transition={
+            reducedMotion
+              ? undefined
+              : { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }
+          }
           className="absolute left-[8%] top-[18%] h-10 w-10 rounded-full border border-border-subtle bg-bg-surface/50"
         />
       </div>
@@ -125,10 +128,7 @@ export default function Hero() {
         <motion.div
           initial={reducedMotion ? false : "hidden"}
           animate="visible"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.12 } },
-          }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
           className="max-w-[760px]"
         >
           <motion.div
@@ -146,7 +146,7 @@ export default function Hero() {
               <span className="absolute inset-0 rounded-full bg-[var(--status-online-soft)]" />
               <span className="relative h-2.5 w-2.5 rounded-full bg-status-online animate-pulse-dot" />
             </span>
-            Available for work - Product Design and AI-assisted web execution
+            Available for SaaS, websites, and ecommerce builds
           </motion.div>
 
           <motion.div
@@ -171,9 +171,9 @@ export default function Hero() {
                 transition: { duration: 0.55, delay: 0.6, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-[11ch] text-balance font-display text-[clamp(30px,5.8vw,58px)] leading-[1.02] font-semibold tracking-[-0.03em] text-text-primary sm:max-w-[12ch]"
+            className="max-w-[17ch] text-balance font-display text-[clamp(24px,4.8vw,48px)] leading-[1.02] font-semibold tracking-[-0.03em] text-text-primary"
           >
-            Need better product design?
+            Need a better website or store?
           </motion.h1>
 
           <motion.p
@@ -185,9 +185,9 @@ export default function Hero() {
                 transition: { duration: 0.5, delay: 0.75, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-4 max-w-[33rem] text-balance font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
+            className="mt-4 max-w-[38rem] text-balance font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
           >
-            I help founders and teams turn unclear products into clean UX, stronger trust, and live experiences people actually understand.
+            I design SaaS products, WordPress websites, WooCommerce stores, Shopify experiences, and high-conversion pages that feel clear, credible, and ready to ship.
           </motion.p>
 
           <motion.div
@@ -244,7 +244,7 @@ export default function Hero() {
                     Product Designer
                   </p>
                   <p className="mt-2 font-display text-xl font-medium leading-tight text-text-primary">
-                    Premium taste. Clear thinking. Real product outcomes.
+                    SaaS, websites, ecommerce, and conversion-led design.
                   </p>
                 </div>
               </div>
@@ -290,15 +290,15 @@ export default function Hero() {
                     Product Designer
                   </p>
                   <p className="mt-2 font-display text-2xl font-medium text-text-primary">
-                    Premium taste. Clear thinking. Real product outcomes.
+                    SaaS, websites, ecommerce, and conversion-led design.
                   </p>
                 </div>
               </div>
               <div className="grid gap-3">
                 {[
-                  "B2B SaaS product design",
-                  "Design systems and UX structure",
-                  "AI-assisted web builds with strong product judgment",
+                  "SaaS product design",
+                  "WordPress, WooCommerce, and Shopify builds",
+                  "AI-assisted execution with strong product judgment",
                 ].map((item) => (
                   <div
                     key={item}

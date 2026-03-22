@@ -12,9 +12,9 @@ const experience = [
   {
     range: "2024 - Present",
     role: "Independent Product Designer",
-    context: "B2B SaaS, consumer apps, and web projects",
+    context: "SaaS, ecommerce, and web builds",
     description:
-      "Designing product interfaces, systems, and conversion-focused websites for growing teams.",
+      "Designing product interfaces, conversion-focused websites, and ecommerce experiences for growing teams and brands.",
   },
   {
     range: "2023 - 2024",
@@ -53,13 +53,13 @@ export default function AboutPage() {
             </h1>
             <div className="mt-6 max-w-prose space-y-5 font-body text-body-md text-text-secondary">
               <p>
-                I&apos;m a product designer focused on clarity, usability, and shipping work that actually helps people. I&apos;ve designed across B2B SaaS platforms, consumer apps, e-commerce, and brand web experiences.
+                I&apos;m a product designer focused on clarity, usability, and shipping work that actually helps people. I&apos;ve designed across B2B SaaS platforms, consumer apps, ecommerce, and brand web experiences.
               </p>
               <p>
                 I think deeply about structure before aesthetics. The visual layer is where I execute precision, but the real work happens in the logic underneath.
               </p>
               <p>
-                I use AI-assisted execution workflows like Codex and Gemini CLI to help move strong design thinking into live builds, while keeping the product judgment, direction, and quality bar firmly in my hands.
+                I also work across WordPress, WooCommerce, Shopify, and AI-assisted web execution to help move strong design thinking into live builds without losing product judgment or quality.
               </p>
             </div>
           </ScrollReveal>
@@ -84,7 +84,7 @@ export default function AboutPage() {
           {[
             ["Design", "Figma · Framer · Principle · FigJam"],
             ["Research", "User Interviews · Journey Mapping · Usability Testing"],
-            ["Build", "Codex · Gemini CLI · Framer · WooCommerce"],
+            ["Build", "WordPress · WooCommerce · Shopify · Codex · Gemini CLI"],
             ["Systems", "Design Tokens · Component Libraries · Documentation"],
           ].map(([label, value], index) => (
             <ScrollReveal key={label} delay={index * 0.06}>

@@ -31,7 +31,7 @@ export default function AboutPreview() {
               I&apos;m Michael Ayomide - a product designer focused on clarity, strong judgment, and work that performs in the real world.
             </p>
             <p className="font-body text-body-md text-text-secondary">
-              I work across B2B SaaS, consumer products, AI-assisted builds, and conversion-led websites with the same principle every time: make the product easier to understand and harder to ignore.
+              I work across SaaS, consumer products, WordPress sites, WooCommerce stores, Shopify builds, and conversion-led web projects with the same principle every time: make the product easier to understand and harder to ignore.
             </p>
             <Link
               href="/about"
@@ -65,7 +65,7 @@ export default function AboutPreview() {
                 Based in Nigeria
               </p>
               <p className="mt-2 font-display text-2xl font-medium text-text-primary">
-                Premium taste. Product-first execution.
+                SaaS, websites, and ecommerce builds.
               </p>
             </div>
           </motion.div>

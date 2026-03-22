@@ -27,19 +27,19 @@ export default function FinalCTA() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_26%),linear-gradient(180deg,rgba(98,15,133,0.08),transparent_55%)]" />
           <div className="relative mx-auto max-w-[760px]">
             <h2 className="font-display text-display-lg font-semibold text-text-primary">
-              Have a product, website, or idea
+              Have a product, website, or store
               <br />
               that needs better design?
               <br />
               Let&apos;s talk.
             </h2>
             <p className="mt-6 font-body text-body-lg text-text-secondary">
-              I&apos;m currently taking on new projects. Discovery call is free.
+              I&apos;m currently taking on SaaS, website, WooCommerce, Shopify, and ecommerce projects.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <CalendlyButton label="Book a Call" showIcon />
               <a
-                href="mailto:hello@michaelayomide.com"
+                href="mailto:iamichaelayomide@gmail.com"
                 className={buttonStyles({ variant: "secondary", size: "md" })}
               >
                 Send an Email

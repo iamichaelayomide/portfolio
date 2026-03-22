@@ -5,7 +5,7 @@ const socialLinks = [
   { label: "Behance", href: "https://behance.net/michaelayomide1" },
   { label: "LinkedIn", href: "https://linkedin.com/in/michael-ayomide" },
   { label: "X", href: "https://x.com/starmikeee" },
-  { label: "Email", href: "mailto:hello@michaelayomide.com" },
+  { label: "Email", href: "mailto:iamichaelayomide@gmail.com" },
 ];
 
 export default function Footer() {
