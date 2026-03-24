@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Blocks, Compass, LayoutPanelTop, SquareStack } from "lucide-react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
@@ -133,7 +133,7 @@ function ServiceCard({
         scale,
         opacity,
         borderColor,
-        zIndex: total - index,
+        zIndex: cta ? total + 2 : total - index,
       }}
       className={`absolute inset-x-0 top-0 mx-auto flex min-h-[360px] w-full max-w-[760px] flex-col justify-between overflow-hidden rounded-[32px] border bg-[linear-gradient(180deg,#6d258d_0%,#3a184f_44%,#17101f_100%)] p-7 shadow-[0_18px_60px_rgba(0,0,0,0.42)] sm:min-h-[400px] sm:p-9 ${
         cta ? "pointer-events-auto" : "pointer-events-none"
@@ -162,7 +162,7 @@ function ServiceCard({
       <div className="relative flex items-end justify-between gap-4 border-t border-white/10 pt-5">
         <p className="font-body text-body-sm text-[#DCCEE8]">{support}</p>
         {cta ? (
-          <div className="hidden sm:flex sm:items-center sm:gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
               href={BOOKING_URL}
               target="_blank"
@@ -201,6 +201,7 @@ function ServiceCard({
 export default function WhatIDo() {
   const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [mobileLayout, setMobileLayout] = useState(false);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
@@ -211,12 +212,19 @@ export default function WhatIDo() {
     mass: 0.28,
   });
 
-  if (reducedMotion) {
+  useEffect(() => {
+    const sync = () => setMobileLayout(window.innerWidth < 1024);
+    sync();
+    window.addEventListener("resize", sync);
+    return () => window.removeEventListener("resize", sync);
+  }, []);
+
+  if (reducedMotion || mobileLayout) {
     return (
       <section className="section-space relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_24%),linear-gradient(180deg,rgba(98,15,133,0.16),rgba(6,3,10,0.02)_42%)]" />
         <div className="section-shell relative">
-          <ScrollReveal className="mb-10 max-w-[700px]">
+          <ScrollReveal className="mb-8 max-w-[700px] sm:mb-10">
             <p className="section-label">
               <span className="section-rule" />
               What I Do
@@ -229,13 +237,13 @@ export default function WhatIDo() {
               handoff friction.
             </p>
           </ScrollReveal>
-          <div className="space-y-5">
-            {services.map((service, index) => {
+          <div className="space-y-4 sm:space-y-5">
+            {panels.map((service, index) => {
               const Icon = service.icon;
 
               return (
                 <ScrollReveal key={service.title} delay={index * 0.06}>
-                  <div className="overflow-hidden rounded-[28px] border border-border-default bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02)),linear-gradient(180deg,rgba(88,22,122,0.72),rgba(19,11,31,0.94))] p-7 shadow-card sm:p-8">
+                  <div className="overflow-hidden rounded-[24px] border border-border-default bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02)),linear-gradient(180deg,rgba(88,22,122,0.72),rgba(19,11,31,0.94))] p-5 shadow-card sm:rounded-[28px] sm:p-8">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border-default bg-black/20 text-accent-warm">
                         <Icon className="h-5 w-5" />
@@ -244,15 +252,49 @@ export default function WhatIDo() {
                         0{index + 1}
                       </p>
                     </div>
-                    <h3 className="mt-10 font-display text-display-sm font-medium text-white">
+                    <h3 className="mt-8 font-display text-[clamp(24px,7vw,32px)] font-medium text-white sm:mt-10 sm:text-display-sm">
                       {service.title}
                     </h3>
-                    <p className="mt-4 font-body text-body-md text-[#F1E8F8]">
+                    <p className="mt-4 font-body text-body-sm leading-[1.7] text-[#F1E8F8] sm:text-body-md">
                       {service.description}
                     </p>
-                    <p className="mt-6 border-t border-white/10 pt-4 font-body text-body-sm text-[#DCCEE8]">
-                      {service.support}
-                    </p>
+                    {"cta" in service && service.cta ? (
+                      <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-4">
+                        <p className="font-body text-body-sm text-[#DCCEE8]">{service.support}</p>
+                        <div className="flex flex-col gap-3 sm:flex-row">
+                          <a
+                            href={BOOKING_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={buttonStyles({
+                              variant: "primary",
+                              size: "md",
+                              className:
+                                "w-full justify-center bg-accent-warm text-bg-base hover:bg-accent-warm hover:text-bg-base",
+                            })}
+                          >
+                            Book a Call
+                          </a>
+                          <a
+                            href={WHATSAPP_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={buttonStyles({
+                              variant: "secondary",
+                              size: "md",
+                              className:
+                                "w-full justify-center border-white/12 bg-black/20 text-[#E8D9F3] hover:border-white/20",
+                            })}
+                          >
+                            WhatsApp Me
+                          </a>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="mt-6 border-t border-white/10 pt-4 font-body text-body-sm text-[#DCCEE8]">
+                        {service.support}
+                      </p>
+                    )}
                   </div>
                 </ScrollReveal>
               );

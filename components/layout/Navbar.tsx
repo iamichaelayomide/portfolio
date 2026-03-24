@@ -47,10 +47,10 @@ export default function Navbar() {
           "fixed inset-x-0 top-0 z-navbar h-14 transition-all duration-300 ease-default md:h-16",
           scrolled || open ? "glass-nav" : "border-b border-transparent bg-transparent",
         )}
-      >
+        >
         <div className="section-shell flex h-full items-center justify-between">
           <Link href="/" aria-label="Go to homepage">
-            <BrandMark withName className="gap-2.5" />
+            <BrandMark withName compactOnMobile className="gap-2.5" />
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
             <div className="flex items-center gap-6">
@@ -116,9 +116,9 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: EASE_DEFAULT }}
-            className="fixed inset-0 z-modal bg-[var(--bg-base-95)] backdrop-blur-2xl md:hidden"
+            className="fixed inset-0 z-modal overflow-y-auto bg-[var(--bg-base-95)] backdrop-blur-2xl md:hidden"
           >
-            <div className="section-shell flex min-h-screen flex-col pb-10 pt-24">
+            <div className="section-shell flex min-h-screen flex-col pb-[max(env(safe-area-inset-bottom),1.5rem)] pt-5">
               <motion.nav
                 initial={reducedMotion ? false : { opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -126,7 +126,21 @@ export default function Navbar() {
                 transition={{ duration: 0.28, ease: EASE_DEFAULT }}
                 className="flex flex-1 flex-col"
               >
-                <div className="flex flex-col gap-6 pt-6">
+                <div className="flex items-center justify-between gap-4 border-b border-border-subtle pb-4">
+                  <Link href="/" aria-label="Go to homepage" onClick={() => setOpen(false)}>
+                    <BrandMark withName compactOnMobile className="gap-2.5" />
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className="flex h-11 items-center justify-center rounded-full border border-border-default bg-bg-elevated/80 px-4 font-body text-body-sm text-text-primary transition-colors duration-200 ease-default hover:border-border-accent hover:text-accent-warm"
+                    aria-label="Close navigation"
+                  >
+                    Close
+                  </button>
+                </div>
+
+                <div className="flex flex-col gap-5 pt-7">
                   {links.map((link, index) => {
                     const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
 
@@ -144,7 +158,7 @@ export default function Navbar() {
                         <Link
                           href={link.href}
                           className={cn(
-                            "block border-b border-border-subtle pb-6 font-display text-[clamp(32px,9vw,54px)] font-medium leading-none text-text-secondary transition-colors duration-150 ease-default",
+                            "block border-b border-border-subtle pb-5 font-display text-[clamp(28px,9vw,50px)] font-medium leading-none text-text-secondary transition-colors duration-150 ease-default",
                             active && "text-text-primary",
                           )}
                         >
@@ -159,7 +173,7 @@ export default function Navbar() {
                   initial={reducedMotion ? false : { opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.24, ease: EASE_DEFAULT }}
-                  className="mt-auto space-y-4 pt-10"
+                  className="mt-10 space-y-4 pt-2"
                 >
                   <CalendlyButton
                     label="Book a Call"

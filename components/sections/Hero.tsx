@@ -73,7 +73,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[100svh] items-center overflow-hidden"
+      className="relative flex min-h-[92svh] items-center overflow-hidden sm:min-h-[100svh]"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       onPointerDown={handlePointerDown}
@@ -119,7 +119,7 @@ export default function Hero() {
         ) : null}
       </div>
 
-      <div className="section-shell relative z-raised grid w-full items-center gap-12 py-20 sm:py-24 lg:grid-cols-[minmax(0,1.05fr)_420px] lg:gap-14">
+      <div className="section-shell relative z-raised grid w-full items-center gap-10 py-16 sm:py-24 lg:grid-cols-[minmax(0,1.05fr)_420px] lg:gap-14">
         <motion.div
           initial={reducedMotion ? false : "hidden"}
           animate="visible"
@@ -135,7 +135,7 @@ export default function Hero() {
                 transition: { duration: 0.45, delay: 0.08, ease: EASE_DEFAULT },
               },
             }}
-            className="mb-5 inline-flex max-w-full items-center gap-3 rounded-full border border-border-default bg-bg-elevated/85 px-4 py-2 font-body text-body-xs text-text-secondary"
+            className="mb-4 inline-flex max-w-full items-center gap-3 rounded-full border border-border-default bg-bg-elevated/85 px-3 py-2 font-body text-body-xs text-text-secondary sm:mb-5 sm:px-4"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inset-0 rounded-full bg-[var(--status-online-soft)]" />
@@ -152,7 +152,7 @@ export default function Hero() {
                 transition: { duration: 0.35, delay: 0.2, ease: EASE_DEFAULT },
               },
             }}
-            className="mb-4 font-display text-lg font-normal text-text-secondary sm:text-xl"
+            className="mb-3 font-display text-base font-normal text-text-secondary sm:mb-4 sm:text-xl"
           >
             <AnimatedText text="Hi, I'm Michael Ayomide" />
           </motion.div>
@@ -166,7 +166,7 @@ export default function Hero() {
                 transition: { duration: 0.55, delay: 0.38, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-[13ch] text-balance font-display text-[clamp(40px,6vw,82px)] leading-[0.96] tracking-[-0.05em] text-text-primary"
+            className="max-w-[12ch] text-balance font-display text-[clamp(34px,10vw,82px)] leading-[0.98] tracking-[-0.05em] text-text-primary sm:max-w-[13ch] sm:leading-[0.96]"
           >
             Product design for remote teams, founders, and ambitious brands.
           </motion.h1>
@@ -180,7 +180,7 @@ export default function Hero() {
                 transition: { duration: 0.5, delay: 0.52, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-6 max-w-[34rem] text-pretty font-body text-[18px] leading-[1.72] text-text-secondary"
+            className="mt-5 max-w-[34rem] text-pretty font-body text-[16px] leading-[1.72] text-text-secondary sm:mt-6 sm:text-[18px]"
           >
             I help SaaS products, websites, and ecommerce experiences feel clearer,
             more credible, and easier to act on, whether you need a remote design hire
@@ -196,7 +196,7 @@ export default function Hero() {
                 transition: { duration: 0.45, delay: 0.66, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-8 flex flex-wrap gap-3"
+            className="mt-7 flex flex-wrap gap-3"
           >
             <CalendlyButton
               variant="primary"
@@ -217,12 +217,12 @@ export default function Hero() {
                 transition: { duration: 0.45, delay: 0.78, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-8 grid gap-3 sm:grid-cols-3"
+            className="mt-7 grid gap-3 sm:grid-cols-3"
           >
             {heroPoints.map((item) => (
               <div
                 key={item}
-                className="rounded-2xl border border-border-subtle bg-bg-surface/60 px-4 py-4 font-body text-body-sm text-text-secondary backdrop-blur-sm"
+                className="rounded-2xl border border-border-subtle bg-bg-surface/60 px-4 py-3.5 font-body text-body-sm leading-[1.55] text-text-secondary backdrop-blur-sm"
               >
                 {item}
               </div>
@@ -237,7 +237,7 @@ export default function Hero() {
                 transition: { duration: 0.45, delay: 0.9, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-8 font-body text-body-xs uppercase tracking-[0.08em] text-text-muted"
+            className="mt-7 font-body text-[11px] uppercase tracking-[0.08em] text-text-muted sm:text-body-xs"
           >
             {proof.join("  /  ")}
           </motion.p>
@@ -282,7 +282,7 @@ export default function Hero() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-border-subtle bg-bg-base/50 px-4 py-4 font-body text-body-sm leading-[1.65] text-text-secondary"
+                    className="rounded-2xl border border-border-subtle bg-bg-base/50 px-4 py-3.5 font-body text-body-sm leading-[1.6] text-text-secondary"
                   >
                     {item}
                   </div>

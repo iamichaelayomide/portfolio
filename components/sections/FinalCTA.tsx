@@ -28,9 +28,13 @@ export default function FinalCTA() {
           <div className="relative mx-auto max-w-[760px]">
             <h2 className="font-display text-display-lg font-semibold text-text-primary">
               Have a product, website, or store
-              <br />
+              <span className="hidden md:block">
+                <br />
+              </span>{" "}
               that needs to convert better?
-              <br />
+              <span className="hidden md:block">
+                <br />
+              </span>{" "}
               Let&apos;s talk.
             </h2>
             <p className="mt-6 font-body text-body-lg text-text-secondary">
