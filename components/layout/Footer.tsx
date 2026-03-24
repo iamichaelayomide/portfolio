@@ -44,8 +44,8 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="border-t border-border-subtle pt-5 text-center font-body text-body-xs text-text-muted md:text-left">
-          © 2025 Michael Ayomide · Built with intention.
+        <div className="border-t border-border-subtle pt-5 text-center font-body text-body-xs text-text-secondary md:text-left">
+          (c) 2025 Michael Ayomide | Built with intention.
         </div>
       </div>
     </footer>

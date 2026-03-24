@@ -11,8 +11,8 @@
     --bg-light: #F4EFF8;
     --bg-light-card: #FCF8FF;
     --text-primary: #F4EEF8;
-    --text-secondary: #C9BDD5;
-    --text-muted: #7E718D;
+    --text-secondary: #D6CDDF;
+    --text-muted: #AC9BBC;
     --text-inverse: #0B0712;
     --text-light: #140D1B;
     --text-light-secondary: #61546F;
@@ -31,8 +31,8 @@
     --status-online-soft: rgba(129, 216, 160, 0.3);
     --bg-base-95: rgba(6, 3, 10, 0.95);
     --bg-surface-40: rgba(13, 8, 20, 0.4);
-    --text-muted-60: rgba(126, 113, 141, 0.6);
-    --text-light-secondary-30: rgba(97, 84, 111, 0.3);
+    --text-muted-60: rgba(172, 155, 188, 0.6);
+    --text-light-secondary-30: rgba(130, 114, 146, 0.3);
     --text-light-10: rgba(20, 13, 27, 0.1);
     --accent-warm-10: rgba(254, 1, 220, 0.1);
   }

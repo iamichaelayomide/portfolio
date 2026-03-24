@@ -360,6 +360,84 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "hairven-salon",
+    title: "Hairven Salon",
+    tagline: "A live salon website shaped to feel premium, clear, and booking-ready from first glance.",
+    description: "Beauty brand website for service discovery and trust-building",
+    tags: ["Web Design", "AI-Assisted Build", "Beauty Brand"],
+    category: "Live Projects",
+    year: "2024",
+    role: "Product Designer and AI-Assisted Builder",
+    duration: "2 weeks",
+    platform: "Live salon website",
+    thumbnail: "/images/work/hairven-salon-thumb.svg",
+    heroImage: "/images/work/hairven-salon-hero.svg",
+    outcome:
+      "A more polished salon presence with stronger service framing, clearer credibility signals, and a cleaner path toward booking intent.",
+    liveUrl: "https://hairven-salon.vercel.app/",
+    sections: [
+      {
+        id: "overview",
+        title: "Overview",
+        content: [
+          "Hairven Salon needed a website that felt elevated enough for a beauty brand while still being simple for visitors who just wanted to understand the services and take the next step quickly.",
+          "The work combined layout direction, conversion-focused content framing, and AI-assisted implementation to move from concept to a live branded site without losing visual control.",
+        ],
+      },
+      {
+        id: "challenge",
+        title: "The Problem",
+        content: [
+          "Beauty businesses depend heavily on first impressions. If the site feels generic, cluttered, or unclear, visitors start doubting quality before they ever book.",
+          "The challenge was to make Hairven feel premium and trustworthy without overdesigning the experience or burying the practical details people came for.",
+        ],
+        quote:
+          "For service brands, design is part of the proof.",
+      },
+      {
+        id: "approach",
+        title: "Approach",
+        content: [
+          "I structured the site around the moments that matter most: understanding the brand quickly, scanning service options, and feeling enough confidence to move toward an appointment.",
+          "The build used an AI-assisted workflow for speed, but the hierarchy, copy direction, and visual pacing were treated as product decisions rather than cosmetic decoration.",
+        ],
+        steps: [
+          "Sharpen the first-screen message so the brand reads as premium immediately.",
+          "Present services in a way that feels easy to scan instead of overloaded.",
+          "Use visual restraint and quality cues to support booking confidence.",
+        ],
+      },
+      {
+        id: "solution",
+        title: "Solution",
+        content: [
+          "The final site uses stronger section rhythm, cleaner service presentation, and a warmer editorial look that feels more aligned with a salon experience.",
+          "Key pages focus on clarity before complexity, helping visitors understand what Hairven offers and why it feels credible without forcing them through noise.",
+        ],
+        images: [
+          { label: "Homepage hero and service sections", aspect: "wide" },
+          { label: "Service presentation patterns", aspect: "landscape" },
+        ],
+      },
+      {
+        id: "outcome",
+        title: "Result",
+        content: [
+          "Hairven launched with a more intentional digital presence that feels more premium, more legible, and more useful as a real client-facing business tool.",
+          "The result is a live salon website that helps the brand look more established while keeping the path from curiosity to booking intent noticeably clearer.",
+        ],
+        images: [{ label: "Final Hairven live site showcase", aspect: "wide" }],
+      },
+      {
+        id: "reflection",
+        title: "Reflection",
+        content: [
+          "This project reinforced that service-brand websites work best when aesthetic quality supports action. The point was not to add more style, but to make the style carry trust.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "chillington",
     title: "Chillington (Sharamawa)",
     tagline: "A live multi-location website designed for credibility, clarity, and faster visitor trust.",

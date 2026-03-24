@@ -12,9 +12,20 @@ import { EASE_DEFAULT } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { cn, createBlurDataURL } from "@/lib/utils";
 
-const proof = ["Product Design", "WordPress", "WooCommerce", "Shopify", "AI-Assisted Builds"];
+const proof = [
+  "Remote product design",
+  "Freelance web execution",
+  "SaaS UX systems",
+  "AI-assisted delivery",
+];
 const PROFILE_IMAGE =
   "https://drive.google.com/uc?export=view&id=1si4jvBANQm2h7wl8xuoztD_eNSrHz8K7";
+
+const heroPoints = [
+  "Available for remote product roles",
+  "Freelance websites and ecommerce work",
+  "Clear UX, stronger trust, cleaner execution",
+];
 
 export default function Hero() {
   const reducedMotion = useReducedMotion();
@@ -27,8 +38,8 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
   const orbY = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const panelY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-  const panelRotate = useTransform(scrollYProgress, [0, 1], [0, -3]);
+  const panelY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const panelRotate = useTransform(scrollYProgress, [0, 1], [0, -2]);
   const glowOpacity = useTransform(scrollYProgress, [0, 0.8], [0.55, 0.1]);
 
   useEffect(() => {
@@ -68,14 +79,14 @@ export default function Hero() {
       onPointerDown={handlePointerDown}
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px] opacity-40" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px] opacity-30" />
         <motion.div
           style={reducedMotion ? undefined : { y: orbY, opacity: glowOpacity }}
-          className="absolute -right-20 top-20 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,var(--accent-warm-soft),transparent_58%)] blur-3xl"
+          className="absolute -right-16 top-14 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,var(--accent-warm-soft),transparent_58%)] blur-3xl"
         />
         <motion.div
           style={reducedMotion ? undefined : { y: panelY }}
-          className="absolute left-[-120px] top-16 hidden h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,var(--accent-rose-soft),transparent_62%)] blur-3xl lg:block"
+          className="absolute left-[-140px] top-12 hidden h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,var(--accent-rose-soft),transparent_62%)] blur-3xl lg:block"
         />
         {!reducedMotion ? (
           <>
@@ -106,29 +117,13 @@ export default function Hero() {
             />
           </>
         ) : null}
-        <motion.div
-          animate={reducedMotion ? undefined : { y: [0, -10, 0] }}
-          transition={
-            reducedMotion ? undefined : { duration: 7, repeat: Infinity, ease: "easeInOut" }
-          }
-          className="absolute bottom-[22%] right-[12%] h-16 w-28 rounded-full border border-border-subtle bg-bg-surface/50"
-        />
-        <motion.div
-          animate={reducedMotion ? undefined : { y: [0, 14, 0] }}
-          transition={
-            reducedMotion
-              ? undefined
-              : { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }
-          }
-          className="absolute left-[8%] top-[18%] h-10 w-10 rounded-full border border-border-subtle bg-bg-surface/50"
-        />
       </div>
 
-      <div className="section-shell relative z-raised grid w-full items-center gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-12">
+      <div className="section-shell relative z-raised grid w-full items-center gap-12 py-20 sm:py-24 lg:grid-cols-[minmax(0,1.05fr)_420px] lg:gap-14">
         <motion.div
           initial={reducedMotion ? false : "hidden"}
           animate="visible"
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
           className="max-w-[760px]"
         >
           <motion.div
@@ -137,16 +132,16 @@ export default function Hero() {
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.5, delay: 0.1, ease: EASE_DEFAULT },
+                transition: { duration: 0.45, delay: 0.08, ease: EASE_DEFAULT },
               },
             }}
-            className="mb-5 inline-flex max-w-full items-center gap-3 rounded-full border border-border-default bg-bg-elevated/80 px-4 py-2 font-body text-body-xs text-text-secondary"
+            className="mb-5 inline-flex max-w-full items-center gap-3 rounded-full border border-border-default bg-bg-elevated/85 px-4 py-2 font-body text-body-xs text-text-secondary"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inset-0 rounded-full bg-[var(--status-online-soft)]" />
               <span className="relative h-2.5 w-2.5 rounded-full bg-status-online animate-pulse-dot" />
             </span>
-            Open to full-time roles and select freelance projects
+            Open to remote roles and select freelance projects
           </motion.div>
 
           <motion.div
@@ -154,26 +149,26 @@ export default function Hero() {
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: { duration: 0.4, delay: 0.3, ease: EASE_DEFAULT },
+                transition: { duration: 0.35, delay: 0.2, ease: EASE_DEFAULT },
               },
             }}
-            className="mb-3 font-display text-lg font-normal text-text-secondary sm:text-xl"
+            className="mb-4 font-display text-lg font-normal text-text-secondary sm:text-xl"
           >
             <AnimatedText text="Hi, I'm Michael Ayomide" />
           </motion.div>
 
           <motion.h1
             variants={{
-              hidden: { opacity: 0, y: 24 },
+              hidden: { opacity: 0, y: 20 },
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.55, delay: 0.6, ease: EASE_DEFAULT },
+                transition: { duration: 0.55, delay: 0.38, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-none text-pretty font-display text-[clamp(22px,4vw,42px)] leading-[1.04] font-semibold tracking-[-0.03em] text-text-primary lg:whitespace-nowrap"
+            className="max-w-[13ch] text-balance font-display text-[clamp(40px,6vw,82px)] leading-[0.96] tracking-[-0.05em] text-text-primary"
           >
-            I design product experiences people understand and trust.
+            Product design for remote teams, founders, and ambitious brands.
           </motion.h1>
 
           <motion.p
@@ -182,13 +177,14 @@ export default function Hero() {
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.5, delay: 0.75, ease: EASE_DEFAULT },
+                transition: { duration: 0.5, delay: 0.52, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-4 max-w-[36rem] text-pretty font-body text-[15px] leading-[1.65] text-text-secondary sm:mt-5 sm:text-body-lg"
+            className="mt-6 max-w-[34rem] text-pretty font-body text-[18px] leading-[1.72] text-text-secondary"
           >
-            Available for product design roles, SaaS teams, and brands that need
-            sharper UX, stronger trust, and cleaner execution.
+            I help SaaS products, websites, and ecommerce experiences feel clearer,
+            more credible, and easier to act on, whether you need a remote design hire
+            or a freelance partner who can ship.
           </motion.p>
 
           <motion.div
@@ -197,61 +193,40 @@ export default function Hero() {
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.45, delay: 0.9, ease: EASE_DEFAULT },
+                transition: { duration: 0.45, delay: 0.66, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-6 space-y-3 sm:mt-7"
+            className="mt-8 flex flex-wrap gap-3"
           >
-            <div className="flex flex-wrap gap-3">
-              <CalendlyButton
-                variant="primary"
-                label="Book a Call"
-                className="bg-accent-warm text-bg-base hover:bg-accent-warm hover:text-bg-base"
-              />
-              <Link href="/work" className={buttonStyles({ variant: "secondary", size: "md" })}>
-                View My Work
-              </Link>
-            </div>
-            <p className="font-body text-body-xs text-text-muted">
-              Typically replies within 3 hours
-            </p>
+            <CalendlyButton
+              variant="primary"
+              label="Book a Call"
+              className="bg-accent-warm text-bg-base hover:bg-accent-warm hover:text-bg-base"
+            />
+            <Link href="/work" className={buttonStyles({ variant: "secondary", size: "md" })}>
+              View My Work
+            </Link>
           </motion.div>
 
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 14 },
+              hidden: { opacity: 0, y: 12 },
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.45, delay: 1, ease: EASE_DEFAULT },
+                transition: { duration: 0.45, delay: 0.78, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-8 lg:hidden"
+            className="mt-8 grid gap-3 sm:grid-cols-3"
           >
-            <div className="premium-panel relative overflow-hidden rounded-[28px] border border-border-default bg-bg-surface p-3 shadow-card">
-              <div className="relative overflow-hidden rounded-[22px] border border-border-default bg-bg-base/60">
-                <div className="relative aspect-[4/4.6]">
-                  <Image
-                    src={PROFILE_IMAGE}
-                    alt="Portrait of Michael Ayomide"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 360px"
-                    className="object-cover object-center"
-                    placeholder="blur"
-                    blurDataURL={createBlurDataURL("#120b1c")}
-                    priority
-                  />
-                </div>
-                <div className="absolute inset-x-3 bottom-3 rounded-2xl border border-border-default bg-bg-base/80 p-4 backdrop-blur-md">
-                  <p className="font-body text-body-xs uppercase tracking-[0.12em] text-accent-warm">
-                    Product Designer
-                  </p>
-                  <p className="mt-2 font-display text-xl font-medium leading-tight text-text-primary">
-                    Product design for teams, founders, and growing brands.
-                  </p>
-                </div>
+            {heroPoints.map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-border-subtle bg-bg-surface/60 px-4 py-4 font-body text-body-sm text-text-secondary backdrop-blur-sm"
+              >
+                {item}
               </div>
-            </div>
+            ))}
           </motion.div>
 
           <motion.p
@@ -259,10 +234,10 @@ export default function Hero() {
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: { duration: 0.45, delay: 1.1, ease: EASE_DEFAULT },
+                transition: { duration: 0.45, delay: 0.9, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-10 font-body text-body-xs uppercase tracking-[0.05em] text-text-muted sm:mt-12"
+            className="mt-8 font-body text-body-xs uppercase tracking-[0.08em] text-text-muted"
           >
             {proof.join("  /  ")}
           </motion.p>
@@ -270,42 +245,44 @@ export default function Hero() {
 
         <motion.div
           style={reducedMotion ? undefined : { y: panelY, rotate: panelRotate }}
-          className="hidden lg:block"
+          className="relative"
         >
-          <div className="premium-panel relative overflow-hidden rounded-[32px] border border-border-default bg-bg-surface p-6 shadow-card">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_36%)]" />
-            <div className="relative space-y-6">
-              <div className="relative overflow-hidden rounded-[24px] border border-border-default bg-bg-base/60">
-                <div className="relative aspect-[4/5]">
+          <div className="premium-panel relative overflow-hidden rounded-[34px] border border-border-default bg-bg-surface p-4 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_34%)]" />
+            <div className="relative space-y-5">
+              <div className="relative overflow-hidden rounded-[28px] border border-border-default bg-bg-base/65">
+                <div className="relative aspect-[4/4.8]">
                   <Image
                     src={PROFILE_IMAGE}
                     alt="Portrait of Michael Ayomide"
                     fill
-                    sizes="360px"
+                    sizes="(max-width: 1024px) 100vw, 420px"
                     className="object-cover object-center"
                     placeholder="blur"
                     blurDataURL={createBlurDataURL("#120b1c")}
                     priority
                   />
                 </div>
-                <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-border-default bg-bg-base/80 p-4 backdrop-blur-md">
-                  <p className="font-body text-body-xs uppercase tracking-[0.12em] text-accent-warm">
+                <div className="absolute inset-x-4 bottom-4 rounded-[26px] border border-white/10 bg-[linear-gradient(180deg,rgba(47,18,48,0.72),rgba(28,14,24,0.9))] p-5 backdrop-blur-md">
+                  <p className="font-body text-body-xs uppercase tracking-[0.14em] text-accent-warm">
                     Product Designer
                   </p>
-                  <p className="mt-2 font-display text-2xl font-medium text-text-primary">
-                    Product design for teams, founders, and growing brands.
+                  <p className="mt-3 font-display text-[clamp(28px,3vw,40px)] leading-[1.02] tracking-[-0.03em] text-text-primary">
+                    Clear product direction.
+                    <br />
+                    Stronger UX decisions.
                   </p>
                 </div>
               </div>
-              <div className="grid gap-3">
+
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                 {[
-                  "SaaS product design",
-                  "WordPress, WooCommerce, and Shopify builds",
-                  "AI-assisted execution with strong design judgment",
+                  "Remote-ready collaboration across product, web, and ecommerce.",
+                  "From strategy and UI through AI-assisted execution when needed.",
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-border-subtle bg-bg-base/50 px-4 py-3 font-body text-body-sm text-text-secondary"
+                    className="rounded-2xl border border-border-subtle bg-bg-base/50 px-4 py-4 font-body text-body-sm leading-[1.65] text-text-secondary"
                   >
                     {item}
                   </div>

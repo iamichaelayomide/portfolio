@@ -97,7 +97,7 @@ export default function ProjectCard({
               <p className="max-w-[32rem] font-body text-body-sm text-text-secondary">
                 {project.description}
               </p>
-              <p className="font-body text-body-xs uppercase tracking-[0.05em] text-text-muted">
+              <p className="font-body text-body-xs uppercase tracking-[0.05em] text-text-secondary">
                 {formatProjectCategory(project.tags)}
               </p>
             </div>

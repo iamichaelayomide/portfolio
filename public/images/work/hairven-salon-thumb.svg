@@ -1,0 +1,10 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="750" rx="48" fill="#130B11"/>
+  <rect x="88" y="88" width="1024" height="574" rx="38" fill="#1C1118"/>
+  <circle cx="970" cy="190" r="124" fill="#E7A7B7" fill-opacity="0.12"/>
+  <rect x="144" y="140" width="912" height="214" rx="30" fill="#F4D9DF" fill-opacity="0.08"/>
+  <rect x="144" y="386" width="286" height="214" rx="28" fill="#F4D9DF" fill-opacity="0.05"/>
+  <rect x="458" y="386" width="286" height="214" rx="28" fill="#D37D96" fill-opacity="0.16"/>
+  <rect x="772" y="386" width="284" height="214" rx="28" fill="#F4D9DF" fill-opacity="0.05"/>
+  <text x="144" y="274" fill="#FFF4F6" font-family="Arial, sans-serif" font-size="64">Hairven Salon</text>
+</svg>

@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { buttonStyles } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
-const BOOKING_URL = "https://calendar.app.google/XokweinKF35im8J88";
+const BOOKING_URL = "https://calendar.app.google/Um4G3aYbGQ798AWw5";
 
 export default function CalendlyButton({
   className,

@@ -4,7 +4,6 @@ import FAQ from "@/components/sections/FAQ";
 import FeaturedWork from "@/components/sections/FeaturedWork";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Hero from "@/components/sections/Hero";
-import LiveBuilds from "@/components/sections/LiveBuilds";
 import Process from "@/components/sections/Process";
 import WhatIDo from "@/components/sections/WhatIDo";
 
@@ -19,7 +18,6 @@ export default function HomePage() {
     <>
       <Hero />
       <FeaturedWork />
-      <LiveBuilds />
       <WhatIDo />
       <Process />
       <AboutPreview />

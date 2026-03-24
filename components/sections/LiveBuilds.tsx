@@ -9,10 +9,10 @@ const builds = [
       "A conversion-focused storefront shaped in design and executed with AI-assisted CLI workflows.",
   },
   {
-    name: "Chillington (Sharamawa) - Multi-location site",
-    url: "https://chillington.vercel.app",
+    name: "Hairven Salon - Beauty brand website",
+    url: "https://hairven-salon.vercel.app/",
     description:
-      "A multi-location brand site turned from design direction into a live experience with AI-assisted build support.",
+      "A salon website built to feel polished, premium, and easy to trust while guiding visitors toward booking and service discovery.",
   },
 ];
 
@@ -52,7 +52,7 @@ export default function LiveBuilds() {
                   </div>
                 </div>
                 <div className="rounded-xl border border-border-subtle bg-bg-base p-6">
-                  <p className="font-body text-body-xs uppercase tracking-caps text-text-muted">
+                  <p className="font-body text-body-xs uppercase tracking-caps text-text-secondary">
                     Live Preview
                   </p>
                   <div className="mt-4 rounded-lg border border-border-subtle bg-bg-surface p-5">

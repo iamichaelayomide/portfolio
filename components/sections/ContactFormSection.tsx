@@ -27,7 +27,7 @@ const links = [
   },
   {
     icon: MessageCircleMore,
-    label: "WhatsApp",
+    label: "Call / WhatsApp",
     value: "07032891651",
     href: "https://wa.me/2347032891651",
   },
@@ -84,7 +84,8 @@ export default function ContactFormSection() {
             Let&apos;s talk.
           </h1>
           <p className="mt-4 max-w-[40rem] font-body text-body-lg text-text-secondary">
-            Tell me what you&apos;re building. I&apos;ll tell you where the clarity, trust, and conversion gaps are.
+            Tell me what you&apos;re building. I&apos;ll tell you where the clarity,
+            trust, and conversion gaps are.
           </p>
         </ScrollReveal>
 
@@ -96,7 +97,8 @@ export default function ContactFormSection() {
                   Message received.
                 </h2>
                 <p className="mt-4 max-w-prose font-body text-body-md text-text-secondary">
-                  Thanks for reaching out. I&apos;ll reply within 3 hours with the next step.
+                  Thanks for reaching out. I&apos;ll reply within 3 hours with the next
+                  step.
                 </p>
                 <Button className="mt-6" variant="secondary" onClick={() => setSent(false)}>
                   Send another message
@@ -112,7 +114,9 @@ export default function ContactFormSection() {
                     Best for
                   </p>
                   <p className="mt-2 font-body text-body-sm text-text-secondary">
-                    Founders, product teams, and brands that need clearer UX, stronger positioning, or a better-performing website, store, or product experience.
+                    Founders, product teams, and brands that need clearer UX,
+                    stronger positioning, or a better-performing website, store, or
+                    product experience.
                   </p>
                 </div>
 
@@ -158,7 +162,9 @@ export default function ContactFormSection() {
 
           <ScrollReveal delay={0.08} className="space-y-6">
             <div className="rounded-xl border border-border-subtle bg-bg-surface p-6">
-              <h2 className="font-display text-2xl font-medium text-text-primary">Contact Info</h2>
+              <h2 className="font-display text-2xl font-medium text-text-primary">
+                Contact Info
+              </h2>
               <div className="mt-6 space-y-4">
                 {links.map((item) => {
                   const Icon = item.icon;
@@ -191,10 +197,10 @@ export default function ContactFormSection() {
             <div className="overflow-hidden rounded-xl border border-border-subtle bg-bg-surface">
               <div className="border-b border-border-subtle px-6 py-5">
                 <h2 className="font-display text-2xl font-medium text-text-primary">
-                  Schedule a Free Discovery Call ↗
+                  Schedule a Free Discovery Call
                 </h2>
                 <p className="mt-2 font-body text-body-sm text-text-secondary">
-                  30-minute call · No commitment
+                  30-minute call | No commitment
                 </p>
               </div>
               <div className="space-y-5 bg-bg-elevated px-6 py-8">
@@ -203,7 +209,8 @@ export default function ContactFormSection() {
                     Quickest route
                   </p>
                   <p className="mt-3 font-body text-body-sm text-text-secondary">
-                    Use the booking link to pick a time that works for you. It opens directly in Google Calendar scheduling.
+                    Use the booking link to pick a time that works for you. It opens
+                    directly in Google Calendar scheduling.
                   </p>
                 </div>
                 <CalendlyButton
