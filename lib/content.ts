@@ -494,56 +494,27 @@ async function fetchFromSanity<T>(query: string, params?: QueryParams) {
 }
 
 export async function getProjects(): Promise<Project[]> {
-  const sanityProjects = await fetchFromSanity<PartialProject[]>(projectsQuery);
-
-  if (!sanityProjects?.length) {
-    return fallbackProjects;
-  }
-
-  const normalized = sanityProjects
-    .map((project) => normalizeProject(project))
-    .filter((project) => Boolean(project.slug));
-
-  return normalized.length ? normalized : fallbackProjects;
+  return fallbackProjects;
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
-  const sanityProject = await fetchFromSanity<PartialProject | null>(projectBySlugQuery, { slug });
-
-  if (sanityProject?.slug) {
-    return normalizeProject(sanityProject);
-  }
-
   return getFallbackProjectBySlug(slug);
 }
 
 export async function getFaqs(): Promise<FaqItem[]> {
-  const sanityFaqs = await fetchFromSanity<FaqItem[]>(faqsQuery);
-
-  if (!sanityFaqs?.length) {
-    return fallbackFaqs;
-  }
-
-  return sanityFaqs.filter((faq) => faq.question && faq.answer);
+  return fallbackFaqs;
 }
 
 export async function getHomeContent(): Promise<HomeContent> {
-  const sanityHomeContent = await fetchFromSanity<PartialHomeContent | null>(homePageQuery);
-  return normalizeHomeContent(sanityHomeContent);
+  return fallbackHomeContent;
 }
 
 export async function getAboutPageContent(): Promise<AboutPageContent> {
-  const sanityAboutPageContent = await fetchFromSanity<PartialAboutPageContent | null>(
-    aboutPageQuery,
-  );
-  return normalizeAboutPageContent(sanityAboutPageContent);
+  return fallbackAboutPageContent;
 }
 
 export async function getContactPageContent(): Promise<ContactPageContent> {
-  const sanityContactPageContent = await fetchFromSanity<PartialContactPageContent | null>(
-    contactPageQuery,
-  );
-  return normalizeContactPageContent(sanityContactPageContent);
+  return fallbackContactPageContent;
 }
 
 export async function getPosts(): Promise<BlogPostSummary[]> {
