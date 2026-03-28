@@ -479,10 +479,14 @@ function normalizeBlogPost(post: PartialBlogPost | null | undefined): BlogPost |
 async function fetchFromSanity<T>(query: string, params?: QueryParams) {
   try {
     if (params) {
-      return await sanityClient.fetch<T>(query, params);
+      return await sanityClient.fetch<T>(query, params, {
+        next: { revalidate: 0 },
+      });
     }
 
-    return await sanityClient.fetch<T>(query);
+    return await sanityClient.fetch<T>(query, {}, {
+      next: { revalidate: 0 },
+    });
   } catch (error) {
     console.warn("Sanity fetch failed, using local fallback content.", error);
     return null;
