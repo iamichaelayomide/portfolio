@@ -1,9 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Link from "next/link";
-import { ChevronDown, Check } from "lucide-react";
-import * as Popover from "@radix-ui/react-popover";
 import BlogCard from "@/components/blog/BlogCard";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/ui/ScrollReveal";
 import type { BlogPostSummary } from "@/data/blog";
@@ -15,94 +12,65 @@ interface CategoryFilterProps {
 
 export default function CategoryFilter({ posts }: CategoryFilterProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [open, setOpen] = useState(false);
 
-  // Extract unique categories
+  // Extract unique categories with extra safety
   const categories = useMemo(() => {
     const cats = new Set<string>();
-    posts.forEach((post) => {
-      post.categories.forEach((cat) => cats.add(cat));
-    });
+    if (Array.isArray(posts)) {
+      posts.forEach((post) => {
+        if (Array.isArray(post.categories)) {
+          post.categories.forEach((cat) => {
+            if (typeof cat === "string") {
+              cats.add(cat);
+            }
+          });
+        }
+      });
+    }
     return ["All", ...Array.from(cats).sort()];
   }, [posts]);
 
   // Filtered posts
   const filteredPosts = useMemo(() => {
+    if (!Array.isArray(posts)) return [];
     if (selectedCategory === "All") return posts;
-    return posts.filter((post) => post.categories.includes(selectedCategory));
+    return posts.filter((post) => 
+      Array.isArray(post.categories) && post.categories.includes(selectedCategory)
+    );
   }, [posts, selectedCategory]);
 
   return (
-    <div className="space-y-8">
-      {/* Category Navigation / Dropdown */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3">
-          <span className="font-body text-body-xs uppercase tracking-widest text-text-muted">
-            Filter by:
+    <div className="space-y-10">
+      {/* Category Navigation */}
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
+          <span className="font-body text-body-xs uppercase tracking-[0.1em] text-text-muted">
+            Explore Categories
           </span>
           
-          {/* Desktop Pills (visible on md+) */}
-          <div className="hidden flex-wrap gap-2 md:flex">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={cn(
-                  "rounded-full px-4 py-1.5 font-body text-body-sm transition-all duration-200",
+                  "rounded-full px-5 py-2 font-body text-body-sm transition-all duration-200 border",
                   selectedCategory === category
-                    ? "bg-text-primary text-bg-surface"
-                    : "border border-border-subtle bg-bg-elevated text-text-secondary hover:border-border-default hover:text-text-primary"
+                    ? "bg-text-primary border-text-primary text-bg-base shadow-sm"
+                    : "border-border-subtle bg-bg-elevated text-text-secondary hover:border-border-default hover:text-text-primary"
                 )}
               >
                 {category}
               </button>
             ))}
           </div>
-
-          {/* Mobile Dropdown (visible on < md) */}
-          <div className="md:hidden">
-            <Popover.Root open={open} onOpenChange={setOpen}>
-              <Popover.Trigger asChild>
-                <button className="flex items-center gap-2 rounded-lg border border-border-subtle bg-bg-elevated px-4 py-2 font-body text-body-sm text-text-primary transition-colors hover:border-border-default">
-                  {selectedCategory}
-                  <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", open && "rotate-180")} />
-                </button>
-              </Popover.Trigger>
-              <Popover.Portal>
-                <Popover.Content
-                  className="z-50 min-w-[200px] overflow-hidden rounded-xl border border-border-default bg-bg-surface shadow-lg animate-in fade-in zoom-in-95 duration-200"
-                  align="start"
-                  sideOffset={8}
-                >
-                  <div className="max-h-[300px] overflow-y-auto p-1">
-                    {categories.map((category) => (
-                      <button
-                        key={category}
-                        onClick={() => {
-                          setSelectedCategory(category);
-                          setOpen(false);
-                        }}
-                        className={cn(
-                          "flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-body text-body-sm transition-colors",
-                          selectedCategory === category
-                            ? "bg-bg-elevated text-text-primary font-medium"
-                            : "text-text-secondary hover:bg-bg-elevated hover:text-text-primary"
-                        )}
-                      >
-                        {category}
-                        {selectedCategory === category && <Check className="h-3.5 w-3.5" />}
-                      </button>
-                    ))}
-                  </div>
-                </Popover.Content>
-              </Popover.Portal>
-            </Popover.Root>
-          </div>
         </div>
 
-        <p className="font-body text-body-xs text-text-muted">
-          Showing {filteredPosts.length} {filteredPosts.length === 1 ? "post" : "posts"}
-        </p>
+        <div className="flex items-center justify-between border-b border-border-subtle pb-4">
+          <p className="font-body text-body-sm text-text-muted">
+            Found {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"} in <span className="text-text-secondary font-medium">{selectedCategory}</span>
+          </p>
+        </div>
       </div>
 
       {/* Posts Grid */}
@@ -116,18 +84,18 @@ export default function CategoryFilter({ posts }: CategoryFilterProps) {
         </StaggerContainer>
       ) : (
         <ScrollReveal>
-          <div className="rounded-[28px] border border-border-subtle bg-bg-surface p-8 text-center md:p-12">
+          <div className="rounded-[32px] border border-dashed border-border-default bg-bg-surface/50 p-12 text-center md:p-20">
             <h3 className="font-display text-display-xs font-medium text-text-primary">
-              No posts found in this category.
+              No articles found.
             </h3>
             <p className="mt-2 font-body text-body-md text-text-secondary">
-              Try selecting a different filter or check back later.
+              Try exploring a different category or check back soon.
             </p>
             <button
               onClick={() => setSelectedCategory("All")}
-              className="mt-6 font-body text-body-sm font-medium text-accent-rose hover:underline"
+              className="mt-8 font-body text-body-sm font-medium text-accent-rose hover:underline"
             >
-              Reset filters
+              Reset all filters
             </button>
           </div>
         </ScrollReveal>

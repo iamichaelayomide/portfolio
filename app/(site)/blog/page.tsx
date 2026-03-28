@@ -33,15 +33,16 @@ export default async function BlogPage() {
           </p>
         </ScrollReveal>
 
-        {!posts.length ? (
+        {posts.length > 0 ? (
+          <CategoryFilter posts={posts} />
+        ) : (
           <ScrollReveal>
             <div className="rounded-[28px] border border-border-subtle bg-bg-surface p-8 md:p-10">
               <h2 className="font-display text-display-sm font-medium text-text-primary">
-                No posts published yet.
+                Articles are loading or none published yet.
               </h2>
               <p className="mt-4 max-w-prose font-body text-body-md text-text-secondary">
-                Your blog is wired up. Open Sanity Studio, create a new blog post, add rich
-                content and images, then publish it and it will appear here automatically.
+                If you see this, please check the Sanity Studio to ensure your 16 articles are published without the 'drafts.' prefix.
               </p>
               <div className="mt-6">
                 <Link href="/studio" className={buttonStyles({ variant: "secondary", size: "md" })}>
@@ -50,8 +51,6 @@ export default async function BlogPage() {
               </div>
             </div>
           </ScrollReveal>
-        ) : (
-          <CategoryFilter posts={posts} />
         )}
       </div>
     </section>
