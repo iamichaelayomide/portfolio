@@ -199,3 +199,36 @@ export const contactPageQuery = groq`*[_type == "contactPage"][0] {
     secondaryCtaLabel
   }
 }`;
+
+export const postsQuery = groq`*[_type == "post"] | order(publishedAt desc, _createdAt desc) {
+  title,
+  "slug": slug.current,
+  excerpt,
+  publishedAt,
+  categories,
+  "featuredImage": featuredImage.asset->url,
+  "featuredImageAlt": featuredImage.alt,
+  body
+}`;
+
+export const latestPostsQuery = groq`*[_type == "post"] | order(publishedAt desc, _createdAt desc)[0...3] {
+  title,
+  "slug": slug.current,
+  excerpt,
+  publishedAt,
+  categories,
+  "featuredImage": featuredImage.asset->url,
+  "featuredImageAlt": featuredImage.alt,
+  body
+}`;
+
+export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0] {
+  title,
+  "slug": slug.current,
+  excerpt,
+  publishedAt,
+  categories,
+  "featuredImage": featuredImage.asset->url,
+  "featuredImageAlt": featuredImage.alt,
+  body
+}`;

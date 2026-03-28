@@ -4,9 +4,10 @@ import FAQ from "@/components/sections/FAQ";
 import FeaturedWork from "@/components/sections/FeaturedWork";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Hero from "@/components/sections/Hero";
+import LatestPosts from "@/components/sections/LatestPosts";
 import Process from "@/components/sections/Process";
 import WhatIDo from "@/components/sections/WhatIDo";
-import { getFaqs, getHomeContent, getProjects } from "@/lib/content";
+import { getFaqs, getHomeContent, getLatestPosts, getProjects } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 
@@ -17,10 +18,11 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [projects, faqs, homeContent] = await Promise.all([
+  const [projects, faqs, homeContent, latestPosts] = await Promise.all([
     getProjects(),
     getFaqs(),
     getHomeContent(),
+    getLatestPosts(),
   ]);
 
   return (
@@ -30,6 +32,7 @@ export default async function HomePage() {
       <WhatIDo content={homeContent.services} />
       <Process content={homeContent.process} />
       <AboutPreview content={homeContent.aboutPreview} />
+      <LatestPosts posts={latestPosts} />
       <FAQ items={faqs} />
       <FinalCTA content={homeContent.finalCta} />
     </>

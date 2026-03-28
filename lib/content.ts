@@ -5,8 +5,10 @@ import type {
   Project,
 } from "@/data/projects";
 import { getProjectBySlug as getFallbackProjectBySlug, projects as fallbackProjects } from "@/data/projects";
+import type { TypedObject } from "@portabletext/types";
 import type { FaqItem } from "@/data/faqs";
 import { faqs as fallbackFaqs } from "@/data/faqs";
+import type { BlogPost, BlogPostSummary } from "@/data/blog";
 import type {
   HomeAboutPreviewContent,
   HomeContent,
@@ -35,6 +37,9 @@ import {
   contactPageQuery,
   faqsQuery,
   homePageQuery,
+  latestPostsQuery,
+  postBySlugQuery,
+  postsQuery,
   projectBySlugQuery,
   projectsQuery,
 } from "@/lib/sanity/queries";
@@ -88,6 +93,9 @@ type PartialContactPageContent = Omit<
   success?: Partial<ContactPageContent["success"]> | null;
   contactLinks?: Array<Partial<ContactLink> | null> | null;
   booking?: Partial<ContactPageContent["booking"]> | null;
+};
+type PartialBlogPost = Partial<BlogPost> & {
+  body?: TypedObject[] | null;
 };
 
 function isValidSectionId(value: string | undefined): value is CaseStudySection["id"] {
@@ -417,6 +425,57 @@ function normalizeContactPageContent(
   };
 }
 
+function blocksToPlainText(blocks: unknown[] | null | undefined) {
+  return (blocks || [])
+    .map((block) => {
+      if (!block || typeof block !== "object" || !("children" in block)) {
+        return "";
+      }
+
+      const children = (block as { children?: unknown[] }).children || [];
+
+      return children
+        .map((child) => {
+          if (!child || typeof child !== "object" || !("text" in child)) {
+            return "";
+          }
+
+          return String((child as { text?: unknown }).text || "");
+        })
+        .join("");
+    })
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function estimateReadingTime(text: string) {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.ceil(words / 220));
+  return `${minutes} min read`;
+}
+
+function normalizeBlogPost(post: PartialBlogPost | null | undefined): BlogPost | null {
+  if (!post?.slug || !post.title) {
+    return null;
+  }
+
+  const plainText = blocksToPlainText(post.body);
+  const excerpt = post.excerpt || plainText.slice(0, 180).trim();
+
+  return {
+    slug: post.slug,
+    title: post.title,
+    excerpt,
+    publishedAt: post.publishedAt || new Date().toISOString(),
+    categories: (post.categories || []).filter(Boolean),
+    featuredImage: post.featuredImage || undefined,
+    featuredImageAlt: post.featuredImageAlt || undefined,
+    readingTime: estimateReadingTime(`${post.title} ${excerpt} ${plainText}`),
+    body: post.body || [],
+  };
+}
+
 async function fetchFromSanity<T>(query: string, params?: QueryParams) {
   try {
     if (params) {
@@ -481,4 +540,53 @@ export async function getContactPageContent(): Promise<ContactPageContent> {
     contactPageQuery,
   );
   return normalizeContactPageContent(sanityContactPageContent);
+}
+
+export async function getPosts(): Promise<BlogPostSummary[]> {
+  const sanityPosts = await fetchFromSanity<PartialBlogPost[]>(postsQuery);
+
+  if (!sanityPosts?.length) {
+    return [];
+  }
+
+  return sanityPosts
+    .map((post) => normalizeBlogPost(post))
+    .filter((post): post is BlogPost => Boolean(post))
+    .map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      publishedAt: post.publishedAt,
+      categories: post.categories,
+      featuredImage: post.featuredImage,
+      featuredImageAlt: post.featuredImageAlt,
+      readingTime: post.readingTime,
+    }));
+}
+
+export async function getLatestPosts(): Promise<BlogPostSummary[]> {
+  const sanityPosts = await fetchFromSanity<PartialBlogPost[]>(latestPostsQuery);
+
+  if (!sanityPosts?.length) {
+    return [];
+  }
+
+  return sanityPosts
+    .map((post) => normalizeBlogPost(post))
+    .filter((post): post is BlogPost => Boolean(post))
+    .map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      publishedAt: post.publishedAt,
+      categories: post.categories,
+      featuredImage: post.featuredImage,
+      featuredImageAlt: post.featuredImageAlt,
+      readingTime: post.readingTime,
+    }));
+}
+
+export async function getPostBySlug(slug: string): Promise<BlogPost | undefined> {
+  const sanityPost = await fetchFromSanity<PartialBlogPost | null>(postBySlugQuery, { slug });
+  return normalizeBlogPost(sanityPost) || undefined;
 }
