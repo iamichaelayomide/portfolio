@@ -1,29 +1,11 @@
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import type { HomeProcessContent } from "@/data/home-content";
 
-const steps = [
-  {
-    number: "01",
-    title: "Understand",
-    description: "I get clear on your users, goals, offer, and constraints before design starts.",
-  },
-  {
-    number: "02",
-    title: "Structure",
-    description: "I shape the information, flow, and decision points before styling anything.",
-  },
-  {
-    number: "03",
-    title: "Design",
-    description: "I turn the strategy into polished UI that feels premium and easy to follow.",
-  },
-  {
-    number: "04",
-    title: "Deliver",
-    description: "You get handoff-ready files or a live build, depending on the engagement.",
-  },
-];
+type ProcessProps = {
+  content: HomeProcessContent;
+};
 
-export default function Process() {
+export default function Process({ content }: ProcessProps) {
   return (
     <section className="section-space">
       <div className="section-shell">
@@ -33,14 +15,14 @@ export default function Process() {
             How I Work
           </p>
           <h2 className="font-display text-display-md font-semibold text-text-primary">
-            A process built for speed and good decisions.
+            {content.heading}
           </h2>
         </ScrollReveal>
         <div className="grid gap-6 lg:grid-cols-4">
-          {steps.map((step, index) => (
+          {content.steps.map((step, index) => (
             <ScrollReveal key={step.number} delay={index * 0.08}>
               <div className="relative h-full rounded-xl border border-border-subtle bg-bg-surface p-6">
-                {index < steps.length - 1 ? (
+                {index < content.steps.length - 1 ? (
                   <div className="absolute right-[-24px] top-10 hidden h-px w-12 border-t border-dashed border-border-default lg:block" />
                 ) : null}
                 <p className="font-display text-5xl font-medium text-[var(--text-muted-60)]">

@@ -4,13 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import type { HomeAboutPreviewContent } from "@/data/home-content";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { createBlurDataURL } from "@/lib/utils";
 
-const PROFILE_IMAGE =
-  "https://drive.google.com/uc?export=view&id=1si4jvBANQm2h7wl8xuoztD_eNSrHz8K7";
+type AboutPreviewProps = {
+  content: HomeAboutPreviewContent;
+};
 
-export default function AboutPreview() {
+export default function AboutPreview({ content }: AboutPreviewProps) {
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     offset: ["start end", "end start"],
@@ -24,23 +26,18 @@ export default function AboutPreview() {
         <ScrollReveal>
           <p className="section-label">
             <span className="section-rule" />
-            About
+            {content.footerTitle}
           </p>
           <div className="max-w-[620px] space-y-5">
             <p className="font-display text-display-md font-semibold text-text-primary">
-              I&apos;m Michael Ayomide, a product designer focused on work that feels
-              premium, makes sense fast, and earns trust early.
+              {content.title}
             </p>
-            <p className="font-body text-body-md text-text-secondary">
-              I work across SaaS, websites, WooCommerce, Shopify, and
-              conversion-focused web projects with one priority every time: make the
-              offer clearer and the experience easier to act on.
-            </p>
+            <p className="font-body text-body-md text-text-secondary">{content.description}</p>
             <Link
               href="/about"
               className="inline-flex items-center gap-2 font-body text-body-sm text-text-primary transition-colors hover:text-accent-warm"
             >
-              {"More About Me ->"}
+              {content.linkLabel}
             </Link>
           </div>
         </ScrollReveal>
@@ -54,7 +51,7 @@ export default function AboutPreview() {
               className="relative aspect-[4/5] overflow-hidden rounded-[22px]"
             >
               <Image
-                src={PROFILE_IMAGE}
+                src={content.profileImageUrl}
                 alt="Portrait of Michael Ayomide"
                 fill
                 sizes="(max-width: 1024px) 100vw, 400px"
@@ -65,10 +62,10 @@ export default function AboutPreview() {
             </motion.div>
             <div className="pointer-events-none absolute inset-x-6 bottom-6 rounded-2xl border border-border-default bg-bg-base/80 p-4 backdrop-blur-md">
               <p className="font-body text-body-xs uppercase tracking-[0.12em] text-accent-warm">
-                Based in Nigeria
+                {content.locationLabel}
               </p>
               <p className="mt-2 font-display text-2xl font-medium text-text-primary">
-                Design for SaaS, websites, and ecommerce.
+                {content.locationValue}
               </p>
             </div>
           </motion.div>

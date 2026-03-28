@@ -6,74 +6,49 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { buttonStyles } from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import type { HomeService, HomeServicesContent } from "@/data/home-content";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
-
-const services = [
-  {
-    icon: LayoutPanelTop,
-    title: "Product Design",
-    description:
-      "Product strategy, flows, and UI direction shaped to make complex products easier to trust and use.",
-    support: "Structure, hierarchy, interaction design",
-  },
-  {
-    icon: Compass,
-    title: "UX Research & Strategy",
-    description:
-      "Insight, journey mapping, and sharper product decisions before visual polish begins.",
-    support: "Discovery, audits, journey mapping",
-  },
-  {
-    icon: Blocks,
-    title: "Web & Ecommerce Builds",
-    description:
-      "WordPress, WooCommerce, Shopify, and conversion-focused websites built to move people to action.",
-    support: "Marketing sites, storefronts, conversion UX",
-  },
-  {
-    icon: SquareStack,
-    title: "Design Systems",
-    description:
-      "Design tokens, reusable components, and systems that keep teams fast and consistent.",
-    support: "Reusable UI, consistency, scale",
-  },
-];
 
 const BOOKING_URL = "https://calendar.app.google/Um4G3aYbGQ798AWw5";
 const WHATSAPP_URL =
   "https://wa.me/2347032891651?text=Hi%2C%20I%20saw%20your%20website%20and%20I%27d%20like%20to%20talk%20about%20working%20with%20you.";
 
-const panels = [
-  ...services,
-  {
-    icon: Blocks,
-    title: "Book a call",
-    description:
-      "If you need a remote product designer or a freelance partner for a web build, this is the right next move.",
-    support: "Free discovery call",
-    cta: true,
-  },
-] as const;
+const iconMap = {
+  productDesign: LayoutPanelTop,
+  uxResearch: Compass,
+  webBuilds: Blocks,
+  designSystems: SquareStack,
+} as const;
+
+type ServiceCardData = Pick<HomeService, "title" | "description" | "support"> & {
+  icon: keyof typeof iconMap;
+  cta?: boolean;
+};
 
 function ServiceCard({
   index,
   title,
   description,
   support,
-  icon: Icon,
+  icon,
   progress,
   total,
   cta = false,
+  primaryCtaLabel,
+  secondaryCtaLabel,
 }: {
   index: number;
   title: string;
   description: string;
   support: string;
-  icon: typeof LayoutPanelTop;
+  icon: keyof typeof iconMap;
   progress: MotionValue<number>;
   total: number;
   cta?: boolean;
+  primaryCtaLabel: string;
+  secondaryCtaLabel: string;
 }) {
+  const Icon = iconMap[icon];
   const step = 1 / total;
   const start = index * step;
   const enter = start + step * 0.18;
@@ -173,7 +148,7 @@ function ServiceCard({
                 className: "bg-accent-warm text-bg-base hover:bg-accent-warm hover:text-bg-base",
               })}
             >
-              Book a Call
+              {primaryCtaLabel}
             </a>
             <a
               href={WHATSAPP_URL}
@@ -185,7 +160,7 @@ function ServiceCard({
                 className: "border-white/12 bg-black/20 text-[#E8D9F3] hover:border-white/20",
               })}
             >
-              WhatsApp Me
+              {secondaryCtaLabel}
             </a>
           </div>
         ) : (
@@ -198,7 +173,11 @@ function ServiceCard({
   );
 }
 
-export default function WhatIDo() {
+type WhatIDoProps = {
+  content: HomeServicesContent;
+};
+
+export default function WhatIDo({ content }: WhatIDoProps) {
   const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
   const [mobileLayout, setMobileLayout] = useState(false);
@@ -219,6 +198,18 @@ export default function WhatIDo() {
     return () => window.removeEventListener("resize", sync);
   }, []);
 
+  const services = content.services;
+  const panels: ServiceCardData[] = [
+    ...services,
+    {
+      icon: "webBuilds",
+      title: content.ctaTitle,
+      description: content.ctaDescription,
+      support: content.ctaSupport,
+      cta: true,
+    },
+  ];
+
   if (reducedMotion || mobileLayout) {
     return (
       <section className="section-space relative overflow-hidden">
@@ -230,19 +221,18 @@ export default function WhatIDo() {
               What I Do
             </p>
             <h2 className="font-display text-display-md font-semibold text-text-primary">
-              Design support that moves from product thinking to live execution.
+              {content.mobileHeading}
             </h2>
             <p className="mt-4 font-body text-body-lg text-text-secondary">
-              Clear strategy, sharper UI, and production-ready web work without the
-              handoff friction.
+              {content.mobileDescription}
             </p>
           </ScrollReveal>
           <div className="space-y-4 sm:space-y-5">
             {panels.map((service, index) => {
-              const Icon = service.icon;
+              const Icon = iconMap[service.icon];
 
               return (
-                <ScrollReveal key={service.title} delay={index * 0.06}>
+                <ScrollReveal key={`${service.title}-${index}`} delay={index * 0.06}>
                   <div className="overflow-hidden rounded-[24px] border border-border-default bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02)),linear-gradient(180deg,rgba(88,22,122,0.72),rgba(19,11,31,0.94))] p-5 shadow-card sm:rounded-[28px] sm:p-8">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border-default bg-black/20 text-accent-warm">
@@ -258,7 +248,7 @@ export default function WhatIDo() {
                     <p className="mt-4 font-body text-body-sm leading-[1.7] text-[#F1E8F8] sm:text-body-md">
                       {service.description}
                     </p>
-                    {"cta" in service && service.cta ? (
+                    {service.cta ? (
                       <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-4">
                         <p className="font-body text-body-sm text-[#DCCEE8]">{service.support}</p>
                         <div className="flex flex-col gap-3 sm:flex-row">
@@ -273,7 +263,7 @@ export default function WhatIDo() {
                                 "w-full justify-center bg-accent-warm text-bg-base hover:bg-accent-warm hover:text-bg-base",
                             })}
                           >
-                            Book a Call
+                            {content.ctaPrimaryLabel}
                           </a>
                           <a
                             href={WHATSAPP_URL}
@@ -286,7 +276,7 @@ export default function WhatIDo() {
                                 "w-full justify-center border-white/12 bg-black/20 text-[#E8D9F3] hover:border-white/20",
                             })}
                           >
-                            WhatsApp Me
+                            {content.ctaSecondaryLabel}
                           </a>
                         </div>
                       </div>
@@ -316,17 +306,16 @@ export default function WhatIDo() {
               What I Do
             </p>
             <h2 className="font-display text-display-md font-semibold text-text-primary">
-              Product thinking, web execution, and systems that scale.
+              {content.desktopHeading}
             </h2>
             <p className="mt-4 font-body text-body-lg text-text-secondary">
-              Scroll the stack. One panel takes over at a time, so the motion stays
-              clean, deliberate, and easy to read in both directions.
+              {content.desktopDescription}
             </p>
 
             <div className="mt-8 space-y-3">
               {services.map((service, index) => (
                 <div
-                  key={service.title}
+                  key={service.key}
                   className="flex items-center justify-between rounded-full border border-white/8 bg-white/[0.02] px-4 py-3"
                 >
                   <span className="font-body text-body-sm text-[#ECE1F5]">{service.title}</span>
@@ -347,7 +336,7 @@ export default function WhatIDo() {
 
             {panels.map((service, index) => (
               <ServiceCard
-                key={service.title}
+                key={`${service.title}-${index}`}
                 index={index}
                 title={service.title}
                 description={service.description}
@@ -355,7 +344,9 @@ export default function WhatIDo() {
                 icon={service.icon}
                 progress={smoothProgress}
                 total={panels.length}
-                cta={"cta" in service ? service.cta : false}
+                cta={service.cta}
+                primaryCtaLabel={content.ctaPrimaryLabel}
+                secondaryCtaLabel={content.ctaSecondaryLabel}
               />
             ))}
           </div>

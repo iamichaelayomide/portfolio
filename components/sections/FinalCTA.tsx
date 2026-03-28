@@ -4,9 +4,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import BrandMark from "@/components/ui/BrandMark";
 import CalendlyButton from "@/components/ui/CalendlyButton";
 import { buttonStyles } from "@/components/ui/Button";
+import type { HomeFinalCtaContent } from "@/data/home-content";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
-export default function FinalCTA() {
+type FinalCTAProps = {
+  content: HomeFinalCtaContent;
+};
+
+export default function FinalCTA({ content }: FinalCTAProps) {
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     offset: ["start end", "end start"],
@@ -26,31 +31,23 @@ export default function FinalCTA() {
           </motion.div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_26%),linear-gradient(180deg,rgba(98,15,133,0.08),transparent_55%)]" />
           <div className="relative mx-auto max-w-[760px]">
-            <h2 className="font-display text-display-lg font-semibold text-text-primary">
-              Have a product, website, or store
-              <span className="hidden md:block">
-                <br />
-              </span>{" "}
-              that needs to convert better?
-              <span className="hidden md:block">
-                <br />
-              </span>{" "}
-              Let&apos;s talk.
+            <h2 className="whitespace-pre-line font-display text-display-lg font-semibold text-text-primary">
+              {content.title}
             </h2>
             <p className="mt-6 font-body text-body-lg text-text-secondary">
-              I&apos;m currently taking on SaaS, website, WooCommerce, Shopify, and ecommerce projects.
+              {content.description}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <CalendlyButton label="Book a Call" showIcon />
+              <CalendlyButton label={content.primaryCtaLabel} showIcon />
               <a
-                href="mailto:iamichaelayomide@gmail.com"
+                href={`mailto:${content.email}`}
                 className={buttonStyles({ variant: "secondary", size: "md" })}
               >
-                Send an Email
+                {content.secondaryCtaLabel}
               </a>
             </div>
             <p className="mt-4 font-body text-body-xs text-text-muted">
-              Response time: usually same day.
+              {content.responseTime}
             </p>
           </div>
         </div>

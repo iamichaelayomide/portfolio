@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import CaseStudyHero from "@/components/case-study/CaseStudyHero";
 import CaseStudySection from "@/components/case-study/CaseStudySection";
 import FinalCTA from "@/components/sections/FinalCTA";
-import { getProjectBySlug, getProjects } from "@/lib/content";
+import { getHomeContent, getProjectBySlug, getProjects } from "@/lib/content";
 import { createBlurDataURL } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -44,7 +44,7 @@ export default async function CaseStudyPage({
 }: {
   params: { slug: string };
 }) {
-  const projects = await getProjects();
+  const [projects, homeContent] = await Promise.all([getProjects(), getHomeContent()]);
   const projectIndex = projects.findIndex((project) => project.slug === params.slug);
   const project = projectIndex >= 0 ? projects[projectIndex] : null;
 
@@ -119,7 +119,7 @@ export default async function CaseStudyPage({
         </div>
       </section>
 
-      <FinalCTA />
+      <FinalCTA content={homeContent.finalCta} />
     </article>
   );
 }

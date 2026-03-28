@@ -8,26 +8,16 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
 import { buttonStyles } from "@/components/ui/Button";
 import CalendlyButton from "@/components/ui/CalendlyButton";
+import type { HomeHeroContent } from "@/data/home-content";
 import { EASE_DEFAULT } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { cn, createBlurDataURL } from "@/lib/utils";
 
-const proof = [
-  "Remote product design",
-  "Freelance web execution",
-  "SaaS UX systems",
-  "AI-assisted delivery",
-];
-const PROFILE_IMAGE =
-  "https://drive.google.com/uc?export=view&id=1si4jvBANQm2h7wl8xuoztD_eNSrHz8K7";
+type HeroProps = {
+  content: HomeHeroContent;
+};
 
-const heroPoints = [
-  "Available for remote product roles",
-  "Freelance websites and ecommerce work",
-  "Clear UX, stronger trust, cleaner execution",
-];
-
-export default function Hero() {
+export default function Hero({ content }: HeroProps) {
   const reducedMotion = useReducedMotion();
   const [hideScrollCue, setHideScrollCue] = useState(false);
   const [pointer, setPointer] = useState({ x: 0.72, y: 0.28 });
@@ -141,7 +131,7 @@ export default function Hero() {
               <span className="absolute inset-0 rounded-full bg-[var(--status-online-soft)]" />
               <span className="relative h-2.5 w-2.5 rounded-full bg-status-online animate-pulse-dot" />
             </span>
-            Open to remote roles and select freelance projects
+            {content.availabilityText}
           </motion.div>
 
           <motion.div
@@ -154,7 +144,7 @@ export default function Hero() {
             }}
             className="mb-3 font-display text-base font-normal text-text-secondary sm:mb-4 sm:text-xl"
           >
-            <AnimatedText text="Hi, I'm Michael Ayomide" />
+            <AnimatedText text={content.introText} />
           </motion.div>
 
           <motion.h1
@@ -168,7 +158,7 @@ export default function Hero() {
             }}
             className="max-w-[12ch] text-balance font-display text-[clamp(34px,10vw,82px)] leading-[0.98] tracking-[-0.05em] text-text-primary sm:max-w-[13ch] sm:leading-[0.96]"
           >
-            Product design for remote teams, founders, and ambitious brands.
+            {content.title}
           </motion.h1>
 
           <motion.p
@@ -182,9 +172,7 @@ export default function Hero() {
             }}
             className="mt-5 max-w-[34rem] text-pretty font-body text-[16px] leading-[1.72] text-text-secondary sm:mt-6 sm:text-[18px]"
           >
-            I help SaaS products, websites, and ecommerce experiences feel clearer,
-            more credible, and easier to act on, whether you need a remote design hire
-            or a freelance partner who can ship.
+            {content.description}
           </motion.p>
 
           <motion.div
@@ -200,11 +188,11 @@ export default function Hero() {
           >
             <CalendlyButton
               variant="primary"
-              label="Book a Call"
+              label={content.primaryCtaLabel}
               className="bg-accent-warm text-bg-base hover:bg-accent-warm hover:text-bg-base"
             />
             <Link href="/work" className={buttonStyles({ variant: "secondary", size: "md" })}>
-              View My Work
+              {content.secondaryCtaLabel}
             </Link>
           </motion.div>
 
@@ -219,7 +207,7 @@ export default function Hero() {
             }}
             className="mt-7 grid gap-3 sm:grid-cols-3"
           >
-            {heroPoints.map((item) => (
+            {content.points.map((item) => (
               <div
                 key={item}
                 className="rounded-2xl border border-border-subtle bg-bg-surface/60 px-4 py-3.5 font-body text-body-sm leading-[1.55] text-text-secondary backdrop-blur-sm"
@@ -239,7 +227,7 @@ export default function Hero() {
             }}
             className="mt-7 font-body text-[11px] uppercase tracking-[0.08em] text-text-muted sm:text-body-xs"
           >
-            {proof.join("  /  ")}
+            {content.proof.join("  /  ")}
           </motion.p>
         </motion.div>
 
@@ -253,7 +241,7 @@ export default function Hero() {
               <div className="relative overflow-hidden rounded-[28px] border border-border-default bg-bg-base/65">
                 <div className="relative aspect-[4/4.8]">
                   <Image
-                    src={PROFILE_IMAGE}
+                    src={content.profileImageUrl}
                     alt="Portrait of Michael Ayomide"
                     fill
                     sizes="(max-width: 1024px) 100vw, 420px"
@@ -265,21 +253,16 @@ export default function Hero() {
                 </div>
                 <div className="absolute inset-x-4 bottom-4 rounded-[26px] border border-white/10 bg-[linear-gradient(180deg,rgba(47,18,48,0.72),rgba(28,14,24,0.9))] p-5 backdrop-blur-md">
                   <p className="font-body text-body-xs uppercase tracking-[0.14em] text-accent-warm">
-                    Product Designer
+                    {content.cardEyebrow}
                   </p>
-                  <p className="mt-3 font-display text-[clamp(28px,3vw,40px)] leading-[1.02] tracking-[-0.03em] text-text-primary">
-                    Clear product direction.
-                    <br />
-                    Stronger UX decisions.
+                  <p className="mt-3 whitespace-pre-line font-display text-[clamp(28px,3vw,40px)] leading-[1.02] tracking-[-0.03em] text-text-primary">
+                    {content.cardTitle}
                   </p>
                 </div>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                {[
-                  "Remote-ready collaboration across product, web, and ecommerce.",
-                  "From strategy and UI through AI-assisted execution when needed.",
-                ].map((item) => (
+                {content.cardHighlights.map((item) => (
                   <div
                     key={item}
                     className="rounded-2xl border border-border-subtle bg-bg-base/50 px-4 py-3.5 font-body text-body-sm leading-[1.6] text-text-secondary"
@@ -300,7 +283,7 @@ export default function Hero() {
         )}
       >
         <div className="flex flex-col items-center gap-2 font-body text-body-xs uppercase tracking-caps text-text-muted">
-          <span>Scroll</span>
+          <span>{content.scrollLabel}</span>
           <ArrowDown className="h-4 w-4 animate-scroll-bounce" />
         </div>
       </div>

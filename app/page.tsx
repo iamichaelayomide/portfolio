@@ -6,7 +6,7 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import Hero from "@/components/sections/Hero";
 import Process from "@/components/sections/Process";
 import WhatIDo from "@/components/sections/WhatIDo";
-import { getFaqs, getProjects } from "@/lib/content";
+import { getFaqs, getHomeContent, getProjects } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 
@@ -17,17 +17,21 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [projects, faqs] = await Promise.all([getProjects(), getFaqs()]);
+  const [projects, faqs, homeContent] = await Promise.all([
+    getProjects(),
+    getFaqs(),
+    getHomeContent(),
+  ]);
 
   return (
     <>
-      <Hero />
+      <Hero content={homeContent.hero} />
       <FeaturedWork projects={projects.slice(0, 5)} />
-      <WhatIDo />
-      <Process />
-      <AboutPreview />
+      <WhatIDo content={homeContent.services} />
+      <Process content={homeContent.process} />
+      <AboutPreview content={homeContent.aboutPreview} />
       <FAQ items={faqs} />
-      <FinalCTA />
+      <FinalCTA content={homeContent.finalCta} />
     </>
   );
 }

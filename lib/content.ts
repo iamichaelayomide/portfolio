@@ -7,8 +7,19 @@ import type {
 import { getProjectBySlug as getFallbackProjectBySlug, projects as fallbackProjects } from "@/data/projects";
 import type { FaqItem } from "@/data/faqs";
 import { faqs as fallbackFaqs } from "@/data/faqs";
+import type {
+  HomeAboutPreviewContent,
+  HomeContent,
+  HomeFinalCtaContent,
+  HomeHeroContent,
+  HomeProcessContent,
+  HomeProcessStep,
+  HomeService,
+  HomeServicesContent,
+} from "@/data/home-content";
+import { homeContent as fallbackHomeContent } from "@/data/home-content";
 import { sanityClient } from "@/lib/sanity/client";
-import { faqsQuery, projectBySlugQuery, projectsQuery } from "@/lib/sanity/queries";
+import { faqsQuery, homePageQuery, projectBySlugQuery, projectsQuery } from "@/lib/sanity/queries";
 import type { QueryParams } from "next-sanity";
 
 const FALLBACK_PROJECT_IMAGE = "/og-image.svg";
@@ -31,6 +42,21 @@ const PROJECT_CATEGORIES: Project["category"][] = [
 
 type PartialProject = Omit<Partial<Project>, "sections"> & {
   sections?: Array<Partial<CaseStudySection> | null> | null;
+};
+type PartialHomeContent = {
+  hero?: Partial<HomeHeroContent> | null;
+  aboutPreview?: Partial<HomeAboutPreviewContent> | null;
+  services?:
+    | (Partial<HomeServicesContent> & {
+        services?: Array<Partial<HomeService> | null> | null;
+      })
+    | null;
+  process?:
+    | (Partial<HomeProcessContent> & {
+        steps?: Array<Partial<HomeProcessStep> | null> | null;
+      })
+    | null;
+  finalCta?: Partial<HomeFinalCtaContent> | null;
 };
 
 function isValidSectionId(value: string | undefined): value is CaseStudySection["id"] {
@@ -126,6 +152,119 @@ function normalizeProject(project: PartialProject): Project {
   };
 }
 
+function normalizeStringList(value: string[] | null | undefined, fallback: string[]) {
+  const normalized = (value || []).filter(Boolean);
+  return normalized.length ? normalized : fallback;
+}
+
+function normalizeHomeService(service: Partial<HomeService> | null | undefined, fallback: HomeService) {
+  const icon = service?.icon;
+
+  return {
+    key: service?.key || fallback.key,
+    icon:
+      icon === "productDesign" ||
+      icon === "uxResearch" ||
+      icon === "webBuilds" ||
+      icon === "designSystems"
+        ? icon
+        : fallback.icon,
+    title: service?.title || fallback.title,
+    description: service?.description || fallback.description,
+    support: service?.support || fallback.support,
+  } satisfies HomeService;
+}
+
+function normalizeHomeProcessStep(
+  step: Partial<HomeProcessStep> | null | undefined,
+  fallback: HomeProcessStep,
+) {
+  return {
+    number: step?.number || fallback.number,
+    title: step?.title || fallback.title,
+    description: step?.description || fallback.description,
+  } satisfies HomeProcessStep;
+}
+
+function normalizeHomeContent(content: PartialHomeContent | null | undefined): HomeContent {
+  const fallback = fallbackHomeContent;
+
+  return {
+    hero: {
+      availabilityText: content?.hero?.availabilityText || fallback.hero.availabilityText,
+      introText: content?.hero?.introText || fallback.hero.introText,
+      title: content?.hero?.title || fallback.hero.title,
+      description: content?.hero?.description || fallback.hero.description,
+      primaryCtaLabel: content?.hero?.primaryCtaLabel || fallback.hero.primaryCtaLabel,
+      secondaryCtaLabel: content?.hero?.secondaryCtaLabel || fallback.hero.secondaryCtaLabel,
+      points: normalizeStringList(content?.hero?.points, fallback.hero.points),
+      proof: normalizeStringList(content?.hero?.proof, fallback.hero.proof),
+      profileImageUrl: content?.hero?.profileImageUrl || fallback.hero.profileImageUrl,
+      cardEyebrow: content?.hero?.cardEyebrow || fallback.hero.cardEyebrow,
+      cardTitle: content?.hero?.cardTitle || fallback.hero.cardTitle,
+      cardHighlights: normalizeStringList(
+        content?.hero?.cardHighlights,
+        fallback.hero.cardHighlights,
+      ),
+      scrollLabel: content?.hero?.scrollLabel || fallback.hero.scrollLabel,
+    },
+    aboutPreview: {
+      title: content?.aboutPreview?.title || fallback.aboutPreview.title,
+      description: content?.aboutPreview?.description || fallback.aboutPreview.description,
+      linkLabel: content?.aboutPreview?.linkLabel || fallback.aboutPreview.linkLabel,
+      profileImageUrl:
+        content?.aboutPreview?.profileImageUrl || fallback.aboutPreview.profileImageUrl,
+      locationLabel: content?.aboutPreview?.locationLabel || fallback.aboutPreview.locationLabel,
+      locationValue: content?.aboutPreview?.locationValue || fallback.aboutPreview.locationValue,
+      footerTitle: content?.aboutPreview?.footerTitle || fallback.aboutPreview.footerTitle,
+    },
+    services: {
+      mobileHeading: content?.services?.mobileHeading || fallback.services.mobileHeading,
+      mobileDescription:
+        content?.services?.mobileDescription || fallback.services.mobileDescription,
+      desktopHeading: content?.services?.desktopHeading || fallback.services.desktopHeading,
+      desktopDescription:
+        content?.services?.desktopDescription || fallback.services.desktopDescription,
+      services:
+        content?.services?.services?.length
+          ? content.services.services.map((service, index) =>
+              normalizeHomeService(
+                service,
+                fallback.services.services[index] || fallback.services.services[0],
+              ),
+            )
+          : fallback.services.services,
+      ctaTitle: content?.services?.ctaTitle || fallback.services.ctaTitle,
+      ctaDescription: content?.services?.ctaDescription || fallback.services.ctaDescription,
+      ctaSupport: content?.services?.ctaSupport || fallback.services.ctaSupport,
+      ctaPrimaryLabel: content?.services?.ctaPrimaryLabel || fallback.services.ctaPrimaryLabel,
+      ctaSecondaryLabel:
+        content?.services?.ctaSecondaryLabel || fallback.services.ctaSecondaryLabel,
+    },
+    process: {
+      heading: content?.process?.heading || fallback.process.heading,
+      steps:
+        content?.process?.steps?.length
+          ? content.process.steps.map((step, index) =>
+              normalizeHomeProcessStep(
+                step,
+                fallback.process.steps[index] || fallback.process.steps[0],
+              ),
+            )
+          : fallback.process.steps,
+    },
+    finalCta: {
+      title: content?.finalCta?.title || fallback.finalCta.title,
+      description: content?.finalCta?.description || fallback.finalCta.description,
+      primaryCtaLabel: content?.finalCta?.primaryCtaLabel || fallback.finalCta.primaryCtaLabel,
+      secondaryCtaLabel:
+        content?.finalCta?.secondaryCtaLabel || fallback.finalCta.secondaryCtaLabel,
+      email: content?.finalCta?.email || fallback.finalCta.email,
+      responseTime: content?.finalCta?.responseTime || fallback.finalCta.responseTime,
+    },
+  };
+}
+
 async function fetchFromSanity<T>(query: string, params?: QueryParams) {
   try {
     if (params) {
@@ -171,4 +310,9 @@ export async function getFaqs(): Promise<FaqItem[]> {
   }
 
   return sanityFaqs.filter((faq) => faq.question && faq.answer);
+}
+
+export async function getHomeContent(): Promise<HomeContent> {
+  const sanityHomeContent = await fetchFromSanity<PartialHomeContent | null>(homePageQuery);
+  return normalizeHomeContent(sanityHomeContent);
 }

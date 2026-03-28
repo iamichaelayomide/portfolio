@@ -1,5 +1,6 @@
 import { getCliClient } from "sanity/cli";
 import { faqs } from "../data/faqs";
+import { homeContent } from "../data/home-content";
 import { projects } from "../data/projects";
 
 const client = getCliClient({
@@ -34,6 +35,73 @@ function createKey(...parts: Array<string | number | undefined>) {
 
 async function seed() {
   const transaction = client.transaction();
+
+  transaction.createOrReplace({
+    _id: "homePage",
+    _type: "homePage",
+    hero: {
+      availabilityText: homeContent.hero.availabilityText,
+      introText: homeContent.hero.introText,
+      title: homeContent.hero.title,
+      description: homeContent.hero.description,
+      primaryCtaLabel: homeContent.hero.primaryCtaLabel,
+      secondaryCtaLabel: homeContent.hero.secondaryCtaLabel,
+      points: homeContent.hero.points,
+      proof: homeContent.hero.proof,
+      profileImageUrl: homeContent.hero.profileImageUrl,
+      cardEyebrow: homeContent.hero.cardEyebrow,
+      cardTitle: homeContent.hero.cardTitle,
+      cardHighlights: homeContent.hero.cardHighlights,
+      scrollLabel: homeContent.hero.scrollLabel,
+    },
+    aboutPreview: {
+      title: homeContent.aboutPreview.title,
+      description: homeContent.aboutPreview.description,
+      linkLabel: homeContent.aboutPreview.linkLabel,
+      profileImageUrl: homeContent.aboutPreview.profileImageUrl,
+      locationLabel: homeContent.aboutPreview.locationLabel,
+      locationValue: homeContent.aboutPreview.locationValue,
+      footerTitle: homeContent.aboutPreview.footerTitle,
+    },
+    services: {
+      mobileHeading: homeContent.services.mobileHeading,
+      mobileDescription: homeContent.services.mobileDescription,
+      desktopHeading: homeContent.services.desktopHeading,
+      desktopDescription: homeContent.services.desktopDescription,
+      services: homeContent.services.services.map((service, serviceIndex) => ({
+        _key: createKey("home-service", service.key, serviceIndex),
+        _type: "homeService",
+        key: service.key,
+        icon: service.icon,
+        title: service.title,
+        description: service.description,
+        support: service.support,
+      })),
+      ctaTitle: homeContent.services.ctaTitle,
+      ctaDescription: homeContent.services.ctaDescription,
+      ctaSupport: homeContent.services.ctaSupport,
+      ctaPrimaryLabel: homeContent.services.ctaPrimaryLabel,
+      ctaSecondaryLabel: homeContent.services.ctaSecondaryLabel,
+    },
+    process: {
+      heading: homeContent.process.heading,
+      steps: homeContent.process.steps.map((step, stepIndex) => ({
+        _key: createKey("home-process", step.number, stepIndex),
+        _type: "homeProcessStep",
+        number: step.number,
+        title: step.title,
+        description: step.description,
+      })),
+    },
+    finalCta: {
+      title: homeContent.finalCta.title,
+      description: homeContent.finalCta.description,
+      primaryCtaLabel: homeContent.finalCta.primaryCtaLabel,
+      secondaryCtaLabel: homeContent.finalCta.secondaryCtaLabel,
+      email: homeContent.finalCta.email,
+      responseTime: homeContent.finalCta.responseTime,
+    },
+  });
 
   projects.forEach((project, projectIndex) => {
     transaction.createOrReplace({
@@ -96,7 +164,8 @@ async function seed() {
 
   await transaction.commit();
 
-  const [seededProjects, seededFaqs] = await Promise.all([
+  const [seededHomePages, seededProjects, seededFaqs] = await Promise.all([
+    client.fetch<number>('count(*[_type == "homePage"])'),
     client.fetch<number>('count(*[_type == "project"])'),
     client.fetch<number>('count(*[_type == "faq"])'),
   ]);
@@ -106,6 +175,7 @@ async function seed() {
       {
         ok: true,
         dataset: "production",
+        seededHomePages,
         seededProjects,
         seededFaqs,
       },

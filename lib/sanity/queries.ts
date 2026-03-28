@@ -74,3 +74,64 @@ export const faqsQuery = groq`*[_type == "faq"] | order(order asc, _createdAt as
   question,
   answer
 }`;
+
+export const homePageQuery = groq`*[_type == "homePage"][0] {
+  hero {
+    availabilityText,
+    introText,
+    title,
+    description,
+    primaryCtaLabel,
+    secondaryCtaLabel,
+    points,
+    proof,
+    profileImageUrl,
+    cardEyebrow,
+    cardTitle,
+    cardHighlights,
+    scrollLabel
+  },
+  aboutPreview {
+    title,
+    description,
+    linkLabel,
+    profileImageUrl,
+    locationLabel,
+    locationValue,
+    footerTitle
+  },
+  services {
+    mobileHeading,
+    mobileDescription,
+    desktopHeading,
+    desktopDescription,
+    services[] {
+      key,
+      icon,
+      title,
+      description,
+      support
+    },
+    ctaTitle,
+    ctaDescription,
+    ctaSupport,
+    ctaPrimaryLabel,
+    ctaSecondaryLabel
+  },
+  process {
+    heading,
+    steps[] {
+      number,
+      title,
+      description
+    }
+  },
+  finalCta {
+    title,
+    description,
+    primaryCtaLabel,
+    secondaryCtaLabel,
+    email,
+    responseTime
+  }
+}`;
