@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Syne } from "next/font/google";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import PageWrapper from "@/components/layout/PageWrapper";
+import AppShell from "@/components/layout/AppShell";
 import "./globals.css";
 
 const syne = Syne({
@@ -49,9 +47,7 @@ export default function RootLayout({
       <body
         className={`${syne.variable} ${inter.variable} bg-bg-base font-body text-text-primary antialiased`}
       >
-        <Navbar />
-        <PageWrapper>{children}</PageWrapper>
-        <Footer />
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
