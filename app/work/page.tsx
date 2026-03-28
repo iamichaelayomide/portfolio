@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { WorkShowcase } from "@/components/sections/FeaturedWork";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { getProjects } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Work - Michael Ayomide",
   description: "Selected projects across product, web, live builds, and systems.",
 };
 
-export default function WorkPage() {
+export default async function WorkPage() {
+  const projects = await getProjects();
+
   return (
     <section className="section-space">
       <div className="section-shell space-y-12 pt-10">
@@ -21,7 +26,7 @@ export default function WorkPage() {
             Selected projects across product, web, live builds, and systems.
           </p>
         </ScrollReveal>
-        <WorkShowcase />
+        <WorkShowcase projects={projects} />
       </div>
     </section>
   );

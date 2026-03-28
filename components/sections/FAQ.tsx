@@ -1,8 +1,8 @@
 import Accordion from "@/components/ui/Accordion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { faqs } from "@/data/faqs";
+import type { FaqItem } from "@/data/faqs";
 
-export default function FAQ() {
+export default function FAQ({ items }: { items: FaqItem[] }) {
   return (
     <section className="section-space">
       <div className="section-shell grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)]">
@@ -16,7 +16,7 @@ export default function FAQ() {
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.08}>
-          <Accordion items={faqs} />
+          <Accordion items={items} />
         </ScrollReveal>
       </div>
     </section>

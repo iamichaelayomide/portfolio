@@ -6,19 +6,23 @@ import { notFound } from "next/navigation";
 import CaseStudyHero from "@/components/case-study/CaseStudyHero";
 import CaseStudySection from "@/components/case-study/CaseStudySection";
 import FinalCTA from "@/components/sections/FinalCTA";
-import { getProjectBySlug, projects } from "@/data/projects";
+import { getProjectBySlug, getProjects } from "@/lib/content";
 import { createBlurDataURL } from "@/lib/utils";
 
-export function generateStaticParams() {
+export const dynamic = "force-dynamic";
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
-}): Metadata {
-  const project = getProjectBySlug(params.slug);
+}): Promise<Metadata> {
+  const project = await getProjectBySlug(params.slug);
 
   if (!project) {
     return {};
@@ -35,13 +39,14 @@ export function generateMetadata({
   };
 }
 
-export default function CaseStudyPage({
+export default async function CaseStudyPage({
   params,
 }: {
   params: { slug: string };
 }) {
+  const projects = await getProjects();
   const projectIndex = projects.findIndex((project) => project.slug === params.slug);
-  const project = projects[projectIndex];
+  const project = projectIndex >= 0 ? projects[projectIndex] : null;
 
   if (!project) {
     notFound();

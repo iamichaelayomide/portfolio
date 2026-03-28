@@ -6,6 +6,9 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import Hero from "@/components/sections/Hero";
 import Process from "@/components/sections/Process";
 import WhatIDo from "@/components/sections/WhatIDo";
+import { getFaqs, getProjects } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Michael Ayomide - Product Designer",
@@ -13,15 +16,17 @@ export const metadata: Metadata = {
     "Product designer for SaaS, websites, and ecommerce experiences that need stronger trust, cleaner UX, and better conversion.",
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [projects, faqs] = await Promise.all([getProjects(), getFaqs()]);
+
   return (
     <>
       <Hero />
-      <FeaturedWork />
+      <FeaturedWork projects={projects.slice(0, 5)} />
       <WhatIDo />
       <Process />
       <AboutPreview />
-      <FAQ />
+      <FAQ items={faqs} />
       <FinalCTA />
     </>
   );

@@ -5,14 +5,18 @@ import Link from "next/link";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { buttonStyles } from "@/components/ui/Button";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/ui/ScrollReveal";
-import { projectFilters, projects } from "@/data/projects";
+import type { Project } from "@/data/projects";
+import { projectFilters } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
-const homeProjects = projects.slice(0, 5);
-
-export default function FeaturedWork() {
+export default function FeaturedWork({ projects }: { projects: Project[] }) {
+  const homeProjects = projects.slice(0, 5);
   const featured = homeProjects[0];
   const rest = homeProjects.slice(1);
+
+  if (!featured) {
+    return null;
+  }
 
   return (
     <section className="section-space">
@@ -48,7 +52,7 @@ export default function FeaturedWork() {
   );
 }
 
-export function WorkShowcase() {
+export function WorkShowcase({ projects }: { projects: Project[] }) {
   const [activeFilter, setActiveFilter] = useState<(typeof projectFilters)[number]>("All");
 
   const filteredProjects =
@@ -79,6 +83,11 @@ export function WorkShowcase() {
           );
         })}
       </div>
+      {!filteredProjects.length ? (
+        <p className="font-body text-body-md text-text-secondary">
+          No projects have been published in Sanity yet.
+        </p>
+      ) : null}
       <StaggerContainer className="grid gap-6 md:grid-cols-2" delay={0.06}>
         {filteredProjects.map((project) => (
           <StaggerItem key={project.slug}>

@@ -1,4 +1,9 @@
-export const faqs = [
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export const faqs: FaqItem[] = [
   {
     question: "What does your design process look like?",
     answer:

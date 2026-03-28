@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: "drive.google.com",
         pathname: "/uc",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/images/**",
+      },
     ],
   },
   experimental: {
