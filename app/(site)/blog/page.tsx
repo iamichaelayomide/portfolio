@@ -42,7 +42,7 @@ export default async function BlogPage() {
                 Articles are loading or none published yet.
               </h2>
               <p className="mt-4 max-w-prose font-body text-body-md text-text-secondary">
-                If you see this, please check the Sanity Studio to ensure your 16 articles are published without the 'drafts.' prefix.
+                If you see this, please check the Sanity Studio to ensure your 16 articles are published without the &apos;drafts.&apos; prefix.
               </p>
               <div className="mt-6">
                 <Link href="/studio" className={buttonStyles({ variant: "secondary", size: "md" })}>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ExternalLink, Linkedin, Mail, MessageCircleMore } from "lucide-react";
+import { ExternalLink, Mail, MessageCircleMore } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Button from "@/components/ui/Button";
@@ -23,7 +23,7 @@ const iconMap = {
   email: Mail,
   whatsapp: MessageCircleMore,
   behance: ExternalLink,
-  linkedin: Linkedin,
+  linkedin: ExternalLink,
   x: ExternalLink,
 } as const;
 
