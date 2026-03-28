@@ -1,11 +1,20 @@
+import Image from "next/image";
 import ImagePlaceholder from "@/components/case-study/ImagePlaceholder";
 import type { CaseStudySection as CaseStudySectionType } from "@/data/projects";
+import { createBlurDataURL } from "@/lib/utils";
 
 const gridClassMap = {
   wide: "grid-cols-1",
   landscape: "grid-cols-1 md:grid-cols-2",
   portrait: "grid-cols-1 md:grid-cols-2",
   grid: "grid-cols-1 md:grid-cols-3",
+};
+
+const aspectMap = {
+  wide: "aspect-[16/9]",
+  landscape: "aspect-[4/3]",
+  portrait: "aspect-[3/4]",
+  grid: "aspect-square",
 };
 
 export default function CaseStudySection({
@@ -79,13 +88,31 @@ export default function CaseStudySection({
                 gridClassMap[section.images[0]?.aspect ?? defaultAspect]
               }`}
             >
-              {section.images.map((image) => (
-                <ImagePlaceholder
-                  key={image.label}
-                  label={image.label}
-                  aspect={image.aspect ?? defaultAspect}
-                />
-              ))}
+              {section.images.map((image) =>
+                image.src ? (
+                  <div
+                    key={image.label}
+                    className={`relative overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated ${
+                      aspectMap[image.aspect ?? defaultAspect]
+                    }`}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt || image.label}
+                      fill
+                      className="object-cover"
+                      placeholder="blur"
+                      blurDataURL={createBlurDataURL()}
+                    />
+                  </div>
+                ) : (
+                  <ImagePlaceholder
+                    key={image.label}
+                    label={image.label}
+                    aspect={image.aspect ?? defaultAspect}
+                  />
+                )
+              )}
             </div>
           ) : null}
         </div>
