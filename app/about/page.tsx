@@ -3,34 +3,10 @@ import Image from "next/image";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import CalendlyButton from "@/components/ui/CalendlyButton";
 import { buttonStyles } from "@/components/ui/Button";
+import { getAboutPageContent } from "@/lib/content";
 import { createBlurDataURL } from "@/lib/utils";
 
-const PROFILE_IMAGE =
-  "https://drive.google.com/uc?export=view&id=1si4jvBANQm2h7wl8xuoztD_eNSrHz8K7";
-
-const experience = [
-  {
-    range: "2024 - Present",
-    role: "Independent Product Designer",
-    context: "SaaS, ecommerce, and web builds",
-    description:
-      "Designing product interfaces, conversion-focused websites, and ecommerce experiences for growing teams and brands.",
-  },
-  {
-    range: "2023 - 2024",
-    role: "Product Design Projects",
-    context: "Wellness and fintech",
-    description:
-      "Worked across mobile UX, dashboards, and interaction systems with an execution-focused product lens.",
-  },
-  {
-    range: "2022 - 2023",
-    role: "UX and Research Work",
-    context: "Consumer and commerce",
-    description:
-      "Focused on user understanding, structure, and reducing friction across real product flows.",
-  },
-];
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "About - Michael Ayomide",
@@ -38,7 +14,9 @@ export const metadata: Metadata = {
     "About Michael Ayomide, product designer focused on clarity, usability, and shipped work that helps people.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const content = await getAboutPageContent();
+
   return (
     <section className="section-space">
       <div className="section-shell space-y-16 pt-10">
@@ -46,28 +24,22 @@ export default function AboutPage() {
           <ScrollReveal>
             <p className="section-label">
               <span className="section-rule" />
-              About
+              {content.heroLabel}
             </p>
             <h1 className="font-display text-display-lg font-semibold text-text-primary">
-              Michael Ayomide.
+              {content.title}
             </h1>
             <div className="mt-6 max-w-prose space-y-5 font-body text-body-md text-text-secondary">
-              <p>
-                I&apos;m a product designer focused on clarity, usability, and shipping work that actually helps people. I&apos;ve designed across B2B SaaS platforms, consumer apps, ecommerce, and brand web experiences.
-              </p>
-              <p>
-                I think deeply about structure before aesthetics. The visual layer is where I execute precision, but the real work happens in the logic underneath.
-              </p>
-              <p>
-                I also work across WordPress, WooCommerce, Shopify, and AI-assisted web execution to help move strong design thinking into live builds without losing product judgment or quality.
-              </p>
+              {content.intro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.08}>
             <div className="overflow-hidden rounded-[28px] border border-border-default premium-panel p-3 shadow-card">
               <div className="relative aspect-[3/4] overflow-hidden rounded-[22px]">
                 <Image
-                  src={PROFILE_IMAGE}
+                  src={content.profileImageUrl}
                   alt="Portrait of Michael Ayomide"
                   fill
                   sizes="(max-width: 1024px) 100vw, 420px"
@@ -80,34 +52,37 @@ export default function AboutPage() {
           </ScrollReveal>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
-          {[
-            ["Design", "Figma · Framer · Principle · FigJam"],
-            ["Research", "User Interviews · Journey Mapping · Usability Testing"],
-            ["Build", "WordPress · WooCommerce · Shopify · Codex · Gemini CLI"],
-            ["Systems", "Design Tokens · Component Libraries · Documentation"],
-          ].map(([label, value], index) => (
-            <ScrollReveal key={label} delay={index * 0.06}>
-              <div className="rounded-xl border border-border-subtle bg-bg-surface p-6">
-                <p className="font-body text-body-xs uppercase tracking-caps text-text-muted">
-                  {label}
-                </p>
-                <p className="mt-3 font-body text-body-md text-text-secondary">{value}</p>
-              </div>
-            </ScrollReveal>
-          ))}
+        <div className="space-y-6">
+          <ScrollReveal>
+            <p className="section-label">
+              <span className="section-rule" />
+              {content.skillsLabel}
+            </p>
+          </ScrollReveal>
+          <div className="grid gap-5 md:grid-cols-2">
+            {content.skills.map((item, index) => (
+              <ScrollReveal key={item.label} delay={index * 0.06}>
+                <div className="rounded-xl border border-border-subtle bg-bg-surface p-6">
+                  <p className="font-body text-body-xs uppercase tracking-caps text-text-muted">
+                    {item.label}
+                  </p>
+                  <p className="mt-3 font-body text-body-md text-text-secondary">{item.value}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
 
         <div className="grid gap-10 lg:grid-cols-[320px_minmax(0,1fr)]">
           <ScrollReveal>
             <p className="section-label">
               <span className="section-rule" />
-              Experience
+              {content.experienceLabel}
             </p>
           </ScrollReveal>
           <div className="space-y-6">
-            {experience.map((item, index) => (
-              <ScrollReveal key={item.range} delay={index * 0.06}>
+            {content.experience.map((item, index) => (
+              <ScrollReveal key={`${item.range}-${item.role}`} delay={index * 0.06}>
                 <div className="rounded-xl border border-border-subtle bg-bg-surface p-6">
                   <p className="font-body text-body-xs uppercase tracking-caps text-text-muted">
                     {item.range}
@@ -126,11 +101,7 @@ export default function AboutPage() {
         </div>
 
         <div className="grid gap-5 md:grid-cols-3">
-          {[
-            "Clarity over cleverness.",
-            "Structure before aesthetics.",
-            "Ship, learn, iterate.",
-          ].map((value, index) => (
+          {content.principles.map((value, index) => (
             <ScrollReveal key={value} delay={index * 0.06}>
               <div className="rounded-xl border border-border-subtle bg-bg-surface p-6 font-display text-2xl font-medium text-text-primary">
                 {value}
@@ -141,15 +112,15 @@ export default function AboutPage() {
 
         <ScrollReveal className="rounded-[28px] border border-border-subtle bg-bg-surface p-8 md:p-10">
           <h2 className="font-display text-display-md font-semibold text-text-primary">
-            Let&apos;s build something.
+            {content.ctaTitle}
           </h2>
           <div className="mt-6 flex flex-wrap gap-3">
-            <CalendlyButton />
+            <CalendlyButton label={content.primaryCtaLabel} />
             <a
               href="/michael-ayomide-cv.pdf"
               className={buttonStyles({ variant: "secondary", size: "md" })}
             >
-              Download CV
+              {content.secondaryCtaLabel}
             </a>
           </div>
         </ScrollReveal>

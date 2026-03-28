@@ -2,6 +2,7 @@ import { getCliClient } from "sanity/cli";
 import { faqs } from "../data/faqs";
 import { homeContent } from "../data/home-content";
 import { projects } from "../data/projects";
+import { aboutPageContent, contactPageContent } from "../data/site-pages";
 
 const client = getCliClient({
   apiVersion: "2025-02-19",
@@ -35,6 +36,80 @@ function createKey(...parts: Array<string | number | undefined>) {
 
 async function seed() {
   const transaction = client.transaction();
+
+  transaction.createOrReplace({
+    _id: "aboutPage",
+    _type: "aboutPage",
+    heroLabel: aboutPageContent.heroLabel,
+    title: aboutPageContent.title,
+    intro: aboutPageContent.intro,
+    profileImageUrl: aboutPageContent.profileImageUrl,
+    skillsLabel: aboutPageContent.skillsLabel,
+    skills: aboutPageContent.skills.map((skill, skillIndex) => ({
+      _key: createKey("about-skill", skill.label, skillIndex),
+      _type: "aboutSkill",
+      label: skill.label,
+      value: skill.value,
+    })),
+    experienceLabel: aboutPageContent.experienceLabel,
+    experience: aboutPageContent.experience.map((item, itemIndex) => ({
+      _key: createKey("about-experience", item.range, itemIndex),
+      _type: "aboutExperienceItem",
+      range: item.range,
+      role: item.role,
+      context: item.context,
+      description: item.description,
+    })),
+    principles: aboutPageContent.principles,
+    ctaTitle: aboutPageContent.ctaTitle,
+    primaryCtaLabel: aboutPageContent.primaryCtaLabel,
+    secondaryCtaLabel: aboutPageContent.secondaryCtaLabel,
+  });
+
+  transaction.createOrReplace({
+    _id: "contactPage",
+    _type: "contactPage",
+    heroLabel: contactPageContent.heroLabel,
+    title: contactPageContent.title,
+    description: contactPageContent.description,
+    bestForEyebrow: contactPageContent.bestForEyebrow,
+    bestForText: contactPageContent.bestForText,
+    form: {
+      nameLabel: contactPageContent.form.nameLabel,
+      emailLabel: contactPageContent.form.emailLabel,
+      projectTypeLabel: contactPageContent.form.projectTypeLabel,
+      messageLabel: contactPageContent.form.messageLabel,
+      projectTypes: contactPageContent.form.projectTypes,
+      namePlaceholder: contactPageContent.form.namePlaceholder,
+      emailPlaceholder: contactPageContent.form.emailPlaceholder,
+      messagePlaceholder: contactPageContent.form.messagePlaceholder,
+      submitLabel: contactPageContent.form.submitLabel,
+      submittingLabel: contactPageContent.form.submittingLabel,
+    },
+    success: {
+      title: contactPageContent.success.title,
+      description: contactPageContent.success.description,
+      resetLabel: contactPageContent.success.resetLabel,
+    },
+    contactInfoTitle: contactPageContent.contactInfoTitle,
+    contactLinks: contactPageContent.contactLinks.map((link, linkIndex) => ({
+      _key: createKey("contact-link", link.key, linkIndex),
+      _type: "contactLink",
+      key: link.key,
+      icon: link.icon,
+      label: link.label,
+      value: link.value,
+      href: link.href,
+    })),
+    booking: {
+      title: contactPageContent.booking.title,
+      subtitle: contactPageContent.booking.subtitle,
+      eyebrow: contactPageContent.booking.eyebrow,
+      description: contactPageContent.booking.description,
+      primaryCtaLabel: contactPageContent.booking.primaryCtaLabel,
+      secondaryCtaLabel: contactPageContent.booking.secondaryCtaLabel,
+    },
+  });
 
   transaction.createOrReplace({
     _id: "homePage",
@@ -164,11 +239,14 @@ async function seed() {
 
   await transaction.commit();
 
-  const [seededHomePages, seededProjects, seededFaqs] = await Promise.all([
+  const [seededHomePages, seededAboutPages, seededContactPages, seededProjects, seededFaqs] =
+    await Promise.all([
     client.fetch<number>('count(*[_type == "homePage"])'),
-    client.fetch<number>('count(*[_type == "project"])'),
-    client.fetch<number>('count(*[_type == "faq"])'),
-  ]);
+      client.fetch<number>('count(*[_type == "aboutPage"])'),
+      client.fetch<number>('count(*[_type == "contactPage"])'),
+      client.fetch<number>('count(*[_type == "project"])'),
+      client.fetch<number>('count(*[_type == "faq"])'),
+    ]);
 
   console.log(
     JSON.stringify(
@@ -176,6 +254,8 @@ async function seed() {
         ok: true,
         dataset: "production",
         seededHomePages,
+        seededAboutPages,
+        seededContactPages,
         seededProjects,
         seededFaqs,
       },

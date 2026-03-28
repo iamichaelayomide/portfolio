@@ -18,8 +18,26 @@ import type {
   HomeServicesContent,
 } from "@/data/home-content";
 import { homeContent as fallbackHomeContent } from "@/data/home-content";
+import type {
+  AboutExperienceItem,
+  AboutPageContent,
+  AboutSkill,
+  ContactLink,
+  ContactPageContent,
+} from "@/data/site-pages";
+import {
+  aboutPageContent as fallbackAboutPageContent,
+  contactPageContent as fallbackContactPageContent,
+} from "@/data/site-pages";
 import { sanityClient } from "@/lib/sanity/client";
-import { faqsQuery, homePageQuery, projectBySlugQuery, projectsQuery } from "@/lib/sanity/queries";
+import {
+  aboutPageQuery,
+  contactPageQuery,
+  faqsQuery,
+  homePageQuery,
+  projectBySlugQuery,
+  projectsQuery,
+} from "@/lib/sanity/queries";
 import type { QueryParams } from "next-sanity";
 
 const FALLBACK_PROJECT_IMAGE = "/og-image.svg";
@@ -57,6 +75,19 @@ type PartialHomeContent = {
       })
     | null;
   finalCta?: Partial<HomeFinalCtaContent> | null;
+};
+type PartialAboutPageContent = Omit<Partial<AboutPageContent>, "skills" | "experience"> & {
+  skills?: Array<Partial<AboutSkill> | null> | null;
+  experience?: Array<Partial<AboutExperienceItem> | null> | null;
+};
+type PartialContactPageContent = Omit<
+  Partial<ContactPageContent>,
+  "contactLinks" | "form" | "success" | "booking"
+> & {
+  form?: Partial<ContactPageContent["form"]> | null;
+  success?: Partial<ContactPageContent["success"]> | null;
+  contactLinks?: Array<Partial<ContactLink> | null> | null;
+  booking?: Partial<ContactPageContent["booking"]> | null;
 };
 
 function isValidSectionId(value: string | undefined): value is CaseStudySection["id"] {
@@ -265,6 +296,127 @@ function normalizeHomeContent(content: PartialHomeContent | null | undefined): H
   };
 }
 
+function normalizeAboutSkill(skill: Partial<AboutSkill> | null | undefined, fallback: AboutSkill) {
+  return {
+    label: skill?.label || fallback.label,
+    value: skill?.value || fallback.value,
+  } satisfies AboutSkill;
+}
+
+function normalizeAboutExperienceItem(
+  item: Partial<AboutExperienceItem> | null | undefined,
+  fallback: AboutExperienceItem,
+) {
+  return {
+    range: item?.range || fallback.range,
+    role: item?.role || fallback.role,
+    context: item?.context || fallback.context,
+    description: item?.description || fallback.description,
+  } satisfies AboutExperienceItem;
+}
+
+function normalizeAboutPageContent(
+  content: PartialAboutPageContent | null | undefined,
+): AboutPageContent {
+  const fallback = fallbackAboutPageContent;
+
+  return {
+    heroLabel: content?.heroLabel || fallback.heroLabel,
+    title: content?.title || fallback.title,
+    intro: normalizeStringList(content?.intro, fallback.intro),
+    profileImageUrl: content?.profileImageUrl || fallback.profileImageUrl,
+    skillsLabel: content?.skillsLabel || fallback.skillsLabel,
+    skills:
+      content?.skills?.length
+        ? content.skills.map((skill, index) =>
+            normalizeAboutSkill(skill, fallback.skills[index] || fallback.skills[0]),
+          )
+        : fallback.skills,
+    experienceLabel: content?.experienceLabel || fallback.experienceLabel,
+    experience:
+      content?.experience?.length
+        ? content.experience.map((item, index) =>
+            normalizeAboutExperienceItem(
+              item,
+              fallback.experience[index] || fallback.experience[0],
+            ),
+          )
+        : fallback.experience,
+    principles: normalizeStringList(content?.principles, fallback.principles),
+    ctaTitle: content?.ctaTitle || fallback.ctaTitle,
+    primaryCtaLabel: content?.primaryCtaLabel || fallback.primaryCtaLabel,
+    secondaryCtaLabel: content?.secondaryCtaLabel || fallback.secondaryCtaLabel,
+  };
+}
+
+function normalizeContactLink(link: Partial<ContactLink> | null | undefined, fallback: ContactLink) {
+  const icon = link?.icon;
+
+  return {
+    key: link?.key || fallback.key,
+    icon:
+      icon === "email" ||
+      icon === "whatsapp" ||
+      icon === "behance" ||
+      icon === "linkedin" ||
+      icon === "x"
+        ? icon
+        : fallback.icon,
+    label: link?.label || fallback.label,
+    value: link?.value || fallback.value,
+    href: link?.href || fallback.href,
+  } satisfies ContactLink;
+}
+
+function normalizeContactPageContent(
+  content: PartialContactPageContent | null | undefined,
+): ContactPageContent {
+  const fallback = fallbackContactPageContent;
+
+  return {
+    heroLabel: content?.heroLabel || fallback.heroLabel,
+    title: content?.title || fallback.title,
+    description: content?.description || fallback.description,
+    bestForEyebrow: content?.bestForEyebrow || fallback.bestForEyebrow,
+    bestForText: content?.bestForText || fallback.bestForText,
+    form: {
+      nameLabel: content?.form?.nameLabel || fallback.form.nameLabel,
+      emailLabel: content?.form?.emailLabel || fallback.form.emailLabel,
+      projectTypeLabel: content?.form?.projectTypeLabel || fallback.form.projectTypeLabel,
+      messageLabel: content?.form?.messageLabel || fallback.form.messageLabel,
+      projectTypes: normalizeStringList(content?.form?.projectTypes, fallback.form.projectTypes),
+      namePlaceholder: content?.form?.namePlaceholder || fallback.form.namePlaceholder,
+      emailPlaceholder: content?.form?.emailPlaceholder || fallback.form.emailPlaceholder,
+      messagePlaceholder:
+        content?.form?.messagePlaceholder || fallback.form.messagePlaceholder,
+      submitLabel: content?.form?.submitLabel || fallback.form.submitLabel,
+      submittingLabel: content?.form?.submittingLabel || fallback.form.submittingLabel,
+    },
+    success: {
+      title: content?.success?.title || fallback.success.title,
+      description: content?.success?.description || fallback.success.description,
+      resetLabel: content?.success?.resetLabel || fallback.success.resetLabel,
+    },
+    contactInfoTitle: content?.contactInfoTitle || fallback.contactInfoTitle,
+    contactLinks:
+      content?.contactLinks?.length
+        ? content.contactLinks.map((link, index) =>
+            normalizeContactLink(link, fallback.contactLinks[index] || fallback.contactLinks[0]),
+          )
+        : fallback.contactLinks,
+    booking: {
+      title: content?.booking?.title || fallback.booking.title,
+      subtitle: content?.booking?.subtitle || fallback.booking.subtitle,
+      eyebrow: content?.booking?.eyebrow || fallback.booking.eyebrow,
+      description: content?.booking?.description || fallback.booking.description,
+      primaryCtaLabel:
+        content?.booking?.primaryCtaLabel || fallback.booking.primaryCtaLabel,
+      secondaryCtaLabel:
+        content?.booking?.secondaryCtaLabel || fallback.booking.secondaryCtaLabel,
+    },
+  };
+}
+
 async function fetchFromSanity<T>(query: string, params?: QueryParams) {
   try {
     if (params) {
@@ -315,4 +467,18 @@ export async function getFaqs(): Promise<FaqItem[]> {
 export async function getHomeContent(): Promise<HomeContent> {
   const sanityHomeContent = await fetchFromSanity<PartialHomeContent | null>(homePageQuery);
   return normalizeHomeContent(sanityHomeContent);
+}
+
+export async function getAboutPageContent(): Promise<AboutPageContent> {
+  const sanityAboutPageContent = await fetchFromSanity<PartialAboutPageContent | null>(
+    aboutPageQuery,
+  );
+  return normalizeAboutPageContent(sanityAboutPageContent);
+}
+
+export async function getContactPageContent(): Promise<ContactPageContent> {
+  const sanityContactPageContent = await fetchFromSanity<PartialContactPageContent | null>(
+    contactPageQuery,
+  );
+  return normalizeContactPageContent(sanityContactPageContent);
 }

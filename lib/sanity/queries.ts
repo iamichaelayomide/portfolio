@@ -135,3 +135,67 @@ export const homePageQuery = groq`*[_type == "homePage"][0] {
     responseTime
   }
 }`;
+
+export const aboutPageQuery = groq`*[_type == "aboutPage"][0] {
+  heroLabel,
+  title,
+  intro,
+  profileImageUrl,
+  skillsLabel,
+  skills[] {
+    label,
+    value
+  },
+  experienceLabel,
+  experience[] {
+    range,
+    role,
+    context,
+    description
+  },
+  principles,
+  ctaTitle,
+  primaryCtaLabel,
+  secondaryCtaLabel
+}`;
+
+export const contactPageQuery = groq`*[_type == "contactPage"][0] {
+  heroLabel,
+  title,
+  description,
+  bestForEyebrow,
+  bestForText,
+  form {
+    nameLabel,
+    emailLabel,
+    projectTypeLabel,
+    messageLabel,
+    projectTypes,
+    namePlaceholder,
+    emailPlaceholder,
+    messagePlaceholder,
+    submitLabel,
+    submittingLabel
+  },
+  success {
+    title,
+    description,
+    resetLabel
+  },
+  contactInfoTitle,
+  contactLinks[] {
+    key,
+    icon,
+    label,
+    value,
+    href
+  },
+  booking {
+    title,
+    subtitle,
+    eyebrow,
+    description,
+    primaryCtaLabel,
+    secondaryCtaLabel
+  }
+}`;

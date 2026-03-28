@@ -8,51 +8,32 @@ import { z } from "zod";
 import Button from "@/components/ui/Button";
 import CalendlyButton from "@/components/ui/CalendlyButton";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import type { ContactLink, ContactPageContent } from "@/data/site-pages";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Please enter your name."),
   email: z.string().email("Please enter a valid email address."),
-  projectType: z.enum(["Product Design", "Web", "Design System", "Other"]),
+  projectType: z.string().min(1, "Please choose a project type."),
   message: z.string().min(20, "Please share a bit more detail about the project."),
 });
 
 type ContactValues = z.infer<typeof contactSchema>;
 
-const links = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "iamichaelayomide@gmail.com",
-    href: "mailto:iamichaelayomide@gmail.com",
-  },
-  {
-    icon: MessageCircleMore,
-    label: "Call / WhatsApp",
-    value: "07032891651",
-    href: "https://wa.me/2347032891651",
-  },
-  {
-    icon: ExternalLink,
-    label: "Behance",
-    value: "behance.net/michaelayomide1",
-    href: "https://behance.net/michaelayomide1",
-  },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "linkedin.com/in/michael-ayomide",
-    href: "https://linkedin.com/in/michael-ayomide",
-  },
-  {
-    icon: ExternalLink,
-    label: "X",
-    value: "@starmikeee",
-    href: "https://x.com/starmikeee",
-  },
-];
+const iconMap = {
+  email: Mail,
+  whatsapp: MessageCircleMore,
+  behance: ExternalLink,
+  linkedin: Linkedin,
+  x: ExternalLink,
+} as const;
 
-export default function ContactFormSection() {
+type ContactFormSectionProps = {
+  content: ContactPageContent;
+};
+
+export default function ContactFormSection({ content }: ContactFormSectionProps) {
   const [sent, setSent] = useState(false);
+  const defaultProjectType = content.form.projectTypes[0] || "Product Design";
   const {
     register,
     handleSubmit,
@@ -62,7 +43,7 @@ export default function ContactFormSection() {
     defaultValues: {
       name: "",
       email: "",
-      projectType: "Product Design",
+      projectType: defaultProjectType,
       message: "",
     },
   });
@@ -78,14 +59,13 @@ export default function ContactFormSection() {
         <ScrollReveal>
           <p className="section-label">
             <span className="section-rule" />
-            Contact
+            {content.heroLabel}
           </p>
           <h1 className="font-display text-display-lg font-semibold text-text-primary">
-            Let&apos;s talk.
+            {content.title}
           </h1>
           <p className="mt-4 max-w-[40rem] font-body text-body-lg text-text-secondary">
-            Tell me what you&apos;re building. I&apos;ll tell you where the clarity,
-            trust, and conversion gaps are.
+            {content.description}
           </p>
         </ScrollReveal>
 
@@ -94,14 +74,13 @@ export default function ContactFormSection() {
             {sent ? (
               <div className="rounded-xl border border-border-accent bg-accent-glow p-8">
                 <h2 className="font-display text-display-sm font-medium text-text-primary">
-                  Message received.
+                  {content.success.title}
                 </h2>
                 <p className="mt-4 max-w-prose font-body text-body-md text-text-secondary">
-                  Thanks for reaching out. I&apos;ll reply within 3 hours with the next
-                  step.
+                  {content.success.description}
                 </p>
                 <Button className="mt-6" variant="secondary" onClick={() => setSent(false)}>
-                  Send another message
+                  {content.success.resetLabel}
                 </Button>
               </div>
             ) : (
@@ -111,50 +90,50 @@ export default function ContactFormSection() {
               >
                 <div className="rounded-xl border border-border-subtle bg-bg-elevated/55 p-4">
                   <p className="font-body text-body-xs uppercase tracking-caps text-accent-warm">
-                    Best for
+                    {content.bestForEyebrow}
                   </p>
                   <p className="mt-2 font-body text-body-sm text-text-secondary">
-                    Founders, product teams, and brands that need clearer UX,
-                    stronger positioning, or a better-performing website, store, or
-                    product experience.
+                    {content.bestForText}
                   </p>
                 </div>
 
-                <FormField label="Name" error={errors.name?.message}>
+                <FormField label={content.form.nameLabel} error={errors.name?.message}>
                   <input
                     {...register("name")}
                     className="w-full rounded-md border border-border-default bg-bg-surface px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:border-accent-rose focus:outline-none"
-                    placeholder="Your name"
+                    placeholder={content.form.namePlaceholder}
                   />
                 </FormField>
-                <FormField label="Email" error={errors.email?.message}>
+                <FormField label={content.form.emailLabel} error={errors.email?.message}>
                   <input
                     {...register("email")}
                     type="email"
                     className="w-full rounded-md border border-border-default bg-bg-surface px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:border-accent-rose focus:outline-none"
-                    placeholder="you@example.com"
+                    placeholder={content.form.emailPlaceholder}
                   />
                 </FormField>
-                <FormField label="Project type" error={errors.projectType?.message}>
+                <FormField
+                  label={content.form.projectTypeLabel}
+                  error={errors.projectType?.message}
+                >
                   <select
                     {...register("projectType")}
                     className="w-full rounded-md border border-border-default bg-bg-surface px-4 py-3 font-body text-body-md text-text-primary focus:border-accent-rose focus:outline-none"
                   >
-                    <option>Product Design</option>
-                    <option>Web</option>
-                    <option>Design System</option>
-                    <option>Other</option>
+                    {content.form.projectTypes.map((type) => (
+                      <option key={type}>{type}</option>
+                    ))}
                   </select>
                 </FormField>
-                <FormField label="Message" error={errors.message?.message}>
+                <FormField label={content.form.messageLabel} error={errors.message?.message}>
                   <textarea
                     {...register("message")}
                     className="min-h-[140px] w-full rounded-md border border-border-default bg-bg-surface px-4 py-3 font-body text-body-md text-text-primary placeholder:text-text-muted focus:border-accent-rose focus:outline-none"
-                    placeholder="What are you building, what feels unclear right now, and what result do you want?"
+                    placeholder={content.form.messagePlaceholder}
                   />
                 </FormField>
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? content.form.submittingLabel : content.form.submitLabel}
                 </Button>
               </form>
             )}
@@ -163,58 +142,35 @@ export default function ContactFormSection() {
           <ScrollReveal delay={0.08} className="space-y-6">
             <div className="rounded-xl border border-border-subtle bg-bg-surface p-6">
               <h2 className="font-display text-2xl font-medium text-text-primary">
-                Contact Info
+                {content.contactInfoTitle}
               </h2>
               <div className="mt-6 space-y-4">
-                {links.map((item) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target={item.href.startsWith("http") ? "_blank" : undefined}
-                      rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-                      className="flex items-start gap-4 rounded-lg border border-transparent px-1 py-2 transition-colors hover:border-border-subtle"
-                    >
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border-default bg-bg-elevated text-text-secondary">
-                        <Icon className="h-4 w-4" />
-                      </span>
-                      <span>
-                        <span className="block font-body text-body-xs uppercase tracking-caps text-text-muted">
-                          {item.label}
-                        </span>
-                        <span className="mt-1 block font-body text-body-sm text-text-primary">
-                          {item.value}
-                        </span>
-                      </span>
-                    </a>
-                  );
-                })}
+                {content.contactLinks.map((item) => (
+                  <ContactLinkCard key={item.key} item={item} />
+                ))}
               </div>
             </div>
 
             <div className="overflow-hidden rounded-xl border border-border-subtle bg-bg-surface">
               <div className="border-b border-border-subtle px-6 py-5">
                 <h2 className="font-display text-2xl font-medium text-text-primary">
-                  Schedule a Free Discovery Call
+                  {content.booking.title}
                 </h2>
                 <p className="mt-2 font-body text-body-sm text-text-secondary">
-                  30-minute call | No commitment
+                  {content.booking.subtitle}
                 </p>
               </div>
               <div className="space-y-5 bg-bg-elevated px-6 py-8">
                 <div className="rounded-xl border border-border-subtle bg-bg-base/70 p-5">
                   <p className="font-body text-body-xs uppercase tracking-caps text-accent-warm">
-                    Quickest route
+                    {content.booking.eyebrow}
                   </p>
                   <p className="mt-3 font-body text-body-sm text-text-secondary">
-                    Use the booking link to pick a time that works for you. It opens
-                    directly in Google Calendar scheduling.
+                    {content.booking.description}
                   </p>
                 </div>
                 <CalendlyButton
-                  label="Open Booking Page"
+                  label={content.booking.primaryCtaLabel}
                   variant="primary"
                   showIcon
                   className="w-full justify-center"
@@ -222,7 +178,7 @@ export default function ContactFormSection() {
               </div>
               <div className="border-t border-border-subtle px-6 py-5">
                 <CalendlyButton
-                  label="Open Booking Link in New Tab"
+                  label={content.booking.secondaryCtaLabel}
                   variant="secondary"
                   showIcon
                   className="w-full"
@@ -233,6 +189,30 @@ export default function ContactFormSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function ContactLinkCard({ item }: { item: ContactLink }) {
+  const Icon = iconMap[item.icon];
+  const external = item.href.startsWith("http");
+
+  return (
+    <a
+      href={item.href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer" : undefined}
+      className="flex items-start gap-4 rounded-lg border border-transparent px-1 py-2 transition-colors hover:border-border-subtle"
+    >
+      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border-default bg-bg-elevated text-text-secondary">
+        <Icon className="h-4 w-4" />
+      </span>
+      <span>
+        <span className="block font-body text-body-xs uppercase tracking-caps text-text-muted">
+          {item.label}
+        </span>
+        <span className="mt-1 block font-body text-body-sm text-text-primary">{item.value}</span>
+      </span>
+    </a>
   );
 }
 
