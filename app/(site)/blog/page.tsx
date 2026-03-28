@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import BlogCard from "@/components/blog/BlogCard";
+import CategoryFilter from "@/components/blog/CategoryFilter";
 import { buttonStyles } from "@/components/ui/Button";
-import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/ui/ScrollReveal";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { getPosts } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -51,13 +51,7 @@ export default async function BlogPage() {
             </div>
           </ScrollReveal>
         ) : (
-          <StaggerContainer className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {posts.map((post) => (
-              <StaggerItem key={post.slug}>
-                <BlogCard post={post} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <CategoryFilter posts={posts} />
         )}
       </div>
     </section>
