@@ -156,7 +156,7 @@ export default function Hero({ content }: HeroProps) {
                 transition: { duration: 0.55, delay: 0.38, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-[12ch] text-balance font-display text-[clamp(34px,8vw,64px)] leading-[0.98] tracking-[-0.05em] text-text-primary sm:max-w-[13ch] sm:leading-[0.96]"
+            className="max-w-[12ch] text-balance font-display text-display-xl text-text-primary sm:max-w-[13ch]"
           >
             {content.title}
           </motion.h1>
@@ -170,7 +170,7 @@ export default function Hero({ content }: HeroProps) {
                 transition: { duration: 0.5, delay: 0.52, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-5 max-w-[34rem] text-pretty font-body text-[16px] leading-[1.72] text-text-secondary sm:mt-6 sm:text-[18px]"
+            className="mt-5 max-w-[34rem] text-pretty font-body text-body-lg text-text-secondary sm:mt-6"
           >
             {content.description}
           </motion.p>
@@ -255,7 +255,7 @@ export default function Hero({ content }: HeroProps) {
                   <p className="font-body text-body-xs uppercase tracking-[0.14em] text-accent-warm">
                     {content.cardEyebrow}
                   </p>
-                  <p className="mt-3 whitespace-pre-line font-display text-[clamp(28px,3vw,40px)] leading-[1.02] tracking-[-0.03em] text-text-primary">
+                  <p className="mt-3 whitespace-pre-line font-display text-display-sm text-text-primary">
                     {content.cardTitle}
                   </p>
                 </div>

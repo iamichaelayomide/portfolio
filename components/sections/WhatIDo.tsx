@@ -126,10 +126,10 @@ function ServiceCard({
       </div>
 
       <div className="relative mt-10 space-y-5">
-        <h3 className="max-w-[12ch] font-display text-[clamp(34px,4.5vw,56px)] font-medium leading-[0.98] tracking-[-0.04em] text-white">
+        <h3 className="max-w-[12ch] font-display text-display-lg font-medium text-white">
           {title}
         </h3>
-        <p className="max-w-[35rem] font-body text-[17px] leading-[1.75] text-[#F1E8F8] sm:text-[18px]">
+        <p className="max-w-[35rem] font-body text-body-md text-[#F1E8F8]">
           {description}
         </p>
       </div>
@@ -242,7 +242,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
                         0{index + 1}
                       </p>
                     </div>
-                    <h3 className="mt-8 font-display text-[clamp(24px,7vw,32px)] font-medium text-white sm:mt-10 sm:text-display-sm">
+                    <h3 className="mt-8 font-display text-display-sm font-medium text-white sm:mt-10">
                       {service.title}
                     </h3>
                     <p className="mt-4 font-body text-body-sm leading-[1.7] text-[#F1E8F8] sm:text-body-md">

@@ -25,10 +25,10 @@ export default function Process({ content }: ProcessProps) {
                 {index < content.steps.length - 1 ? (
                   <div className="absolute right-[-24px] top-10 hidden h-px w-12 border-t border-dashed border-border-default lg:block" />
                 ) : null}
-                <p className="font-display text-5xl font-medium text-[var(--text-muted-60)]">
+                <p className="font-display text-display-lg font-medium text-[var(--text-muted-60)]">
                   {step.number}
                 </p>
-                <h3 className="mt-6 font-display text-2xl font-medium text-text-primary">
+                <h3 className="mt-6 font-display text-display-sm font-medium text-text-primary">
                   {step.title}
                 </h3>
                 <p className="mt-3 font-body text-body-md text-text-secondary">

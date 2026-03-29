@@ -84,7 +84,7 @@ export default async function BlogPostPage({
                 <span className="section-rule" />
                 Blog Post
               </p>
-              <h1 className="max-w-[16ch] text-balance font-display text-[clamp(40px,7vw,74px)] font-semibold leading-[0.96] tracking-[-0.05em] text-text-primary">
+              <h1 className="max-w-[16ch] text-balance font-display text-display-xl font-semibold text-text-primary">
                 {post.title}
               </h1>
               <p className="max-w-[46rem] font-body text-body-lg leading-[1.8] text-text-secondary">
