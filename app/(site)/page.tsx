@@ -28,7 +28,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero content={homeContent.hero} />
-      <FeaturedWork projects={projects.slice(0, 5)} />
+      <FeaturedWork projects={projects.slice(0, 3)} />
       <WhatIDo content={homeContent.services} />
       <Process content={homeContent.process} />
       <AboutPreview content={homeContent.aboutPreview} />

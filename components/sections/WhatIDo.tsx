@@ -296,7 +296,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   }
 
   return (
-    <section ref={sectionRef} className="relative h-[320vh] overflow-clip">
+    <section ref={sectionRef} className="relative z-10 h-[320vh] overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_24%),radial-gradient(circle_at_20%_20%,var(--accent-rose-soft),transparent_28%),linear-gradient(180deg,rgba(98,15,133,0.16),rgba(6,3,10,0.02)_42%)]" />
       <div className="sticky top-0 flex h-screen items-center">
         <div className="section-shell grid w-full items-center gap-12 lg:grid-cols-[340px_minmax(0,1fr)] lg:gap-16">

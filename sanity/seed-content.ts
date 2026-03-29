@@ -199,8 +199,8 @@ async function seed() {
       role: project.role,
       duration: project.duration,
       platform: project.platform,
-      thumbnailUrl: absoluteUrl(project.thumbnail),
-      heroImageUrl: absoluteUrl(project.heroImage),
+      thumbnailUrl: project.thumbnail,
+      heroImageUrl: project.heroImage,
       outcome: project.outcome,
       liveUrl: project.liveUrl,
       sections: project.sections.map((section, sectionIndex) => ({
@@ -223,7 +223,7 @@ async function seed() {
           label: image.label,
           alt: image.alt,
           aspect: image.aspect,
-          src: absoluteUrl(image.src),
+          src: image.src,
         })),
       })),
     });
