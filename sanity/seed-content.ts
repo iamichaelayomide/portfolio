@@ -8,6 +8,7 @@ const client = getCliClient({
   apiVersion: "2025-02-19",
   dataset: "production",
   projectId: "btu0u7s3",
+  token: process.env.SANITY_API_WRITE_TOKEN,
 });
 
 const siteUrl = "https://michael-ayomide-portfolio.vercel.app";
@@ -82,7 +83,8 @@ async function seed() {
       projectTypes: contactPageContent.form.projectTypes,
       namePlaceholder: contactPageContent.form.namePlaceholder,
       emailPlaceholder: contactPageContent.form.emailPlaceholder,
-      messagePlaceholder: contactPageContent.form.messagePlaceholder,
+      messagePlaceholder:
+        contactPageContent.form.messagePlaceholder,
       submitLabel: contactPageContent.form.submitLabel,
       submittingLabel: contactPageContent.form.submittingLabel,
     },
@@ -241,7 +243,7 @@ async function seed() {
 
   const [seededHomePages, seededAboutPages, seededContactPages, seededProjects, seededFaqs] =
     await Promise.all([
-    client.fetch<number>('count(*[_type == "homePage"])'),
+      client.fetch<number>('count(*[_type == "homePage"])'),
       client.fetch<number>('count(*[_type == "aboutPage"])'),
       client.fetch<number>('count(*[_type == "contactPage"])'),
       client.fetch<number>('count(*[_type == "project"])'),
