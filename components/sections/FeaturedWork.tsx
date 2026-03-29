@@ -10,7 +10,7 @@ import { projectFilters } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
 export default function FeaturedWork({ projects }: { projects: Project[] }) {
-  const homeProjects = projects.slice(0, 5);
+  const homeProjects = projects.slice(0, 3);
   const featured = homeProjects[0];
   const rest = homeProjects.slice(1);
 

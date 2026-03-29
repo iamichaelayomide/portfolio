@@ -1,6 +1,7 @@
 export type CaseStudyImage = {
   label: string;
   src?: string;
+  image?: any; // Sanity image object with hotspot/crop
   alt?: string;
   aspect?: "wide" | "landscape" | "portrait" | "grid";
 };
@@ -69,9 +70,9 @@ export const projects: Project[] = [
         id: "overview",
         title: "Overview",
         content: [
-          "Personal finance is often a source of high cognitive load and emotional stress. Traditional budgeting apps focus on 'Reporting'—telling you where your money went—rather than 'Intent'—deciding where it should go. SPND was conceived to flip this script.",
+          "Personal finance is often a source of high cognitive load and emotional stress. Traditional budgeting apps focus on 'Reporting'-telling you where your money went-rather than 'Intent'-deciding where it should go. SPND was conceived to flip this script.",
           "As the Lead Product Designer, I was responsible for the end-to-end UX strategy and the development of the 'SPND Material 3' design system. My goal was to build a 'High-Clarity' interface that felt like a supportive companion rather than a rigid accountant.",
-          "We focused on three core pillars: Intentional Allocation, High-Trust Automation, and Biological UX—ensuring the app respected the user's mental bandwidth at every touchpoint.",
+          "We focused on three core pillars: Intentional Allocation, High-Trust Automation, and Biological UX-ensuring the app respected the user's mental bandwidth at every touchpoint.",
         ],
       },
       {
@@ -90,8 +91,8 @@ export const projects: Project[] = [
         title: "Discovery",
         content: [
           "I conducted interviews with 20 'Frustrated Budgeters'. The recurring theme was 'Context Loss'. Users knew their total balance but didn't know how much of that was 'safe to spend' without compromising their upcoming bills.",
-          "Mapping the user journey revealed that the most stressful moment is the 'Allocation' phase—deciding how to split a fresh paycheck. Users were doing this in their heads or on scraps of paper.",
-          "We identified a need for 'Bucketing'—a mental model where money is partitioned into specific purposes as soon as it arrives, providing instant clarity on spending power.",
+          "Mapping the user journey revealed that the most stressful moment is the 'Allocation' phase-deciding how to split a fresh paycheck. Users were doing this in their heads or on scraps of paper.",
+          "We identified a need for 'Bucketing'-a mental model where money is partitioned into specific purposes as soon as it arrives, providing instant clarity on spending power.",
         ],
         insights: [
           {
@@ -124,7 +125,7 @@ export const projects: Project[] = [
         title: "The Solution",
         content: [
           "The final SPND interface is a masterclass in 'Intentional Friction'. We added friction to the 'Inflow' process to ensure every dollar is accounted for, but removed all friction from the 'Spending' phase by providing a clear 'Safe-to-Spend' dashboard.",
-          "The 'Wallet' view became the heart of the app—showing a live breakdown of 'Unallocated' vs 'Allocated' funds. Interactive 'Bucket' cards provide deep details on progress, upcoming payments, and automated funding rules.",
+          "The 'Wallet' view became the heart of the app-showing a live breakdown of 'Unallocated' vs 'Allocated' funds. Interactive 'Bucket' cards provide deep details on progress, upcoming payments, and automated funding rules.",
           "We also introduced 'Verification Loops' for transactions. Instead of auto-categorizing everything (which is often wrong), the app asks simple, low-effort questions to ensure the budget stays accurate and the user stays engaged.",
         ],
         images: [
@@ -184,17 +185,17 @@ export const projects: Project[] = [
         title: "Overview",
         content: [
           "SlumberPal is built for the most sensitive window of the human day: the transition from wakefulness to sleep. In this state, users have low cognitive patience, high sensory sensitivity, and a high level of decision fatigue. The product's mission was to bridge the gap between the realization 'I need to rest' and the actual physiological state of recovery.",
-          "As the Lead UX Designer, I focused on 'High-Sensitivity Design'—a methodology that prioritizes low-arousal interactions, tactile feedback, and intent-based navigation over traditional content discovery. I was responsible for the full UX architecture, from the 'Biological Onboarding' to the eyes-free player controls.",
-          "We introduced 'Sprout'—an AI-driven emotional companion that gamifies the sleep experience by linking the user's recovery to the companion's health and happiness, turning the abstract goal of 'sleeping better' into a tangible, nurturing relationship.",
+          "As the Lead UX Designer, I focused on 'High-Sensitivity Design'-a methodology that prioritizes low-arousal interactions, tactile feedback, and intent-based navigation over traditional content discovery. I was responsible for the full UX architecture, from the 'Biological Onboarding' to the eyes-free player controls.",
+          "We introduced 'Sprout'-an AI-driven emotional companion that gamifies the sleep experience by linking the user's recovery to the companion's health and happiness, turning the abstract goal of 'sleeping better' into a tangible, nurturing relationship.",
         ],
       },
       {
         id: "challenge",
         title: "The Challenge",
         content: [
-          "The primary friction in existing sleep apps isn't the quality of content—it's the 'Choice Paradox.' Users arriving at the app while exhausted were being forced to browse through hundreds of tracks, which actually increased their cognitive arousal and delayed sleep onset.",
+          "The primary friction in existing sleep apps isn't the quality of content-it's the 'Choice Paradox.' Users arriving at the app while exhausted were being forced to browse through hundreds of tracks, which actually increased their cognitive arousal and delayed sleep onset.",
           "The design challenge was to create a 'Zero-Gravity' interface: one that felt like it was pulling the user toward rest rather than forcing them to work for it. We had to solve for 'Indecision under Fatigue.'",
-          "Furthermore, the app needed to be usable in pitch-black environments. Standard UI patterns (small buttons, high-brightness colors, complex gestures) were not just suboptimal—they were physically disruptive to the sleep process.",
+          "Furthermore, the app needed to be usable in pitch-black environments. Standard UI patterns (small buttons, high-brightness colors, complex gestures) were not just suboptimal-they were physically disruptive to the sleep process.",
         ],
         quote:
           "In the dark, every pixel is a potential distraction and every decision is a cognitive burden.",
@@ -203,7 +204,7 @@ export const projects: Project[] = [
         id: "discovery",
         title: "Discovery",
         content: [
-          "I analyzed the 'Sensory Baseline' of users at 11 PM compared to 3 PM. I found that late-night users have a significantly lower tolerance for brightness, high-frequency motion, and complex navigation. Their primary goal is 'Speed to Audio'—any second spent browsing is a second they aren't sleeping.",
+          "I analyzed the 'Sensory Baseline' of users at 11 PM compared to 3 PM. I found that late-night users have a significantly lower tolerance for brightness, high-frequency motion, and complex navigation. Their primary goal is 'Speed to Audio'-any second spent browsing is a second they aren't sleeping.",
           "I also conducted a 'Tactile UX Audit,' discovering that users often interact with their phones without looking directly at them while in bed. This meant that the 'Player' controls couldn't rely on visual precision.",
           "User mapping showed that people don't think in 'Categories' (e.g., Binaural Beats) when they are tired; they think in 'Desired Outcomes' (e.g., 'I want to stop overthinking' or 'I need to drown out noise').",
         ],
@@ -233,7 +234,7 @@ export const projects: Project[] = [
         ],
         steps: [
           "Establish a 'High-Sensitivity' design system with circadian-safe tokens and dark-default primitives.",
-          "Develop the 'Sprout Wellness' model—linking Sleep Goal Hit Rate to health, happiness, and energy metrics.",
+          "Develop the 'Sprout Wellness' model-linking Sleep Goal Hit Rate to health, happiness, and energy metrics.",
           "Design 'Eyes-Free' player controls with oversized tactile zones and gesture-based secondary actions.",
           "Implement time-based dynamic flows to reduce cognitive load during transition windows.",
         ],
@@ -243,7 +244,7 @@ export const projects: Project[] = [
         title: "The Solution",
         content: [
           "The final SlumberPal UI is an exercise in 'Ambient Design.' The interface uses soft, organic shapes and 'Cloud Gradients' that slowly pulse to match a resting breath rate. The Onboarding flow is used to set the user's 'Sensory Baseline,' allowing the app to adjust its brightness and audio-fade-in speeds automatically.",
-          "The 'Core Player' is the heart of the experience—featuring a massive, central interaction zone and secondary controls (timers, sound-mixers) tucked away into 'low-sensitivity' corners to prevent accidental disruption of the session.",
+          "The 'Core Player' is the heart of the experience-featuring a massive, central interaction zone and secondary controls (timers, sound-mixers) tucked away into 'low-sensitivity' corners to prevent accidental disruption of the session.",
           "The 'Pal' companion system introduces an AI-driven chat interface that provides personalized advice based on the user's sleep patterns, asking gentle questions like 'Why was last night hard?' to help build better long-term routines.",
         ],
         images: [
@@ -257,7 +258,7 @@ export const projects: Project[] = [
         title: "Design Process",
         content: [
           "I prototyped using 'Low-Light' testing environments to simulate the actual context of use. We iterated through several 'Intent Models,' testing how users responded to emotional labels vs technical ones. Emotional labels (e.g., 'Calm My Mind') reduced selection time by nearly 50%.",
-          "We also conducted 'Fumble Testing'—asking users to perform basic tasks (like pausing or setting a timer) without looking at the screen. This led us to move the timer control from a small icon to a large vertical swipe gesture.",
+          "We also conducted 'Fumble Testing'-asking users to perform basic tasks (like pausing or setting a timer) without looking at the screen. This led us to move the timer control from a small icon to a large vertical swipe gesture.",
           "The 'Sprout' companion went through several iterations to find the right balance between 'helpful' and 'unobtrusive,' ensuring the interaction felt like a support system rather than another notification-heavy app.",
         ],
         images: [
@@ -279,7 +280,7 @@ export const projects: Project[] = [
         id: "reflection",
         title: "Reflection",
         content: [
-          "Designing for wellness taught me that design isn't just about what you see—it's about what you *don't* feel. Sometimes the most successful UX is the one that stays entirely out of the user's way. SlumberPal succeeded because it prioritized the user's biology over the product's desire to 'show off' its library. Intentionality is the ultimate wellness pattern.",
+          "Designing for wellness taught me that design isn't just about what you see-it's about what you *don't* feel. Sometimes the most successful UX is the one that stays entirely out of the user's way. SlumberPal succeeded because it prioritized the user's biology over the product's desire to 'show off' its library. Intentionality is the ultimate wellness pattern.",
         ],
       },
     ],
@@ -305,9 +306,9 @@ export const projects: Project[] = [
         id: "overview",
         title: "Overview",
         content: [
-          "Research is a notoriously fragmented process. Professional researchers spend up to 40% of their time simply 'managing' information—juggling browser tabs, bookmarking PDFs, and copying snippets into disjointed note-taking apps. Knowlab was designed to be the 'connective tissue' for this entire workflow.",
+          "Research is a notoriously fragmented process. Professional researchers spend up to 40% of their time simply 'managing' information-juggling browser tabs, bookmarking PDFs, and copying snippets into disjointed note-taking apps. Knowlab was designed to be the 'connective tissue' for this entire workflow.",
           "As the Lead Product Designer, I was responsible for defining the core user flows, the Information Architecture of the workspace, and the visual language that would make a dense, high-stakes information environment feel breathable and focused.",
-          "My primary goal was to solve the 'Synthesis Gap'—the moment where a researcher has the data but lacks the workspace to turn that data into an insight.",
+          "My primary goal was to solve the 'Synthesis Gap'-the moment where a researcher has the data but lacks the workspace to turn that data into an insight.",
         ],
       },
       {
@@ -315,8 +316,8 @@ export const projects: Project[] = [
         title: "The Challenge",
         content: [
           "We identified a massive 'Information-Action' gap. When a researcher finds a critical piece of evidence, the friction of moving it from a source (like a PDF or web page) into a structured workspace often leads to a loss of context. If the 'cost' of saving a note is too high, the researcher won't do it.",
-          "The core design challenge was to create a 'Flexible Workspace'—one that could handle everything from raw PDF files and web snippets to complex, structured notes, without feeling like another 'organizing' tool. We didn't want to build another library; we wanted to build a laboratory.",
-          "The interface needed to support 'High-Density Synthesis'—allowing researchers to see multiple sources and their own evolving insights in the same visual field without overwhelming their cognitive load.",
+          "The core design challenge was to create a 'Flexible Workspace'-one that could handle everything from raw PDF files and web snippets to complex, structured notes, without feeling like another 'organizing' tool. We didn't want to build another library; we wanted to build a laboratory.",
+          "The interface needed to support 'High-Density Synthesis'-allowing researchers to see multiple sources and their own evolving insights in the same visual field without overwhelming their cognitive load.",
         ],
         quote:
           "The most powerful research tools don't just store information; they help you see the hidden patterns within it.",
@@ -325,7 +326,7 @@ export const projects: Project[] = [
         id: "discovery",
         title: "Discovery",
         content: [
-          "I mapped the 'Discovery-to-Insight' cycle of 10 professional researchers. I found that the biggest friction point wasn't 'finding' information—it was 'Context Switching.' The constant movement between a browser (discovery), a PDF reader (consumption), and a note-taking app (synthesis) was causing a massive 'Cognitive Tax.'",
+          "I mapped the 'Discovery-to-Insight' cycle of 10 professional researchers. I found that the biggest friction point wasn't 'finding' information-it was 'Context Switching.' The constant movement between a browser (discovery), a PDF reader (consumption), and a note-taking app (synthesis) was causing a massive 'Cognitive Tax.'",
           "My research revealed that researchers need 'Spatial Proximity.' They don't want to switch between tabs to see their evidence and their writing; they need to see them side-by-side.",
           "I also discovered the need for 'Source-Aware' note-taking. Researchers often forget *why* they saved a snippet three days later. Every insight needs a permanent, unbreakable link to its evidence.",
         ],
@@ -345,9 +346,9 @@ export const projects: Project[] = [
         id: "approach",
         title: "The Approach",
         content: [
-          "I treated the interface as a 'Workspace-First' environment. I introduced a 'Split-Pane' architecture that allowed for simultaneous reading and writing. I also focused on 'Semantic Linking'—a system where notes aren't just labels, but active connectors that help surface related research automatically.",
+          "I treated the interface as a 'Workspace-First' environment. I introduced a 'Split-Pane' architecture that allowed for simultaneous reading and writing. I also focused on 'Semantic Linking'-a system where notes aren't just labels, but active connectors that help surface related research automatically.",
           "I prioritized 'Low-Friction Capture.' I designed a browser extension and a PDF-integrated highlighter that allowed researchers to 'beam' evidence directly into their workspace with a single click, preserving all metadata and source links automatically.",
-          "Visually, I moved toward a 'Neutral-High-Performance' style—using a restrained palette and high-clarity typography to let the researcher's content take center stage.",
+          "Visually, I moved toward a 'Neutral-High-Performance' style-using a restrained palette and high-clarity typography to let the researcher's content take center stage.",
         ],
         steps: [
           "Develop a 'Dual-Pane' architecture for zero-lag synthesis.",
@@ -360,8 +361,8 @@ export const projects: Project[] = [
         title: "The Solution",
         content: [
           "The final Knowlab interface is a high-performance laboratory for the mind. We used a modular sidebar system to handle various source types, while the central 'Insight Panel' provides a rich-text environment for deep synthesis. Interactive elements like 'Source Highlighting' allow users to link specific parts of a document directly to a note.",
-          "We also implemented 'Automatic Discovery'—a sidebar module that uses the semantic tags of your current note to suggest related snippets from other projects in your library, facilitating 'cross-pollination' of ideas.",
-          "The UI uses 'Focus Modes'—allowing researchers to hide the source panel when they are in 'Writing Flow' and hide the insight panel when they are in 'Deep Reading' mode, maintaining maximum flexibility.",
+          "We also implemented 'Automatic Discovery'-a sidebar module that uses the semantic tags of your current note to suggest related snippets from other projects in your library, facilitating 'cross-pollination' of ideas.",
+          "The UI uses 'Focus Modes'-allowing researchers to hide the source panel when they are in 'Writing Flow' and hide the insight panel when they are in 'Deep Reading' mode, maintaining maximum flexibility.",
         ],
         images: [
           { label: "The Dual-Pane Workspace: Source-to-Insight Speed", aspect: "wide" },
@@ -386,7 +387,7 @@ export const projects: Project[] = [
         title: "Final Outcome",
         content: [
           "Knowlab functionally transformed the research workflow. In user testing, the 'Dual-Pane' architecture reduced the time spent context-switching by 50%, allowing researchers to stay in 'the flow' longer and produce more coherent insights.",
-          "The product received high praise for its 'invisible' UI—researchers reported that they felt they were interacting directly with their thoughts rather than fighting a software tool. The system established a new baseline for what a professional research workspace should feel like.",
+          "The product received high praise for its 'invisible' UI-researchers reported that they felt they were interacting directly with their thoughts rather than fighting a software tool. The system established a new baseline for what a professional research workspace should feel like.",
         ],
         images: [{ label: "Final Knowlab Product Showcase: The Future of Synthesis", aspect: "wide" }],
       },
@@ -429,8 +430,8 @@ export const projects: Project[] = [
         id: "challenge",
         title: "The Challenge",
         content: [
-          "The primary challenge was eliminating the 'back-and-forth' of traditional salon inquiries. We needed to provide everything a client needs to decide—pricing, duration, and inclusions—directly on the service card so they could stop guessing and move straight to checkout.",
-          "Furthermore, the site needed to manage a diverse menu across Women, Men, and Unisex categories while simultaneously driving traffic to the 'Hairven Essentials' shop—a retail wing featuring salon-favorite oils and ready-to-wear wigs.",
+          "The primary challenge was eliminating the 'back-and-forth' of traditional salon inquiries. We needed to provide everything a client needs to decide-pricing, duration, and inclusions-directly on the service card so they could stop guessing and move straight to checkout.",
+          "Furthermore, the site needed to manage a diverse menu across Women, Men, and Unisex categories while simultaneously driving traffic to the 'Hairven Essentials' shop-a retail wing featuring salon-favorite oils and ready-to-wear wigs.",
         ],
         quote:
           "Beauty appointments should feel premium before you even arrive. Digital clarity is the first step of the service.",
@@ -439,7 +440,7 @@ export const projects: Project[] = [
         id: "discovery",
         title: "Discovery",
         content: [
-          "I analyzed the local beauty market and found that most platforms lacked clear 'Fulfillment Loops'. Users often felt rushed or uncertain about what their appointment actually covered. We countered this with an 'Arrive Ready' philosophy—ensuring every inclusion is laid out clearly.",
+          "I analyzed the local beauty market and found that most platforms lacked clear 'Fulfillment Loops'. Users often felt rushed or uncertain about what their appointment actually covered. We countered this with an 'Arrive Ready' philosophy-ensuring every inclusion is laid out clearly.",
           "Research showed that clients value flexibility in scheduling and payment. This led to the 'Reserve by Slot' feature, allowing users to pick a date and time that fits their schedule and pay via their preferred method (Paystack or Bank Transfer).",
         ],
         insights: [
@@ -476,7 +477,7 @@ export const projects: Project[] = [
         id: "solution",
         title: "The Solution",
         content: [
-          "The final Hairven interface is an editorial powerhouse. The homepage hero establishes prestige, while the 'Everything you need to decide is already here' section provides a clear roadmap for how booking works—from service choice to instant confirmation.",
+          "The final Hairven interface is an editorial powerhouse. The homepage hero establishes prestige, while the 'Everything you need to decide is already here' section provides a clear roadmap for how booking works-from service choice to instant confirmation.",
           "The 'Hairven Essentials' shop uses a 'Build the Cart First' logic, allowing users to save products with a heart icon and move into a separate payment page when ready. This reduces cognitive load during the shopping process.",
           "The 'Lookbook' and 'Journal' sections (e.g., '5 Ways to Maintain Your Knotless Braids') provide ongoing value, positioning Hairven as a lifestyle authority rather than just a service provider.",
         ],
@@ -542,7 +543,7 @@ export const projects: Project[] = [
         id: "overview",
         title: "Overview",
         content: [
-          "Veloura Hair—often referred to as 'Maison Veloura'—is a premium Lagos-based hair house defined by the intersection of private-client energy and clean, intentional commerce. In a market often driven by loud, high-arousal marketing, Veloura needed a digital presence that reflected its philosophy of 'Quiet Glamour.'",
+          "Veloura Hair-often referred to as 'Maison Veloura'-is a premium Lagos-based hair house defined by the intersection of private-client energy and clean, intentional commerce. In a market often driven by loud, high-arousal marketing, Veloura needed a digital presence that reflected its philosophy of 'Quiet Glamour.'",
           "As the Lead Designer and Developer, I was responsible for the end-to-end digital strategy: from defining the editorial visual identity to implementing a high-assurance e-commerce architecture that handles both direct sales and showroom consultations.",
           "The project's mission was to move away from the 'generic marketplace' feel and toward a curated, sophisticated experience that makes every customer feel like a 'Private Client' from their very first interaction.",
         ],
@@ -562,9 +563,9 @@ export const projects: Project[] = [
         id: "discovery",
         title: "Discovery",
         content: [
-          "I analyzed the 'Beauty Decision' journey and found that shoppers don't just buy 'hair'; they buy a 'Look' for a specific moment. This led to the discovery of 'Occasion-Based Shopping'—the need to filter products by their intended impact (e.g., Wedding Guest, Dinner Date, or Club Night).",
-          "Mapping the user journey revealed a critical 'Trust Loop'—shoppers often feel more comfortable moving an order to WhatsApp for assisted support before finalizing a high-value checkout. We needed to embrace this hybrid-commerce model.",
-          "We also identified a need for the 'Private Client Edit'—a curated section for intent-driven users who want to be 'noticed first' with limited-edition textures and bespoke lace frontals.",
+          "I analyzed the 'Beauty Decision' journey and found that shoppers don't just buy 'hair'; they buy a 'Look' for a specific moment. This led to the discovery of 'Occasion-Based Shopping'-the need to filter products by their intended impact (e.g., Wedding Guest, Dinner Date, or Club Night).",
+          "Mapping the user journey revealed a critical 'Trust Loop'-shoppers often feel more comfortable moving an order to WhatsApp for assisted support before finalizing a high-value checkout. We needed to embrace this hybrid-commerce model.",
+          "We also identified a need for the 'Private Client Edit'-a curated section for intent-driven users who want to be 'noticed first' with limited-edition textures and bespoke lace frontals.",
         ],
         insights: [
           {
@@ -586,7 +587,7 @@ export const projects: Project[] = [
         id: "approach",
         title: "The Approach",
         content: [
-          "I implemented an 'Editorial-First' architecture. I used generous whitespace, high-contrast typography, and a 'Magazine' layout to create a high-fashion environment. I also developed the 'Occasion Filter'—allowing users to shop by the 'mood' they want to achieve.",
+          "I implemented an 'Editorial-First' architecture. I used generous whitespace, high-contrast typography, and a 'Magazine' layout to create a high-fashion environment. I also developed the 'Occasion Filter'-allowing users to shop by the 'mood' they want to achieve.",
           "I designed a 'High-Assurance' product page. Each listing focuses on 'Luxe Quality' markers: density, texture (e.g., Luxe Yaki vs. Atelier Body Wave), and lace type (HD vs. Transparent), removing the 'Guesswork' that often plagues online hair shopping.",
           "I integrated the 'Retail-Service Hybrid' model. I ensured that product sales were seamlessly linked to 'Signature Services,' encouraging clients to book their professional installs immediately after purchasing their units.",
         ],
@@ -602,7 +603,7 @@ export const projects: Project[] = [
         title: "The Solution",
         content: [
           "The final Veloura Hair interface is a masterclass in 'Luxury Intent.' The homepage hero establishes the 'Maison Veloura' prestige, while the 'Best Sellers' section provides a safe entry point for first-time shoppers looking for 'Maison Favorites.'",
-          "The product pages are designed as 'Knowledge Hubs'—pairing silky visuals with technical details on hair origin and maintenance. We also integrated 'Trust-Loops' featuring real client results from the Lekki showroom to anchor the brand's authority.",
+          "The product pages are designed as 'Knowledge Hubs'-pairing silky visuals with technical details on hair origin and maintenance. We also integrated 'Trust-Loops' featuring real client results from the Lekki showroom to anchor the brand's authority.",
           "The checkout experience is flexible and 'Sensory-Aware.' By providing clear shipping timelines and a direct line to senior stylists via WhatsApp, we created a shopping environment that feels supportive, expensive, and entirely intentional.",
         ],
         images: [
@@ -617,7 +618,7 @@ export const projects: Project[] = [
         content: [
           "I iterated through several 'Occasion-Based' navigation models, testing how users responded to 'Feeling-First' labels versus 'Category-First' labels. Feeling-first labels (e.g., 'Effortless/Soft') drove a 40% increase in product exploration.",
           "The visual system was stress-tested across mobile devices to ensure the editorial layouts remained readable and high-performance. I implemented specialized image lazy-loading for the 'Lookbook' to ensure a smooth, lag-free browsing experience.",
-          "I also focused on the 'Fulfillment Loop'—ensuring that the transition from a digital order to a showroom pickup or a doorstep delivery felt premium, using clear status updates and high-trust confirmation screens.",
+          "I also focused on the 'Fulfillment Loop'-ensuring that the transition from a digital order to a showroom pickup or a doorstep delivery felt premium, using clear status updates and high-trust confirmation screens.",
         ],
         images: [
           { label: "Mobile UI Iterations: Narrative-Driven Shopping Design", aspect: "grid" },
@@ -647,7 +648,7 @@ export const projects: Project[] = [
     slug: "chillington",
     title: "Chillington (Sharamawa)",
     tagline: "Scalable brand architecture for multi-location businesses.",
-    description: "A cohesive digital system for a brand operating across multiple physical locations.",
+    description: "A cohesive digital system for a brand operating across multiple physical locations, focusing on unified authority and local utility.",
     tags: ["Web Design", "Live Project", "Brand System"],
     category: "Live Projects",
     year: "2024",
@@ -657,35 +658,37 @@ export const projects: Project[] = [
     thumbnail: "/images/work/chillington-thumb.svg",
     heroImage: "/images/work/chillington-hero.svg",
     outcome:
-      "A more polished live brand experience that brought multiple locations under one coherent digital system.",
+      "A more polished live brand experience that brought multiple locations under one coherent digital system, improving user trust and streamlining location-specific discovery.",
     liveUrl: "https://chillington.vercel.app",
     sections: [
       {
         id: "overview",
         title: "Overview",
         content: [
-          "Chillington needed a digital presence that could represent its multiple locations without looking fragmented. The goal was to create one 'Source of Truth' for the brand that still gave each location its own space to shine.",
+          "Chillington (Sharamawa) needed a digital presence that could represent its multiple locations without looking fragmented. The goal was to create one 'Source of Truth' for the brand that still gave each location its own space to shine.",
+          "As the Product Designer and Builder, I was responsible for creating a scalable architecture that could handle the brand's growth while maintaining a consistent visual identity across diverse service offerings.",
         ],
       },
       {
         id: "challenge",
         title: "The Problem",
         content: [
-          "The brand had a strong physical presence but a scattered digital one. Visitors were confused about where to find specific location details, which led to a loss of trust and foot traffic.",
+          "The brand had a strong physical presence but a scattered digital one. Visitors were confused about where to find specific location details, menu items, or booking information, which led to a loss of trust and foot traffic.",
+          "We needed to solve the 'Fragmented Identity' issue-ensuring that whether a user was looking for the Lekki branch or the Ikeja branch, they felt they were interacting with the same premium brand.",
         ],
-        quote:
-          "Consistency across locations is the foundation of brand reliability.",
+        quote: "Consistency across locations is the foundation of brand reliability.",
       },
       {
         id: "approach",
         title: "Approach",
         content: [
           "I designed a 'Modular Location' system. Instead of separate pages that felt disconnected, I created a unified layout where location-specific data (hours, maps, menus) could be easily found and compared.",
+          "The architecture was built to be 'Template-First,' allowing the brand to spin up new location modules in minutes without needing to redesign the core experience.",
         ],
         steps: [
-          "Define a unified brand language across all modules.",
-          "Design a 'Location-First' navigation system.",
-          "Optimize for local search and mobile accessibility.",
+          "Define a unified brand language across all digital modules.",
+          "Design a 'Location-First' navigation system for instant branch access.",
+          "Optimize for local search and mobile accessibility for users on-the-go.",
         ],
       },
       {
@@ -693,9 +696,10 @@ export const projects: Project[] = [
         title: "Solution",
         content: [
           "The final site uses a clear, system-wide hierarchy. A central homepage establishes the brand authority, while dedicated location modules provide the high-utility data visitors need for their specific visit.",
+          "We integrated interactive maps and 'One-Tap' contact actions for each location, significantly reducing the friction between digital discovery and physical arrival.",
         ],
         images: [
-          { label: "Brand Homepage: Unified Authority", aspect: "wide" },
+          { label: "Brand Homepage: Unified Authority", src: "/images/work/chillington-hero.svg", aspect: "wide" },
           { label: "Location Module: Utility & Clarity", aspect: "landscape" },
         ],
       },
@@ -704,6 +708,7 @@ export const projects: Project[] = [
         title: "Result",
         content: [
           "Chillington now has a live site that supports its growth. The modular system allows the brand to add new locations easily while maintaining a premium, trustworthy look.",
+          "Since launch, the brand has seen a measurable increase in cross-location discovery, with users often exploring multiple branches within the same session.",
         ],
         images: [{ label: "Final Live Multi-Location Showcase", aspect: "wide" }],
       },
@@ -730,9 +735,9 @@ export const projects: Project[] = [
         id: "overview",
         title: "Overview",
         content: [
-          "Ayomide Stores is a premium Nigerian retail brand specializing in high-quality home essentials—from professional-grade non-stick cookware to modern storage solutions. The project's central mission, 'Elevate Your Everyday Living,' was to move away from the cluttered 'marketplace' feel and toward a curated, editorial shopping experience.",
+          "Ayomide Stores is a premium Nigerian retail brand specializing in high-quality home essentials-from professional-grade non-stick cookware to modern storage solutions. The project's central mission, 'Elevate Your Everyday Living,' was to move away from the cluttered 'marketplace' feel and toward a curated, editorial shopping experience.",
           "As the Lead Designer and Developer, I was responsible for the end-to-end digital strategy: from defining the high-contrast visual identity and category architecture to implementing a high-performance checkout flow. The goal was to build a digital storefront that felt as premium as the products themselves.",
-          "The project focused on three core pillars: Fast Discovery, Omnichannel Trust, and High-Assurance Commerce—ensuring that every touchpoint from the hero section to the final payment felt professional, secure, and respectful of the user's intent.",
+          "The project focused on three core pillars: Fast Discovery, Omnichannel Trust, and High-Assurance Commerce-ensuring that every touchpoint from the hero section to the final payment felt professional, secure, and respectful of the user's intent.",
         ],
       },
       {
@@ -740,7 +745,7 @@ export const projects: Project[] = [
         title: "The Challenge",
         content: [
           "The primary hurdle was 'The Trust Gap' in the local market. Shoppers are often hesitant to commit to high-ticket household items online. Ayomide needed a way to prove its physical legitimacy and quality standards through its digital interface.",
-          "Technically, the store handles a wide variety of product categories (Kitchen & Dining, Cleaning, Storage, Personal Care). The challenge was to create a navigation system that allowed users to 'drill down' to specific needs—like finding a rust-resistant drying rack—without getting lost in a massive, disjointed grid.",
+          "Technically, the store handles a wide variety of product categories (Kitchen & Dining, Cleaning, Storage, Personal Care). The challenge was to create a navigation system that allowed users to 'drill down' to specific needs-like finding a rust-resistant drying rack-without getting lost in a massive, disjointed grid.",
           "Performance was also a critical factor. With many users browsing on variable mobile networks, the site had to be extremely fast, with optimized images and a 'lean' checkout process that minimized drop-offs.",
         ],
         quote:
@@ -751,8 +756,8 @@ export const projects: Project[] = [
         title: "Discovery",
         content: [
           "I conducted a 'Trust Audit' of local competitors and found that most lacked clear signals of physical existence. In contrast, the Ayomide experience was anchored by its physical flagship at 123 Commerce Avenue in Lagos. We needed to leverage this 'Physicality' to build digital trust.",
-          "Mapping the user journey revealed that the most critical moment was the 'Credibility Check'—where users look for specific shipping details and physical store locations before adding to cart. We found that showcasing the actual store address in the footer provided an immediate psychological safety net.",
-          "We identified a need for 'Intent-Based Routing'—a system that provides immediate entry points into core departments right from the home screen, using dual-intent CTAs like 'Shop Now' and 'View Deals'.",
+          "Mapping the user journey revealed that the most critical moment was the 'Credibility Check'-where users look for specific shipping details and physical store locations before adding to cart. We found that showcasing the actual store address in the footer provided an immediate psychological safety net.",
+          "We identified a need for 'Intent-Based Routing'-a system that provides immediate entry points into core departments right from the home screen, using dual-intent CTAs like 'Shop Now' and 'View Deals'.",
         ],
         insights: [
           {
@@ -774,9 +779,9 @@ export const projects: Project[] = [
         id: "approach",
         title: "The Approach",
         content: [
-          "I implemented an 'Omnichannel Trust' architecture. I placed the physical store data—including the exact Lagos address and operating hours—prominently in the footer of every page, ensuring that the brand's legitimacy was never more than a scroll away.",
+          "I implemented an 'Omnichannel Trust' architecture. I placed the physical store data-including the exact Lagos address and operating hours-prominently in the footer of every page, ensuring that the brand's legitimacy was never more than a scroll away.",
           "I developed a 'Visual Routing' system. The 'Shop by Category' section provides instant cognitive mapping of the store's inventory, using clean, grid-based layouts to showcase departments like Kitchen & Dining with editorial-grade photography.",
-          "Visually, I chose a 'Neutral-Premium' aesthetic—using high-contrast typography and generous whitespace. All CTAs and 'Add to Cart' buttons were designed for high visibility and 'Thumb-First' accessibility on mobile devices.",
+          "Visually, I chose a 'Neutral-Premium' aesthetic-using high-contrast typography and generous whitespace. All CTAs and 'Add to Cart' buttons were designed for high visibility and 'Thumb-First' accessibility on mobile devices.",
         ],
         steps: [
           "Establish a high-performance category architecture (Kitchen, Cleaning, Storage, Personal Care).",
@@ -790,7 +795,7 @@ export const projects: Project[] = [
         title: "The Solution",
         content: [
           "The final Ayomide Stores interface is a masterclass in 'Direct-to-Need' commerce. The homepage hero, 'Elevate Your Everyday Living,' provides two immediate paths: 'Shop Now' for intent-driven users and 'View Deals' for value-seekers.",
-          "The product pages act as 'High-Assurance' zones—featuring clear pricing (with crossed-out discount markers), stock availability (e.g., '75 in stock'), and rust-resistant material details. This level of detail pre-emptively answers common shopper questions.",
+          "The product pages act as 'High-Assurance' zones-featuring clear pricing (with crossed-out discount markers), stock availability (e.g., '75 in stock'), and rust-resistant material details. This level of detail pre-emptively answers common shopper questions.",
           "The checkout experience was stripped of all non-essential fields. The 'Shopping Cart' view provides a clear order summary (subtotal and total) with a prominent 'Proceed to Checkout' action, ensuring the path to purchase remains entirely friction-less.",
         ],
         images: [
@@ -832,73 +837,7 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    slug: "michael-portfolio",
-    title: "Michael's Portfolio",
-    tagline: "A technical showcase of product thinking and performance-first web design.",
-    description: "This very site—designed to demonstrate the intersection of deep UX logic and modern technical execution.",
-    tags: ["Product Design", "Live Project", "Web Design"],
-    category: "Live Projects",
-    year: "2024",
-    role: "Lead Product Designer & Developer",
-    duration: "Ongoing",
-    platform: "Live Website",
-    thumbnail: "/images/og-image.svg",
-    heroImage: "/images/og-image.svg",
-    outcome:
-      "A high-performance, narrative-driven portfolio that bridges the gap between 'what I do' and 'how I think.'",
-    sections: [
-      {
-        id: "overview",
-        title: "Overview",
-        content: [
-          "A portfolio is more than a list of projects; it's a product in itself. I designed this site to be a living example of my design philosophy: high-clarity, high-signal, and technically resilient.",
-          "The project involved deep UX research into 'Hireable Designers,' performance optimization (Next.js/TS), and a content-first architecture that prioritizes the 'Why' behind every decision.",
-        ],
-      },
-      {
-        id: "challenge",
-        title: "The Challenge",
-        content: [
-          "Most portfolios are 'Visual-Only.' They show pretty screens but fail to communicate the product thinking that created them. My challenge was to design a system that could carry both high-fidelity visuals and deep, readable narratives without feeling 'heavy.'",
-        ],
-        quote:
-          "Design is how you think, not just how you draw. A portfolio must be the evidence of that thought process.",
-      },
-      {
-        id: "approach",
-        title: "Approach",
-        content: [
-          "I treated the site as a 'Narrative Platform.' I built a custom, modular case-study system that allows for flexible storytelling—incorporating insights, quotes, steps, and adaptive image grids to suit the unique story of each project.",
-        ],
-        steps: [
-          "Develop a performance-first architecture (Next.js App Router).",
-          "Design a modular, content-driven Case Study system.",
-          "Optimize for accessibility and sensory-friendly interaction.",
-        ],
-      },
-      {
-        id: "solution",
-        title: "Solution",
-        content: [
-          "The final portfolio uses a restrained, high-contrast visual system that lets the work take center stage. Every interaction is designed to be intentional, from the scroll reveals to the dynamic project filtering.",
-        ],
-        images: [
-          { label: "Portfolio Home: High-Signal Identity", aspect: "wide" },
-          { label: "Modular Case Study: Narrative Flexibility", aspect: "landscape" },
-        ],
-      },
-      {
-        id: "outcome",
-        title: "Result",
-        content: [
-          "The result is a fast, accessible, and deeply personal product that serves as the definitive record of my work and my thinking. It's a live tool that continues to evolve as my practice grows.",
-        ],
-        images: [{ label: "Final Portfolio Showcase", aspect: "wide" }],
-      },
-    ],
-  },
-];
+  ];
 
 export const projectFilters = [
   "All",

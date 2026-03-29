@@ -156,7 +156,7 @@ export default function Hero({ content }: HeroProps) {
                 transition: { duration: 0.55, delay: 0.38, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-[12ch] text-balance font-display text-[clamp(34px,10vw,82px)] leading-[0.98] tracking-[-0.05em] text-text-primary sm:max-w-[13ch] sm:leading-[0.96]"
+            className="max-w-[12ch] text-balance font-display text-[clamp(34px,8vw,64px)] leading-[0.98] tracking-[-0.05em] text-text-primary sm:max-w-[13ch] sm:leading-[0.96]"
           >
             {content.title}
           </motion.h1>

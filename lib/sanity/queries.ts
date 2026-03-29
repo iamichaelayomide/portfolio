@@ -30,6 +30,11 @@ export const projectsQuery = groq`*[_type == "project"] | order(order asc, _crea
       label,
       alt,
       aspect,
+      image {
+        asset->,
+        hotspot,
+        crop
+      },
       "src": coalesce(image.asset->url, src)
     }
   }
@@ -65,6 +70,11 @@ export const projectBySlugQuery = groq`*[_type == "project" && slug.current == $
       label,
       alt,
       aspect,
+      image {
+        asset->,
+        hotspot,
+        crop
+      },
       "src": coalesce(image.asset->url, src)
     }
   }
