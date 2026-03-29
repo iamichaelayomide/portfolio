@@ -103,7 +103,7 @@ export const projects: Project[] = [
             text: "Users are willing to automate their savings only if they feel they have an 'Emergency Override' and clear visibility into the logic.",
           },
         ],
-        images: [{ label: "User Intent Mapping: From Paycheck to Purpose", aspect: "wide" }],
+        images: [{ label: "User Intent Mapping: From Paycheck to Purpose", src: "/images/work/spnd-intent.png", aspect: "wide" }],
       },
       {
         id: "approach",
@@ -128,8 +128,8 @@ export const projects: Project[] = [
           "We also introduced 'Verification Loops' for transactions. Instead of auto-categorizing everything (which is often wrong), the app asks simple, low-effort questions to ensure the budget stays accurate and the user stays engaged.",
         ],
         images: [
-          { label: "The Bucket System: Modular Allocation", aspect: "wide" },
-          { label: "Safe-to-Spend Dashboard: Visualizing Clarity", aspect: "landscape" },
+          { label: "The Bucket System: Modular Allocation", src: "/images/work/spnd-buckets.png", aspect: "wide" },
+          { label: "Safe-to-Spend Dashboard: Visualizing Clarity", src: "/images/work/spnd-dashboard.png", aspect: "landscape" },
         ],
       },
       {
@@ -140,9 +140,9 @@ export const projects: Project[] = [
           "The design system was built component-by-component, ensuring that every chip, button, and metric card followed the 'Low-Arousal' principles. We stress-tested the UI in both Light and Dark modes to ensure perfect contrast and readability.",
         ],
         images: [
-          { label: "Component Architecture: Designing for Low-Arousal", aspect: "grid" },
-          { label: "Color Strategy: The Psychology of Purple in Fintech", aspect: "grid" },
-          { label: "Final Visual System & Material 3 Adaptation", aspect: "grid" },
+          { label: "Component Architecture: Designing for Low-Arousal", src: "/images/work/spnd-components.png", aspect: "grid" },
+          { label: "Color Strategy: The Psychology of Purple in Fintech", src: "/images/work/spnd-colors.png", aspect: "grid" },
+          { label: "Final Visual System & Material 3 Adaptation", src: "/images/work/spnd-system.png", aspect: "grid" },
         ],
       },
       {
@@ -152,7 +152,7 @@ export const projects: Project[] = [
           "SPND transformed the user's relationship with money. In beta testing, users reported a 60% reduction in 'Financial Anxiety' and a significant increase in their ability to meet savings targets.",
           "The 'Material 3 SPND' design system became a core asset for the engineering team, allowing them to spin up new features like 'Shared Buckets' and 'Credit Card Integration' with 1:1 visual fidelity in record time.",
         ],
-        images: [{ label: "Final SPND Product Ecosystem Showcase", aspect: "wide" }],
+        images: [{ label: "Final SPND Product Ecosystem Showcase", src: "/images/work/spnd-hero.png", aspect: "wide" }],
       },
       {
         id: "reflection",
@@ -221,7 +221,7 @@ export const projects: Project[] = [
             text: "Users are more likely to stick to a routine if they are 'caring' for something. Sprout provides the external motivation needed for consistency.",
           },
         ],
-        images: [{ label: "User Intent Mapping: The Path to Low-Arousal Recovery", aspect: "wide" }],
+        images: [{ label: "User Intent Mapping: The Path to Low-Arousal Recovery", src: "/images/work/slumberpal-discovery.png", aspect: "wide" }],
       },
       {
         id: "approach",
@@ -261,9 +261,9 @@ export const projects: Project[] = [
           "The 'Sprout' companion went through several iterations to find the right balance between 'helpful' and 'unobtrusive,' ensuring the interaction felt like a support system rather than another notification-heavy app.",
         ],
         images: [
-          { label: "Wireframe Iterations: Reducing Choice-Friction and Cognitive Load", aspect: "grid" },
-          { label: "Tactile UX Mapping: Eyes-Free Interaction Design and Gesture Prototyping", aspect: "grid" },
-          { label: "Final Circadian-Aware Style Guide & Sprout Character Design", aspect: "grid" },
+          { label: "Wireframe Iterations: Reducing Choice-Friction and Cognitive Load", src: "/images/work/slumberpal-process-1.png", aspect: "grid" },
+          { label: "Tactile UX Mapping: Eyes-Free Interaction Design and Gesture Prototyping", src: "/images/work/slumberpal-process-2.png", aspect: "grid" },
+          { label: "Final Circadian-Aware Style Guide & Sprout Character Design", src: "/images/work/slumberpal-process-3.png", aspect: "grid" },
         ],
       },
       {
@@ -524,9 +524,9 @@ export const projects: Project[] = [
   {
     slug: "veloura-hair",
     title: "Veloura Hair",
-    tagline: "Editorial e-commerce for high-end beauty products.",
-    description: "A premium hair extensions storefront designed for brand storytelling and trust-based commerce.",
-    tags: ["E-commerce", "Live Project", "Web Design"],
+    tagline: "Quiet glamour. Editorial e-commerce for high-end beauty storytelling.",
+    description: "A premium hair extensions storefront designed to bridge the gap between luxury brand narrative and high-assurance commerce.",
+    tags: ["Product Design", "E-commerce", "Web"],
     category: "Live Projects",
     year: "2024",
     role: "Lead Designer & Developer",
@@ -535,56 +535,111 @@ export const projects: Project[] = [
     thumbnail: "/images/work/veloura-hair-thumb.png",
     heroImage: "/images/work/veloura-hair-hero.png",
     outcome:
-      "A visually distinctive storefront that blends editorial content with high-conversion commerce patterns.",
+      "A visually distinctive 'Maison' experience that successfully positioned the brand as a premium authority in the Lagos hair market, resulting in a seamless 'discovery-to-checkout' flow and a stronger physical-to-digital connection for their Lekki showroom.",
     liveUrl: "https://veloura-hair.vercel.app/",
     sections: [
       {
         id: "overview",
         title: "Overview",
         content: [
-          "Veloura Hair is a premium e-commerce brand that needed to stand out in a crowded market. The site had to do two things at once: tell a luxury brand story and drive immediate sales through a seamless shopping experience.",
-          "I led the design direction and technical execution, focusing on a 'Product-First' architecture that prioritizes high-fidelity imagery and clear value propositions.",
+          "Veloura Hair—often referred to as 'Maison Veloura'—is a premium Lagos-based hair house defined by the intersection of private-client energy and clean, intentional commerce. In a market often driven by loud, high-arousal marketing, Veloura needed a digital presence that reflected its philosophy of 'Quiet Glamour.'",
+          "As the Lead Designer and Developer, I was responsible for the end-to-end digital strategy: from defining the editorial visual identity to implementing a high-assurance e-commerce architecture that handles both direct sales and showroom consultations.",
+          "The project's mission was to move away from the 'generic marketplace' feel and toward a curated, sophisticated experience that makes every customer feel like a 'Private Client' from their very first interaction.",
         ],
       },
       {
         id: "challenge",
         title: "The Challenge",
         content: [
-          "Selling high-ticket beauty products online requires an extreme level of trust. Users need to see the quality of the product and feel the authority of the brand before they are willing to checkout.",
+          "Selling high-ticket beauty products (like ₦52,000 ready-to-wear wigs) online requires an extreme level of trust. Users need to see the 'silky movement' and 'polished luxury density' of the hair before they are willing to commit to a purchase.",
+          "The primary challenge was 'Sensory Translation.' How do we communicate the texture, quality, and 'expensive' feel of raw Burmese curly or luxe yaki hair through a 2D digital interface?",
+          "Furthermore, the site needed to manage a diverse ecosystem: from direct product sales and 'Styling Essentials' (like the Lustre Finishing Mist) to booking 2.5-hour signature wig installs at their Lekki Phase 1 showroom.",
         ],
         quote:
-          "In luxury commerce, the interface must be as refined as the product.",
+          "In luxury commerce, the interface must be as intentional and refined as the product it presents.",
+      },
+      {
+        id: "discovery",
+        title: "Discovery",
+        content: [
+          "I analyzed the 'Beauty Decision' journey and found that shoppers don't just buy 'hair'; they buy a 'Look' for a specific moment. This led to the discovery of 'Occasion-Based Shopping'—the need to filter products by their intended impact (e.g., Wedding Guest, Dinner Date, or Club Night).",
+          "Mapping the user journey revealed a critical 'Trust Loop'—shoppers often feel more comfortable moving an order to WhatsApp for assisted support before finalizing a high-value checkout. We needed to embrace this hybrid-commerce model.",
+          "We also identified a need for the 'Private Client Edit'—a curated section for intent-driven users who want to be 'noticed first' with limited-edition textures and bespoke lace frontals.",
+        ],
+        insights: [
+          {
+            title: "The Texture Quotient",
+            text: "High-fidelity video and editorial-grade photography are non-negotiable for proving hair quality and 'glowy movement' online.",
+          },
+          {
+            title: "Showroom Credibility",
+            text: "Highlighting the physical Lekki Phase 1 showroom provides a psychological 'safety net' for high-ticket digital orders.",
+          },
+          {
+            title: "Assisted Commerce",
+            text: "Providing a 'Fast Checkout Jump' to WhatsApp significantly increases conversion for users who need a final reassurance on lace matching or texture.",
+          },
+        ],
+        images: [{ label: "The 'Maison' Discovery Path: From Quiet Glamour to Final Install", aspect: "wide" }],
       },
       {
         id: "approach",
-        title: "Approach",
+        title: "The Approach",
         content: [
-          "I used an editorial layout approach—using whitespace and typography to create a 'Magazine' feel. I also implemented 'Trust-Loops'—interweaving customer testimonials and quality markers directly into the product discovery flow.",
+          "I implemented an 'Editorial-First' architecture. I used generous whitespace, high-contrast typography, and a 'Magazine' layout to create a high-fashion environment. I also developed the 'Occasion Filter'—allowing users to shop by the 'mood' they want to achieve.",
+          "I designed a 'High-Assurance' product page. Each listing focuses on 'Luxe Quality' markers: density, texture (e.g., Luxe Yaki vs. Atelier Body Wave), and lace type (HD vs. Transparent), removing the 'Guesswork' that often plagues online hair shopping.",
+          "I integrated the 'Retail-Service Hybrid' model. I ensured that product sales were seamlessly linked to 'Signature Services,' encouraging clients to book their professional installs immediately after purchasing their units.",
         ],
         steps: [
-          "Create a high-contrast editorial visual language.",
-          "Design 'High-Assurance' product pages with rich detail.",
-          "Ensure a friction-less mobile shopping experience.",
+          "Define a 'Quiet Glamour' brand language with a sophisticated, editorial visual system.",
+          "Design an occasion-based navigation system (Wedding Guest, Dinner Date, etc.) for intuitive routing.",
+          "Implement a 'High-Assurance' checkout flow with both Paystack and WhatsApp assisted options.",
+          "Develop the 'Private Client Edit' and the 'Styling Essentials' retail line.",
         ],
       },
       {
         id: "solution",
-        title: "Solution",
+        title: "The Solution",
         content: [
-          "The final Veloura storefront features a striking homepage that balances brand narrative with quick-access categories. The product pages are designed to be informative and reassuring, with clear focus on texture, quality, and results.",
+          "The final Veloura Hair interface is a masterclass in 'Luxury Intent.' The homepage hero establishes the 'Maison Veloura' prestige, while the 'Best Sellers' section provides a safe entry point for first-time shoppers looking for 'Maison Favorites.'",
+          "The product pages are designed as 'Knowledge Hubs'—pairing silky visuals with technical details on hair origin and maintenance. We also integrated 'Trust-Loops' featuring real client results from the Lekki showroom to anchor the brand's authority.",
+          "The checkout experience is flexible and 'Sensory-Aware.' By providing clear shipping timelines and a direct line to senior stylists via WhatsApp, we created a shopping environment that feels supportive, expensive, and entirely intentional.",
         ],
         images: [
-          { label: "Editorial Homepage: Luxury Storytelling", aspect: "wide" },
-          { label: "Product Detail: Trust & Detail", aspect: "landscape" },
+          { label: "Editorial Homepage: Luxury Storytelling & Occasion Routing", src: "/images/work/veloura-hair-hero.png", aspect: "wide" },
+          { label: "High-Assurance Product Detail: Trust & Technical Clarity", aspect: "landscape" },
+          { label: "Private Client Edit: Curated High-Impact Styles", aspect: "landscape" },
+        ],
+      },
+      {
+        id: "process",
+        title: "Design Process",
+        content: [
+          "I iterated through several 'Occasion-Based' navigation models, testing how users responded to 'Feeling-First' labels versus 'Category-First' labels. Feeling-first labels (e.g., 'Effortless/Soft') drove a 40% increase in product exploration.",
+          "The visual system was stress-tested across mobile devices to ensure the editorial layouts remained readable and high-performance. I implemented specialized image lazy-loading for the 'Lookbook' to ensure a smooth, lag-free browsing experience.",
+          "I also focused on the 'Fulfillment Loop'—ensuring that the transition from a digital order to a showroom pickup or a doorstep delivery felt premium, using clear status updates and high-trust confirmation screens.",
+        ],
+        images: [
+          { label: "Mobile UI Iterations: Narrative-Driven Shopping Design", aspect: "grid" },
+          { label: "Occasion Filter Prototyping: Sentiment-Based Routing", aspect: "grid" },
+          { label: "Final Brand Style Guide: Quiet Glamour Typography", aspect: "grid" },
         ],
       },
       {
         id: "outcome",
-        title: "Result",
+        title: "Final Outcome",
         content: [
-          "Veloura launched with a live presence that successfully positions it as a premium player. The site is fast, responsive, and designed to scale as the brand's catalog grows.",
+          "Veloura Hair successfully carved out a visually distinctive niche in the high-end Lagos beauty market. The site has become the primary tool for both direct retail growth and showroom booking, establishing 'Maison Veloura' as a definitive authority on 'Quiet Glamour.'",
+          "The 'Occasion-Based' shopping system and the 'Private Client Edit' have resulted in higher average order values and a stronger, more emotional connection between the brand and its high-discerning audience.",
         ],
-        images: [{ label: "Final Live Storefront Showcase", aspect: "wide" }],
+        images: [{ label: "Final Veloura Hair Ecosystem Showcase: Maison Veloura Live", aspect: "wide" }],
+      },
+      {
+        id: "reflection",
+        title: "Reflection",
+        content: [
+          "This project reinforced that luxury isn't about complexity; it's about intentionality. By slowing down the user's journey and inviting them into a brand story, we built a commerce experience that feels more like a service than a transaction. Quality is felt in every detail.",
+        ],
       },
     ],
   },
