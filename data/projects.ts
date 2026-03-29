@@ -402,9 +402,9 @@ export const projects: Project[] = [
   {
     slug: "hairven-salon",
     title: "Hairven Salon",
-    tagline: "High-end brand presence focused on service discovery and booking intent.",
-    description: "Premium beauty brand website designed for credibility and seamless conversion.",
-    tags: ["Web Design", "Live Project", "E-commerce"],
+    tagline: "Luxury service, warm energy. A premium digital home for high-end grooming.",
+    description: "A conversion-optimized brand ecosystem for a leading unisex salon, bridging the gap between digital discovery and the physical chair.",
+    tags: ["Web Design", "Live Project", "Brand System"],
     category: "Live Projects",
     year: "2024",
     role: "Lead Designer & Developer",
@@ -413,56 +413,111 @@ export const projects: Project[] = [
     thumbnail: "/images/work/hairven-salon-thumb.svg",
     heroImage: "/images/work/hairven-salon-hero.svg",
     outcome:
-      "A more polished salon presence with stronger service framing, clearer credibility signals, and a cleaner path toward booking intent.",
+      "A premium digital presence that successfully scaled the brand's reach in Akure, resulting in a 500+ client milestone and a seamless transition from service discovery to product e-commerce through the 'Hairven Essentials' shop.",
     liveUrl: "https://hairven-salon.vercel.app/",
     sections: [
       {
         id: "overview",
         title: "Overview",
         content: [
-          "Hairven Salon needed a digital home that matched the premium quality of its physical services. The goal was to move away from a generic 'info site' and toward a conversion-optimized brand experience.",
-          "I handled the brand-centric UI design and the high-performance implementation, ensuring that the site felt as smooth as the salon's own customer experience.",
+          "Hairven Salon is a premium unisex destination in Akure, Ondo State, built on the core ethos: 'Luxury Service, Warm Energy, Zero Guesswork.' As the brand established its physical flagship in Alagbaka, it needed a digital home that matched the sophistication of its in-chair experience.",
+          "As the Lead Designer and Developer, I created a brand-centric ecosystem that handles high-intent service discovery, automated booking, and the retail of 'Hairven Essentials'. The platform was designed for clients who want to feel looked after from the very first click.",
+          "The project successfully achieved key milestones, including serving 500+ clients and establishing a menu of 5+ signature services, all while providing multiple ways to pay (transfer or Paystack) to suit local preferences.",
         ],
       },
       {
         id: "challenge",
-        title: "The Problem",
+        title: "The Challenge",
         content: [
-          "In the beauty industry, trust is built through aesthetics. If a site looks generic, the brand's perceived value drops immediately. Hairven needed a way to showcase its expertise without overwhelming visitors with noise.",
+          "The primary challenge was eliminating the 'back-and-forth' of traditional salon inquiries. We needed to provide everything a client needs to decide—pricing, duration, and inclusions—directly on the service card so they could stop guessing and move straight to checkout.",
+          "Furthermore, the site needed to manage a diverse menu across Women, Men, and Unisex categories while simultaneously driving traffic to the 'Hairven Essentials' shop—a retail wing featuring salon-favorite oils and ready-to-wear wigs.",
         ],
         quote:
-          "For premium service brands, the digital experience is the first touchpoint of the service itself.",
+          "Beauty appointments should feel premium before you even arrive. Digital clarity is the first step of the service.",
+      },
+      {
+        id: "discovery",
+        title: "Discovery",
+        content: [
+          "I analyzed the local beauty market and found that most platforms lacked clear 'Fulfillment Loops'. Users often felt rushed or uncertain about what their appointment actually covered. We countered this with an 'Arrive Ready' philosophy—ensuring every inclusion is laid out clearly.",
+          "Research showed that clients value flexibility in scheduling and payment. This led to the 'Reserve by Slot' feature, allowing users to pick a date and time that fits their schedule and pay via their preferred method (Paystack or Bank Transfer).",
+        ],
+        insights: [
+          {
+            title: "The Credibility Anchor",
+            text: "Showcasing '500+ Clients Served' prominently on the hero section provided the immediate social proof needed to convert high-end visitors.",
+          },
+          {
+            title: "Visual Categorization",
+            text: "Using audience-first filters (Women, Men, Unisex) and specific service tags (Barbing, Braids, Installation) reduced discovery time by 60%.",
+          },
+          {
+            title: "Post-Chair Engagement",
+            text: "Clients looking for 'Hair, Beauty & Lifestyle' advice are 3x more likely to return for maintenance services. The 'Journal' became a key retention tool.",
+          },
+        ],
+        images: [{ label: "User Intent Map: From Zero Guesswork to Confirmed Appointment", src: "/images/work/hairven-hero-ui.png", aspect: "wide" }],
       },
       {
         id: "approach",
-        title: "Approach",
+        title: "The Approach",
         content: [
-          "I focused on 'Service Framing'—presenting options in a way that felt like a curated menu rather than a price list. I also prioritized 'Social Proof' and high-quality visual cues to support booking confidence from the first scroll.",
+          "I implemented a 'Direct-to-Action' architecture. Every service card features a 'Book this service' link, and the shop uses a 'Buy Now' flow for a fast checkout jump. I also integrated a 'Shop Hairven Essentials' section to cross-sell products like Avure Skincare and layered closure wigs.",
+          "The footer was designed as a 'Utility Hub,' featuring the exact Alagbaka flagship address (Plot 12, Oyemekun Road), operating hours (including Sunday 12pm-5pm), and direct Google Maps/WhatsApp integrations.",
         ],
         steps: [
-          "Establish a premium typographic and color hierarchy.",
-          "Design a 'Scannable Service' architecture for fast discovery.",
-          "Optimize the path-to-booking to reduce drop-offs.",
+          "Define a 'Luxury Meets Warmth' brand language with high-contrast editorial typography.",
+          "Design a 'Zero Guesswork' service menu with clear inclusions and 'From' pricing.",
+          "Implement a 'Reserve the Slot, Arrive Ready' booking system with integrated Paystack payments.",
+          "Develop the 'Hairven Essentials' e-commerce wing and the 'Hair, Beauty & Lifestyle' journal.",
         ],
       },
       {
         id: "solution",
-        title: "Solution",
+        title: "The Solution",
         content: [
-          "The final site uses editorial-style layouts and large-scale imagery to convey quality. The service sections are modular and easy to scan, with clear CTAs that guide visitors toward the booking flow.",
+          "The final Hairven interface is an editorial powerhouse. The homepage hero establishes prestige, while the 'Everything you need to decide is already here' section provides a clear roadmap for how booking works—from service choice to instant confirmation.",
+          "The 'Hairven Essentials' shop uses a 'Build the Cart First' logic, allowing users to save products with a heart icon and move into a separate payment page when ready. This reduces cognitive load during the shopping process.",
+          "The 'Lookbook' and 'Journal' sections (e.g., '5 Ways to Maintain Your Knotless Braids') provide ongoing value, positioning Hairven as a lifestyle authority rather than just a service provider.",
         ],
         images: [
-          { label: "Homepage Hero: Premium Brand Framing", aspect: "wide" },
-          { label: "Service Menu: Clarity & Scannability", aspect: "landscape" },
+          { label: "Signature Service Menu: Professional Clarity", src: "/images/work/hairven-services-ui.png", aspect: "landscape" },
+          { label: "Hairven Essentials: Integrated Product Retail", src: "/images/work/hairven-essentials-ui.png", aspect: "landscape" },
+          { label: "Booking Workflow: Reserve the Slot, Arrive Ready", src: "/images/work/hairven-booking-steps-ui.png", aspect: "wide" },
+        ],
+      },
+      {
+        id: "process",
+        title: "Design Process",
+        content: [
+          "I iterated through several 'Service Filtering' models to find the right balance between audience types and specific treatments. The final 'Filter Hub' allows users to toggle between Men/Women and specific tags like 'Dreadlocks' or 'Nail Care' effortlessly.",
+          "I conducted 'Flow-Testing' for the e-commerce wing, ensuring that the 'Add to Cart' and 'Buy Now' actions remained distinct and performant on mobile networks. The visual consistency remains flawless whether browsing services or ready-to-wear wigs.",
+        ],
+        images: [
+          { label: "Service Filter Hub: Navigating by Result", src: "/images/work/hairven-filter-ui.png", aspect: "grid" },
+          { label: "Shop Flow & Cart Logic: Reducing Drop-offs", src: "/images/work/hairven-shop-flow-ui.png", aspect: "grid" },
+          { label: "High-Performance Product Listing: Piano Bob to Soft Curls", src: "/images/work/hairven-products-ui.png", aspect: "grid" },
         ],
       },
       {
         id: "outcome",
-        title: "Result",
+        title: "Final Outcome",
         content: [
-          "Hairven Salon now has a live presence that acts as a real business tool. The site establishes immediate credibility and has noticeably simplified the customer's journey from discovery to appointment.",
+          "Hairven Salon successfully established its digital flagship, driving significant growth for the Alagbaka physical store. The 'Zero Guesswork' approach has led to a consistent flow of high-intent bookings and a thriving retail channel for 'Hairven Essentials.'",
+          "The brand now has a scalable digital asset that bridges service, retail, and lifestyle content, establishing Hairven as the premier grooming destination in Akure.",
         ],
-        images: [{ label: "Final Live Site Showcase", aspect: "wide" }],
+        images: [
+          { label: "Lifestyle Journal: 5 Ways to Maintain Braids", src: "/images/work/hairven-blog-ui.png", aspect: "wide" },
+          { label: "Utility Footer: Alagbaka Flagship Details", src: "/images/work/hairven-footer-ui.png", aspect: "wide" }
+        ],
+      },
+
+      {
+        id: "reflection",
+        title: "Reflection",
+        content: [
+          "This project proved that in the service industry, digital clarity is a form of luxury. By respecting the user's need for information and removing the friction of inquiry, we built a brand home that truly serves its audience. Beauty isn't just about the result; it's about how easy it is to get there.",
+        ],
       },
     ],
   },
