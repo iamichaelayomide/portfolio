@@ -247,9 +247,9 @@ export const projects: Project[] = [
           "The 'Pal' companion system introduces an AI-driven chat interface that provides personalized advice based on the user's sleep patterns, asking gentle questions like 'Why was last night hard?' to help build better long-term routines.",
         ],
         images: [
-          { label: "The Adaptive Player: Circadian-Safe Visuals & Spatial Controls", aspect: "portrait" },
-          { label: "Onboarding: Setting the Sensory Baseline & Choosing Your Pal", aspect: "portrait" },
-          { label: "Sprout Wellness: Gamifying Sleep Health Through Emotional Connection", aspect: "landscape" },
+          { label: "The Adaptive Player: Circadian-Safe Visuals & Spatial Controls", src: "/images/work/slumberpal-player.png", aspect: "portrait" },
+          { label: "Onboarding: Setting the Sensory Baseline & Choosing Your Pal", src: "/images/work/slumberpal-onboarding.png", aspect: "portrait" },
+          { label: "Sprout Wellness: Gamifying Sleep Health Through Emotional Connection", src: "/images/work/slumberpal-pal-chat.png", aspect: "landscape" },
         ],
       },
       {
