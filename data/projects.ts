@@ -684,9 +684,9 @@ export const projects: Project[] = [
           "The checkout experience was stripped of all non-essential fields, featuring a progress bar and clear options for 'Delivery' vs 'Pickup.' This 'Lean Flow' approach resulted in a noticeable reduction in cart abandonment.",
         ],
         images: [
-          { label: "Conversion-Focused Hero: Dual Intent Paths", src: "/images/work/ayomide-stores-hero.svg", aspect: "wide" },
-          { label: "Visual Category Grid: Instant Cognitive Mapping", aspect: "landscape" },
-          { label: "High-Assurance Product Page: Preempting Friction", aspect: "landscape" },
+          { label: "Conversion-Focused Hero: Dual Intent Paths", src: "/images/work/ayomide-stores-hero-ui.png", aspect: "wide" },
+          { label: "Visual Category Grid: Instant Cognitive Mapping", src: "/images/work/ayomide-stores-category-ui.png", aspect: "landscape" },
+          { label: "High-Assurance Product Page: Preempting Friction", src: "/images/work/ayomide-stores-product-ui.png", aspect: "landscape" },
         ],
       },
       {
@@ -698,7 +698,7 @@ export const projects: Project[] = [
           "The visual system was stress-tested against the store's diverse product catalog, ensuring that the typography and color hierarchy remained consistent whether displaying a frying pan or a hair clipper.",
         ],
         images: [
-          { label: "Mobile UI Iterations: Thumb-First Checkout Design", aspect: "grid" },
+          { label: "Mobile UI Iterations: Thumb-First Checkout Design", src: "/images/work/ayomide-stores-listing-ui.png", aspect: "grid" },
           { label: "Performance Audit & Image Optimization Workflow", aspect: "grid" },
           { label: "Final Brand Identity & Typography System", aspect: "grid" },
         ],
@@ -710,7 +710,7 @@ export const projects: Project[] = [
           "Ayomide Stores successfully carved out a premium niche in the Nigerian household market. In its first three months, the site saw a 35% increase in mobile checkout completions and a high 'Return Customer' rate, driven by the ease of discovery and fulfillment transparency.",
           "The 'Trust-First' design system became a core asset for the brand, allowing them to scale their catalog to over 200 items while maintaining a clean, high-performance interface that consistently outperforms industry conversion benchmarks.",
         ],
-        images: [{ label: "Final Ayomide Stores Ecosystem: Elevating Everyday Living", aspect: "wide" }],
+        images: [{ label: "Lean Checkout & Omnichannel Trust", src: "/images/work/ayomide-stores-cart-ui.png", aspect: "wide" }],
       },
       {
         id: "reflection",
