@@ -613,25 +613,25 @@ export const projects: Project[] = [
     thumbnail: "/images/work/ayomide-stores-thumb.svg",
     heroImage: "/images/work/ayomide-stores-hero.svg",
     outcome:
-      "A conversion-optimized retail experience that successfully bridged the gap between online browsing and physical store credibility, leading to a 35% increase in mobile checkout completions and a stronger brand presence in the premium home essentials market.",
+      "A conversion-optimized retail experience that successfully bridged the gap between online browsing and physical store credibility, resulting in a 35% increase in mobile checkout completions and a stronger brand presence in the premium Nigerian household market.",
     liveUrl: "https://ayomidestores.vercel.app",
     sections: [
       {
         id: "overview",
         title: "Overview",
         content: [
-          "Ayomide Stores is a premium Nigerian retail brand specializing in high-quality home essentials—from professional-grade kitchenware to modern storage solutions. In a market often saturated with generic, low-trust e-commerce sites, Ayomide needed a digital storefront that reflected its 'Elevating Everyday Living' philosophy.",
-          "As the Lead Designer and Developer, I was responsible for the end-to-end digital strategy: from defining the visual identity and category architecture to implementing a high-performance checkout flow. The mission was to transform a standard retail catalog into a premium, trustworthy shopping experience.",
-          "The project focused on three core pillars: Fast Discovery, Omnichannel Trust, and High-Assurance Commerce—ensuring that every touchpoint from the hero section to the final payment felt professional, secure, and respectful of the user's time.",
+          "Ayomide Stores is a premium Nigerian retail brand specializing in high-quality home essentials—from professional-grade non-stick cookware to modern storage solutions. The project's central mission, 'Elevate Your Everyday Living,' was to move away from the cluttered 'marketplace' feel and toward a curated, editorial shopping experience.",
+          "As the Lead Designer and Developer, I was responsible for the end-to-end digital strategy: from defining the high-contrast visual identity and category architecture to implementing a high-performance checkout flow. The goal was to build a digital storefront that felt as premium as the products themselves.",
+          "The project focused on three core pillars: Fast Discovery, Omnichannel Trust, and High-Assurance Commerce—ensuring that every touchpoint from the hero section to the final payment felt professional, secure, and respectful of the user's intent.",
         ],
       },
       {
         id: "challenge",
         title: "The Challenge",
         content: [
-          "The primary hurdle in Nigerian e-commerce is 'The Trust Gap.' Shoppers are often hesitant to pay upfront due to fears of poor quality or non-delivery. Ayomide Stores needed to prove its physical legitimacy and quality standards through its digital interface.",
-          "Technically, the store handles a wide variety of product types (Kitchen, Cleaning, Storage, Personal Care). The challenge was to create a navigation system that allowed users to 'drill down' to specific needs without feeling overwhelmed by a massive, cluttered grid.",
-          "Performance was also a critical factor. With many users browsing on variable mobile networks, the site had to be extremely fast, with optimized images and a 'lean' checkout process that didn't drop off during payment processing.",
+          "The primary hurdle was 'The Trust Gap' in the local market. Shoppers are often hesitant to commit to high-ticket household items online. Ayomide needed a way to prove its physical legitimacy and quality standards through its digital interface.",
+          "Technically, the store handles a wide variety of product categories (Kitchen & Dining, Cleaning, Storage, Personal Care). The challenge was to create a navigation system that allowed users to 'drill down' to specific needs—like finding a rust-resistant drying rack—without getting lost in a massive, disjointed grid.",
+          "Performance was also a critical factor. With many users browsing on variable mobile networks, the site had to be extremely fast, with optimized images and a 'lean' checkout process that minimized drop-offs.",
         ],
         quote:
           "In essential retail, the UI doesn't just display products; it serves as the first handshake of brand reliability.",
@@ -640,37 +640,37 @@ export const projects: Project[] = [
         id: "discovery",
         title: "Discovery",
         content: [
-          "I conducted a 'Trust Audit' of local competitors and found that most lacked clear signals of physical existence (like maps or local addresses) and had convoluted category routing. Users were often 'pogo-sticking' between pages just to find a simple item like an electric kettle.",
-          "Mapping the user journey revealed that the most critical moment was the 'Credibility Check'—where users look for shipping details, return policies, and physical store locations before adding to cart.",
-          "We identified a need for 'Category Routing'—a visual system that provides immediate entry points into the four core departments (Kitchen, Cleaning, Storage, Personal Care) right from the home screen.",
+          "I conducted a 'Trust Audit' of local competitors and found that most lacked clear signals of physical existence. In contrast, the Ayomide experience was anchored by its physical flagship at 123 Commerce Avenue in Lagos. We needed to leverage this 'Physicality' to build digital trust.",
+          "Mapping the user journey revealed that the most critical moment was the 'Credibility Check'—where users look for specific shipping details and physical store locations before adding to cart. We found that showcasing the actual store address in the footer provided an immediate psychological safety net.",
+          "We identified a need for 'Intent-Based Routing'—a system that provides immediate entry points into core departments right from the home screen, using dual-intent CTAs like 'Shop Now' and 'View Deals'.",
         ],
         insights: [
           {
             title: "Physical Proximity",
-            text: "Highlighting a physical flagship store in Lagos significantly reduces 'online-only' skepticism and increases local conversion.",
+            text: "Highlighting the Lagos flagship store and providing clear operating hours (9am - 6pm) significantly reduces 'online-only' skepticism.",
           },
           {
-            title: "Fulfillment Flexibility",
-            text: "Users highly value 'Free In-Store Pickup' as a low-risk alternative to nationwide delivery, especially for high-ticket kitchenware.",
+            title: "Visual Scannability",
+            text: "Users identify categories faster through high-fidelity imagery (like a non-stick frying pan set) than through text labels alone.",
           },
           {
-            title: "Mobile Speed-to-Cart",
-            text: "On slower networks, every additional second of load time leads to an 11% drop in conversion. The UI must be lightweight and performance-first.",
+            title: "Performance over Friction",
+            text: "On slower networks, every additional step in the cart process leads to massive drop-offs. The 'Lean Cart' model was essential for conversion.",
           },
         ],
-        images: [{ label: "User Journey Map: From Skepticism to Purchase Confidence", aspect: "wide" }],
+        images: [{ label: "User Journey Map: From Lagos Flagship to Digital Checkout", aspect: "wide" }],
       },
       {
         id: "approach",
         title: "The Approach",
         content: [
-          "I implemented an 'Omnichannel Trust' architecture. I designed a dedicated 'Visit Our Local Store' section with integrated maps and hours, and placed transparency markers (14-day returns, authentic goods) directly in the product discovery flow.",
-          "I developed a 'Visual Routing' system. The homepage uses a distinct category grid with large blocks, allowing for instant cognitive mapping of the store's inventory. I also optimized the global header to keep the most relevant deals and 'Free Delivery' incentives visible at all times.",
-          "Visually, I chose a 'Neutral-Premium' aesthetic—using high-contrast typography and generous whitespace to let the product photography stand as the hero. All CTAs were designed to be 'Thumb-First' to accommodate the high volume of mobile shoppers.",
+          "I implemented an 'Omnichannel Trust' architecture. I placed the physical store data—including the exact Lagos address and operating hours—prominently in the footer of every page, ensuring that the brand's legitimacy was never more than a scroll away.",
+          "I developed a 'Visual Routing' system. The 'Shop by Category' section provides instant cognitive mapping of the store's inventory, using clean, grid-based layouts to showcase departments like Kitchen & Dining with editorial-grade photography.",
+          "Visually, I chose a 'Neutral-Premium' aesthetic—using high-contrast typography and generous whitespace. All CTAs and 'Add to Cart' buttons were designed for high visibility and 'Thumb-First' accessibility on mobile devices.",
         ],
         steps: [
-          "Establish a high-performance category architecture for fast product discovery.",
-          "Design an 'Omnichannel Trust' layer featuring physical store data and fulfillment transparency.",
+          "Establish a high-performance category architecture (Kitchen, Cleaning, Storage, Personal Care).",
+          "Design an 'Omnichannel Trust' layer featuring physical store data and local fulfillment transparency.",
           "Implement a 'Lean Checkout' flow optimized for mobile speed and local payment gateways.",
           "Develop a premium visual system that differentiates the brand from generic marketplace competitors.",
         ],
@@ -679,9 +679,9 @@ export const projects: Project[] = [
         id: "solution",
         title: "The Solution",
         content: [
-          "The final Ayomide Stores interface is a masterclass in 'Direct-to-Need' commerce. The homepage hero provides two immediate paths: 'Shop Now' for intent-driven users and 'View Deals' for value-seekers. The 'Shop by Category' section acts as a visual sitemap, reducing the clicks needed to find essentials.",
-          "The product pages are 'High-Assurance' zones—featuring clear pricing, delivery timelines, and trust badges. We integrated a 'Quick FAQ' section on every product page to preemptively answer shipping and return questions, reducing bounce rates.",
-          "The checkout experience was stripped of all non-essential fields, featuring a progress bar and clear options for 'Delivery' vs 'Pickup.' This 'Lean Flow' approach resulted in a noticeable reduction in cart abandonment.",
+          "The final Ayomide Stores interface is a masterclass in 'Direct-to-Need' commerce. The homepage hero, 'Elevate Your Everyday Living,' provides two immediate paths: 'Shop Now' for intent-driven users and 'View Deals' for value-seekers.",
+          "The product pages act as 'High-Assurance' zones—featuring clear pricing (with crossed-out discount markers), stock availability (e.g., '75 in stock'), and rust-resistant material details. This level of detail pre-emptively answers common shopper questions.",
+          "The checkout experience was stripped of all non-essential fields. The 'Shopping Cart' view provides a clear order summary (subtotal and total) with a prominent 'Proceed to Checkout' action, ensuring the path to purchase remains entirely friction-less.",
         ],
         images: [
           { label: "Conversion-Focused Hero: Dual Intent Paths", src: "/images/work/ayomide-stores-hero-ui.png", aspect: "wide" },
@@ -693,9 +693,9 @@ export const projects: Project[] = [
         id: "process",
         title: "Design Process",
         content: [
-          "I iterated through several 'Mobile Navigation' models, testing how users interacted with bottom-tab bars versus traditional 'Hamburger' menus for e-commerce. We landed on a hybrid approach that keeps 'Search' and 'Cart' always within thumb-reach.",
-          "I conducted 'Speed-Testing' across multiple device types and network speeds, leading to the implementation of aggressive image lazy-loading and critical CSS inlining to ensure the site felt 'instant' even on 3G connections.",
-          "The visual system was stress-tested against the store's diverse product catalog, ensuring that the typography and color hierarchy remained consistent whether displaying a frying pan or a hair clipper.",
+          "I iterated through several 'Inventory Discovery' models, ensuring that users could easily filter by price (e.g., 'Under ₦10,000') or category. This 'Faceted Search' logic was critical for helping users find specific items like the Electric Beard Trimmer or Laundry Hamper quickly.",
+          "I conducted 'Speed-Testing' to ensure the product grid remained responsive across all categories. This led to the implementation of 'Sale' and 'New' badges that help highlight high-velocity items without cluttering the UI.",
+          "The visual system was stress-tested against the store's diverse product catalog, ensuring that the typography and color hierarchy remained consistent whether browsing high-end cookware or simple storage shelves.",
         ],
         images: [
           { label: "Mobile UI Iterations: Thumb-First Checkout Design", src: "/images/work/ayomide-stores-listing-ui.png", aspect: "grid" },
@@ -707,11 +707,12 @@ export const projects: Project[] = [
         id: "outcome",
         title: "Final Outcome",
         content: [
-          "Ayomide Stores successfully carved out a premium niche in the Nigerian household market. In its first three months, the site saw a 35% increase in mobile checkout completions and a high 'Return Customer' rate, driven by the ease of discovery and fulfillment transparency.",
+          "Ayomide Stores successfully established itself as a premium destination for Nigerian household goods. In its first three months, the site saw a 35% increase in mobile checkout completions, driven by the ease of discovery and the transparency of its Lagos-based fulfillment.",
           "The 'Trust-First' design system became a core asset for the brand, allowing them to scale their catalog to over 200 items while maintaining a clean, high-performance interface that consistently outperforms industry conversion benchmarks.",
         ],
         images: [{ label: "Lean Checkout & Omnichannel Trust", src: "/images/work/ayomide-stores-cart-ui.png", aspect: "wide" }],
       },
+
       {
         id: "reflection",
         title: "Reflection",
