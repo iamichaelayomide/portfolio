@@ -39,10 +39,10 @@ export default async function BlogPage() {
           <ScrollReveal>
             <div className="rounded-[28px] border border-border-subtle bg-bg-surface p-8 md:p-10">
               <h2 className="font-display text-display-sm font-medium text-text-primary">
-                Articles are loading or none published yet.
+                Your writing is being prepared.
               </h2>
               <p className="mt-4 max-w-prose font-body text-body-md text-text-secondary">
-                If you see this, please check the Sanity Studio to ensure your 16 articles are published without the &apos;drafts.&apos; prefix.
+                The blog is currently in preview mode. If you see this, ensure you have articles of type &apos;post&apos; in your Sanity Studio.
               </p>
               <div className="mt-6">
                 <Link href="/studio" className={buttonStyles({ variant: "secondary", size: "md" })}>

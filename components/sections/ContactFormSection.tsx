@@ -141,7 +141,7 @@ export default function ContactFormSection({ content }: ContactFormSectionProps)
 
           <ScrollReveal delay={0.08} className="space-y-6">
             <div className="rounded-xl border border-border-subtle bg-bg-surface p-6">
-              <h2 className="font-display text-2xl font-medium text-text-primary">
+              <h2 className="font-display text-display-sm font-medium text-text-primary">
                 {content.contactInfoTitle}
               </h2>
               <div className="mt-6 space-y-4">
@@ -153,7 +153,7 @@ export default function ContactFormSection({ content }: ContactFormSectionProps)
 
             <div className="overflow-hidden rounded-xl border border-border-subtle bg-bg-surface">
               <div className="border-b border-border-subtle px-6 py-5">
-                <h2 className="font-display text-2xl font-medium text-text-primary">
+                <h2 className="font-display text-display-sm font-medium text-text-primary">
                   {content.booking.title}
                 </h2>
                 <p className="mt-2 font-body text-body-sm text-text-secondary">

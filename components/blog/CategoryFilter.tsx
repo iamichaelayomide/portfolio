@@ -77,7 +77,7 @@ export default function CategoryFilter({ posts }: CategoryFilterProps) {
       {filteredPosts.length > 0 ? (
         <StaggerContainer className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {filteredPosts.map((post) => (
-            <StaggerItem key={post.slug}>
+            <StaggerItem key={post._id}>
               <BlogCard post={post} />
             </StaggerItem>
           ))}

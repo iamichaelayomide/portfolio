@@ -11,17 +11,17 @@ const components: PortableTextComponents = {
       <p className="font-body text-body-md leading-[1.85] text-text-secondary">{children}</p>
     ),
     h2: ({ children }) => (
-      <h2 className="font-display text-[clamp(28px,4vw,42px)] font-semibold leading-[1.05] text-text-primary">
+      <h2 className="font-display text-display-lg font-semibold leading-[1.05] text-text-primary">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="font-display text-[clamp(22px,3vw,30px)] font-medium text-text-primary">
+      <h3 className="font-display text-display-md font-medium text-text-primary">
         {children}
       </h3>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-border-accent pl-5 font-display text-2xl leading-[1.4] text-text-primary">
+      <blockquote className="border-l-2 border-border-accent pl-5 font-display text-display-sm leading-[1.4] text-text-primary">
         {children}
       </blockquote>
     ),

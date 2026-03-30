@@ -142,7 +142,7 @@ export default function Hero({ content }: HeroProps) {
                 transition: { duration: 0.35, delay: 0.2, ease: EASE_DEFAULT },
               },
             }}
-            className="mb-3 font-display text-base font-normal text-text-secondary sm:mb-4 sm:text-xl"
+            className="mb-3 font-display text-body-md font-normal text-text-secondary sm:mb-4 sm:text-display-sm"
           >
             <AnimatedText text={content.introText} />
           </motion.div>
@@ -225,7 +225,7 @@ export default function Hero({ content }: HeroProps) {
                 transition: { duration: 0.45, delay: 0.9, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-7 font-body text-[11px] uppercase tracking-[0.08em] text-text-muted sm:text-body-xs"
+            className="mt-7 font-body text-body-xs uppercase tracking-[0.08em] text-text-muted"
           >
             {content.proof.join("  /  ")}
           </motion.p>

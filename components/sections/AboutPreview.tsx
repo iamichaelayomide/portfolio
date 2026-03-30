@@ -64,8 +64,7 @@ export default function AboutPreview({ content }: AboutPreviewProps) {
               <p className="font-body text-body-xs uppercase tracking-[0.12em] text-accent-warm">
                 {content.locationLabel}
               </p>
-              <p className="mt-2 font-display text-2xl font-medium text-text-primary">
-                {content.locationValue}
+              <p className="mt-2 font-display text-display-sm font-medium text-text-primary">                {content.locationValue}
               </p>
             </div>
           </motion.div>

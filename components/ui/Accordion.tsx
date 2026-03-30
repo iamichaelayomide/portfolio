@@ -33,7 +33,7 @@ export default function Accordion({ items }: { items: AccordionItem[] }) {
               <motion.span
                 animate={{ rotate: isOpen ? 45 : 0 }}
                 transition={{ duration: reducedMotion ? 0 : 0.2, ease: EASE_DEFAULT }}
-                className="text-2xl leading-none text-text-secondary"
+                className="text-display-sm leading-none text-text-secondary"
               >
                 +
               </motion.span>

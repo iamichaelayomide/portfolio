@@ -211,6 +211,7 @@ export const contactPageQuery = groq`*[_type == "contactPage"][0] {
 }`;
 
 export const postsQuery = groq`*[_type == "post"] | order(publishedAt desc, _createdAt desc) {
+  _id,
   title,
   "slug": slug.current,
   excerpt,
@@ -222,6 +223,7 @@ export const postsQuery = groq`*[_type == "post"] | order(publishedAt desc, _cre
 }`;
 
 export const latestPostsQuery = groq`*[_type == "post"] | order(publishedAt desc, _createdAt desc)[0...3] {
+  _id,
   title,
   "slug": slug.current,
   excerpt,
@@ -233,6 +235,7 @@ export const latestPostsQuery = groq`*[_type == "post"] | order(publishedAt desc
 }`;
 
 export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0] {
+  _id,
   title,
   "slug": slug.current,
   excerpt,

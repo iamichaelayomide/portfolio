@@ -23,7 +23,7 @@ export default function ImagePlaceholder({
           <ImageIcon className="h-6 w-6 text-text-muted" />
         </div>
         <p className="font-body text-body-sm text-text-secondary font-medium">[ {label} ]</p>
-        <p className="font-body text-[10px] text-text-muted uppercase tracking-wider">Awaiting Asset</p>
+        <p className="font-body text-body-xs text-text-muted uppercase tracking-wider">Awaiting Asset</p>
       </div>
     </div>
   );

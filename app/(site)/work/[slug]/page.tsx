@@ -161,7 +161,7 @@ function CaseStudyNavCard({
         <p className="font-body text-body-xs uppercase tracking-caps text-text-muted">
           {isNext ? "Next Project" : "Previous Project"}
         </p>
-        <h3 className="font-display text-2xl font-medium text-text-primary">{title}</h3>
+        <h3 className="font-display text-display-sm font-medium text-text-primary">{title}</h3>
         <p className="font-body text-body-sm text-text-secondary">{description}</p>
         <span
           className={`inline-flex items-center gap-2 font-body text-body-sm text-text-primary ${

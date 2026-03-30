@@ -87,7 +87,7 @@ export default async function AboutPage() {
                   <p className="font-body text-body-xs uppercase tracking-caps text-text-muted">
                     {item.range}
                   </p>
-                  <h2 className="mt-3 font-display text-2xl font-medium text-text-primary">
+                  <h2 className="mt-3 font-display text-display-sm font-medium text-text-primary">
                     {item.role}
                   </h2>
                   <p className="mt-1 font-body text-body-sm text-accent-warm">{item.context}</p>
@@ -103,7 +103,7 @@ export default async function AboutPage() {
         <div className="grid gap-5 md:grid-cols-3">
           {content.principles.map((value, index) => (
             <ScrollReveal key={value} delay={index * 0.06}>
-              <div className="rounded-xl border border-border-subtle bg-bg-surface p-6 font-display text-2xl font-medium text-text-primary">
+              <div className="rounded-xl border border-border-subtle bg-bg-surface p-6 font-display text-display-sm font-medium text-text-primary">
                 {value}
               </div>
             </ScrollReveal>

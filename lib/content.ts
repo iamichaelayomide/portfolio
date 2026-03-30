@@ -456,7 +456,7 @@ function estimateReadingTime(text: string) {
 }
 
 function normalizeBlogPost(post: PartialBlogPost | null | undefined): BlogPost | null {
-  if (!post?.slug || !post.title) {
+  if (!post?._id || !post?.slug || !post.title) {
     return null;
   }
 
@@ -464,6 +464,7 @@ function normalizeBlogPost(post: PartialBlogPost | null | undefined): BlogPost |
   const excerpt = post.excerpt || plainText.slice(0, 180).trim();
 
   return {
+    _id: post._id,
     slug: post.slug,
     title: post.title,
     excerpt,
@@ -476,19 +477,14 @@ function normalizeBlogPost(post: PartialBlogPost | null | undefined): BlogPost |
   };
 }
 
-async function fetchFromSanity<T>(query: string, params?: QueryParams) {
+async function fetchFromSanity<T>(query: string, params: QueryParams = {}) {
   try {
-    if (params) {
-      return await sanityClient.fetch<T>(query, params, {
-        next: { revalidate: 0 },
-      });
-    }
-
-    return await sanityClient.fetch<T>(query, {}, {
+    return await sanityClient.fetch<T>(query, params, {
       next: { revalidate: 0 },
+      perspective: "previewDrafts",
     });
   } catch (error) {
-    console.warn("Sanity fetch failed, using local fallback content.", error);
+    console.error("Sanity fetch error:", error);
     return null;
   }
 }
@@ -557,6 +553,7 @@ export async function getPosts(): Promise<BlogPostSummary[]> {
     .map((post) => normalizeBlogPost(post))
     .filter((post): post is BlogPost => Boolean(post))
     .map((post) => ({
+      _id: post._id,
       slug: post.slug,
       title: post.title,
       excerpt: post.excerpt,
@@ -579,6 +576,7 @@ export async function getLatestPosts(): Promise<BlogPostSummary[]> {
     .map((post) => normalizeBlogPost(post))
     .filter((post): post is BlogPost => Boolean(post))
     .map((post) => ({
+      _id: post._id,
       slug: post.slug,
       title: post.title,
       excerpt: post.excerpt,

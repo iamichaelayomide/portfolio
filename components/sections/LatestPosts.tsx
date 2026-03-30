@@ -24,7 +24,7 @@ export default function LatestPosts({ posts }: { posts: BlogPostSummary[] }) {
 
         <StaggerContainer className="grid gap-6 md:grid-cols-3">
           {posts.map((post) => (
-            <StaggerItem key={post.slug}>
+            <StaggerItem key={post._id}>
               <BlogCard post={post} />
             </StaggerItem>
           ))}

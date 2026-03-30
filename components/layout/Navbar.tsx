@@ -159,7 +159,7 @@ export default function Navbar() {
                         <Link
                           href={link.href}
                           className={cn(
-                            "block border-b border-border-subtle pb-5 font-display text-[clamp(28px,9vw,50px)] font-medium leading-none text-text-secondary transition-colors duration-150 ease-default",
+                            "block border-b border-border-subtle pb-5 font-display text-display-lg font-medium leading-none text-text-secondary transition-colors duration-150 ease-default",
                             active && "text-text-primary",
                           )}
                         >

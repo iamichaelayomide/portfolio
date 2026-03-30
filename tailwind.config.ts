@@ -45,14 +45,20 @@ const config: Config = {
         body: ["var(--font-inter)", "sans-serif"],
       },
       fontSize: {
-        "display-xl": ["clamp(32px, 5vw, 48px)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
-        "display-lg": ["clamp(26px, 4vw, 36px)", { lineHeight: "1.12", letterSpacing: "-0.025em" }],
-        "display-md": ["clamp(22px, 3vw, 28px)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
-        "display-sm": ["clamp(18px, 2.5vw, 22px)", { lineHeight: "1.2", letterSpacing: "-0.015em" }],
-        "body-lg": ["17px", "1.65"],
-        "body-md": ["15px", "1.6"],
-        "body-sm": ["13px", "1.55"],
-        "body-xs": ["11px", "1.5"],
+        // Body Scale
+        "body-xs": ["0.75rem", { lineHeight: "1.5", letterSpacing: "0.01em" }],
+        "body-sm": ["0.875rem", { lineHeight: "1.5", letterSpacing: "0.01em" }],
+        "body-md": ["1rem", { lineHeight: "1.6", letterSpacing: "0.01em" }],
+        "body-lg": ["1.125rem", { lineHeight: "1.65", letterSpacing: "0.01em" }],
+        "body-xl": ["1.25rem", { lineHeight: "1.65", letterSpacing: "0.01em" }],
+        
+        // Display / Heading Scale (Fluid)
+        "display-xs": ["clamp(1.25rem, 2vw, 1.5rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+        "display-sm": ["clamp(1.5rem, 2.5vw, 1.875rem)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        "display-md": ["clamp(1.875rem, 3vw, 2.25rem)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
+        "display-lg": ["clamp(2.25rem, 4vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+        "display-xl": ["clamp(3rem, 5vw, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.04em" }],
+        "display-2xl": ["clamp(3.5rem, 8vw, 6rem)", { lineHeight: "1.05", letterSpacing: "-0.05em" }],
       },
       letterSpacing: {
         tighter: "-0.03em",

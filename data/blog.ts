@@ -1,6 +1,7 @@
 import type { TypedObject } from "@portabletext/types";
 
 export type BlogPostSummary = {
+  _id: string;
   slug: string;
   title: string;
   excerpt: string;

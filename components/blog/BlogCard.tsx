@@ -5,11 +5,18 @@ import type { BlogPostSummary } from "@/data/blog";
 import { createBlurDataURL } from "@/lib/utils";
 
 export default function BlogCard({ post }: { post: BlogPostSummary }) {
+  const isDraft = post._id.startsWith("drafts.");
+
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group overflow-hidden rounded-[28px] border border-border-subtle bg-bg-surface transition-all duration-200 ease-default hover:-translate-y-1 hover:border-border-strong hover:shadow-hover"
+      className="group relative overflow-hidden rounded-[28px] border border-border-subtle bg-bg-surface transition-all duration-200 ease-default hover:-translate-y-1 hover:border-border-strong hover:shadow-hover"
     >
+      {isDraft && (
+        <div className="absolute right-4 top-4 z-overlay rounded-full bg-accent-warm px-3 py-1 font-body text-[10px] font-bold uppercase tracking-widest text-bg-base shadow-glow">
+          Draft
+        </div>
+      )}
       <div className="relative aspect-[16/10] overflow-hidden bg-bg-elevated">
         {post.featuredImage ? (
           <Image

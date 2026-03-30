@@ -44,7 +44,7 @@ export default function CaseStudySection({
           </div>
 
           {section.quote ? (
-            <blockquote className="max-w-prose border-l-4 border-accent-primary pl-6 py-2 font-display text-display-xs italic text-text-primary">
+            <blockquote className="max-w-prose border-l-4 border-accent-primary pl-6 py-2 font-display text-display-sm italic text-text-primary">
               &ldquo;{section.quote}&rdquo;
             </blockquote>
           ) : null}
@@ -56,7 +56,7 @@ export default function CaseStudySection({
                   key={insight.title}
                   className="rounded-lg border border-border-subtle bg-bg-surface p-8 shadow-sm"
                 >
-                  <h3 className="font-display text-xl font-semibold text-text-primary">
+                  <h3 className="font-display text-display-sm font-semibold text-text-primary">
                     {insight.title}
                   </h3>
                   <p className="mt-4 font-body text-body-md text-text-secondary leading-relaxed">
@@ -74,7 +74,7 @@ export default function CaseStudySection({
                   key={step}
                   className="flex gap-6 items-start"
                 >
-                  <span className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-accent-glow border border-border-accent font-display text-lg font-bold text-accent-primary">
+                  <span className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-accent-glow border border-border-accent font-display text-body-lg font-bold text-accent-primary">
                     {index + 1}
                   </span>
                   <span className="font-body text-body-lg text-text-secondary pt-1">{step}</span>
@@ -111,7 +111,7 @@ export default function CaseStudySection({
                         sizes="(max-width: 1024px) 100vw, 800px"
                       />
                     </div>
-                    <p className="text-center font-body text-sm text-text-muted italic">
+                    <p className="text-center font-body text-body-sm text-text-muted italic">
                       {image.label}
                     </p>
                   </div>

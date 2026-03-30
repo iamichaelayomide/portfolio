@@ -45,6 +45,34 @@
     scroll-behavior: smooth;
   }
 
+  h1 {
+    @apply font-display text-display-2xl font-bold tracking-tighter;
+  }
+
+  h2 {
+    @apply font-display text-display-xl font-bold tracking-tight;
+  }
+
+  h3 {
+    @apply font-display text-display-lg font-semibold;
+  }
+
+  h4 {
+    @apply font-display text-display-md font-semibold;
+  }
+
+  h5 {
+    @apply font-display text-display-sm font-semibold;
+  }
+
+  h6 {
+    @apply font-display text-display-xs font-semibold;
+  }
+
+  p {
+    @apply font-body text-body-md;
+  }
+
   body {
     min-height: 100vh;
     background:

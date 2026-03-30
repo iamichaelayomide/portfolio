@@ -56,7 +56,7 @@ export default function LiveBuilds() {
                     Live Preview
                   </p>
                   <div className="mt-4 rounded-lg border border-border-subtle bg-bg-surface p-5">
-                    <p className="font-display text-2xl font-medium text-text-primary">
+                    <p className="font-display text-display-sm font-medium text-text-primary">
                       {build.name}
                     </p>
                     <p className="mt-3 font-body text-body-sm text-text-secondary">

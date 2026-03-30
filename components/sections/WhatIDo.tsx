@@ -185,11 +185,24 @@ export default function WhatIDo({ content }: WhatIDoProps) {
     target: sectionRef,
     offset: ["start start", "end end"],
   });
+
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 24,
-    mass: 0.28,
+    stiffness: 70,
+    damping: 30,
+    restDelta: 0.001
   });
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    return scrollYProgress.on("change", (latest) => {
+      const index = Math.min(
+        panels.length - 1,
+        Math.floor(latest * panels.length)
+      );
+      setActiveIndex(index);
+    });
+  }, [scrollYProgress, panels.length]);
 
   useEffect(() => {
     const sync = () => setMobileLayout(window.innerWidth < 1024);
@@ -296,7 +309,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   }
 
   return (
-    <section ref={sectionRef} className="relative z-20 mt-[-1px] h-[320vh] bg-bg-base overflow-hidden">
+    <section ref={sectionRef} className="relative z-20 mt-[-1px] h-[400vh] bg-bg-base overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_24%),radial-gradient(circle_at_20%_20%,var(--accent-rose-soft),transparent_28%),linear-gradient(180deg,rgba(98,15,133,0.16),rgba(6,3,10,0.02)_42%)]" />
       <div className="sticky top-0 flex h-screen items-center">
         <div className="section-shell grid w-full items-center gap-12 lg:grid-cols-[340px_minmax(0,1fr)] lg:gap-16">
@@ -313,13 +326,18 @@ export default function WhatIDo({ content }: WhatIDoProps) {
             </p>
 
             <div className="mt-8 space-y-3">
-              {services.map((service, index) => (
+              {panels.map((service, index) => (
                 <div
-                  key={service.key}
-                  className="flex items-center justify-between rounded-full border border-white/8 bg-white/[0.02] px-4 py-3"
+                  key={service.title}
+                  className={cn(
+                    "flex items-center justify-between rounded-full border px-4 py-3 transition-all duration-300",
+                    activeIndex === index 
+                      ? "border-accent-warm bg-accent-glow text-white shadow-[0_0_15px_rgba(254,1,220,0.1)]" 
+                      : "border-white/8 bg-white/[0.02] text-[#ECE1F5]"
+                  )}
                 >
-                  <span className="font-body text-body-sm text-[#ECE1F5]">{service.title}</span>
-                  <span className="font-body text-body-xs uppercase tracking-[0.12em] text-text-secondary">
+                  <span className="font-body text-body-sm">{service.title}</span>
+                  <span className="font-body text-body-xs uppercase tracking-[0.12em] opacity-60">
                     0{index + 1}
                   </span>
                 </div>

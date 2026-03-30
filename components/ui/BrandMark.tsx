@@ -31,7 +31,7 @@ export default function BrandMark({
           <span
             className={cn(
               "font-display font-semibold tracking-tight text-text-primary",
-              compactOnMobile ? "text-[15px] sm:text-base" : "text-base",
+              compactOnMobile ? "text-body-sm sm:text-body-md" : "text-body-md",
             )}
           >
             Michael Ayomide
@@ -39,7 +39,7 @@ export default function BrandMark({
           <span
             className={cn(
               "font-body uppercase tracking-[0.12em] text-text-muted",
-              compactOnMobile ? "hidden text-[10px] sm:block" : "text-[11px]",
+              compactOnMobile ? "hidden text-body-xs sm:block" : "text-body-xs",
             )}
           >
             Product Designer
