@@ -181,6 +181,18 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
   const [mobileLayout, setMobileLayout] = useState(false);
+  const services = content.services;
+  const panels: ServiceCardData[] = [
+    ...services,
+    {
+      icon: "webBuilds",
+      title: content.ctaTitle,
+      description: content.ctaDescription,
+      support: content.ctaSupport,
+      cta: true,
+    },
+  ];
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
@@ -195,6 +207,12 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    const index = Math.min(
+      panels.length - 1,
+      Math.floor(scrollYProgress.get() * panels.length)
+    );
+    setActiveIndex(index);
+
     return scrollYProgress.on("change", (latest) => {
       const index = Math.min(
         panels.length - 1,
@@ -210,18 +228,6 @@ export default function WhatIDo({ content }: WhatIDoProps) {
     window.addEventListener("resize", sync);
     return () => window.removeEventListener("resize", sync);
   }, []);
-
-  const services = content.services;
-  const panels: ServiceCardData[] = [
-    ...services,
-    {
-      icon: "webBuilds",
-      title: content.ctaTitle,
-      description: content.ctaDescription,
-      support: content.ctaSupport,
-      cta: true,
-    },
-  ];
 
   if (reducedMotion || mobileLayout) {
     return (
