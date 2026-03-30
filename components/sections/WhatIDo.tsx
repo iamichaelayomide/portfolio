@@ -8,6 +8,7 @@ import { buttonStyles } from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import type { HomeService, HomeServicesContent } from "@/data/home-content";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { cn } from "@/lib/utils";
 
 const BOOKING_URL = "https://calendar.app.google/Um4G3aYbGQ798AWw5";
 const WHATSAPP_URL =
