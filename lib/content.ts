@@ -481,7 +481,7 @@ async function fetchFromSanity<T>(query: string, params: QueryParams = {}) {
   try {
     return await sanityClient.fetch<T>(query, params, {
       next: { revalidate: 0 },
-      perspective: "previewDrafts",
+      perspective: "drafts",
     });
   } catch (error) {
     console.error("Sanity fetch error:", error);
