@@ -47,18 +47,18 @@ const config: Config = {
       fontSize: {
         // Body Scale
         "body-xs": ["0.75rem", { lineHeight: "1.5", letterSpacing: "0.01em" }],
-        "body-sm": ["0.875rem", { lineHeight: "1.5", letterSpacing: "0.01em" }],
+        "body-sm": ["0.875rem", { lineHeight: "1.55", letterSpacing: "0.01em" }],
         "body-md": ["1rem", { lineHeight: "1.6", letterSpacing: "0.01em" }],
         "body-lg": ["1.125rem", { lineHeight: "1.65", letterSpacing: "0.01em" }],
         "body-xl": ["1.25rem", { lineHeight: "1.65", letterSpacing: "0.01em" }],
         
-        // Display / Heading Scale (Fluid)
-        "display-xs": ["clamp(1.25rem, 2vw, 1.5rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
-        "display-sm": ["clamp(1.5rem, 2.5vw, 1.875rem)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
-        "display-md": ["clamp(1.875rem, 3vw, 2.25rem)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
-        "display-lg": ["clamp(2.25rem, 4vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
-        "display-xl": ["clamp(3rem, 5vw, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.04em" }],
-        "display-2xl": ["clamp(3.5rem, 8vw, 6rem)", { lineHeight: "1.05", letterSpacing: "-0.05em" }],
+        // Display / Heading Scale (Fluid but more refined)
+        "display-xs": ["clamp(1.25rem, 2vw, 1.45rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+        "display-sm": ["clamp(1.45rem, 2.5vw, 1.75rem)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        "display-md": ["clamp(1.75rem, 3.2vw, 2.15rem)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
+        "display-lg": ["clamp(2.15rem, 4.2vw, 2.75rem)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+        "display-xl": ["clamp(2.5rem, 5.5vw, 3.5rem)", { lineHeight: "1.08", letterSpacing: "-0.04em" }],
+        "display-2xl": ["clamp(3rem, 7.5vw, 4.75rem)", { lineHeight: "1.05", letterSpacing: "-0.05em" }],
       },
       letterSpacing: {
         tighter: "-0.03em",
