@@ -7,7 +7,6 @@ import type { MotionValue } from "framer-motion";
 import { buttonStyles } from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import type { HomeService, HomeServicesContent } from "@/data/home-content";
-import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { cn } from "@/lib/utils";
 
 const BOOKING_URL = "https://calendar.app.google/Um4G3aYbGQ798AWw5";
@@ -207,7 +206,6 @@ type WhatIDoProps = {
 };
 
 export default function WhatIDo({ content }: WhatIDoProps) {
-  const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
   const [mobileLayout, setMobileLayout] = useState(false);
   const services = content.services;
