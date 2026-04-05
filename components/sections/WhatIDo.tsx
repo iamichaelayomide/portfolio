@@ -248,7 +248,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
     return () => window.removeEventListener("resize", sync);
   }, []);
 
-  if (reducedMotion || mobileLayout) {
+  if (mobileLayout) {
     return (
       <section className="section-space relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_24%),linear-gradient(180deg,rgba(98,15,133,0.16),rgba(6,3,10,0.02)_42%)]" />
