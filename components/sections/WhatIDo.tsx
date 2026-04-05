@@ -32,7 +32,7 @@ function ServiceCard({
   description,
   support,
   icon,
-  progress,
+  position,
   total,
   cta = false,
   primaryCtaLabel,
@@ -43,64 +43,26 @@ function ServiceCard({
   description: string;
   support: string;
   icon: keyof typeof iconMap;
-  progress: MotionValue<number>;
+  position: MotionValue<number>;
   total: number;
   cta?: boolean;
   primaryCtaLabel: string;
   secondaryCtaLabel: string;
 }) {
   const Icon = iconMap[icon];
-  const step = 1 / total;
-  const start = index * step;
-  const enter = start + step * 0.18;
-  const hold = Math.min(1, start + step * 0.74);
-  const end = Math.min(1, start + step);
-
+  const relative = useTransform(position, (value) => index - value);
   const opacity = useTransform(
-    progress,
-    index === 0
-      ? [0, hold, end]
-      : index === total - 1
-        ? [start, enter, 1]
-        : [start, enter, hold, end],
-    index === 0
-      ? [1, 1, 0]
-      : index === total - 1
-        ? [0, 1, 1]
-        : [0, 1, 1, 0],
+    relative,
+    [-1.15, -0.2, 0, 0.92, 1.25],
+    [0, 0.65, 1, 1, 0],
   );
-  const y = useTransform(
-    progress,
-    index === 0
-      ? [0, hold, end]
-      : index === total - 1
-        ? [start, enter, 1]
-        : [start, enter, hold, end],
-    index === 0
-      ? [0, 0, -30]
-      : index === total - 1
-        ? [60, 0, 0]
-        : [60, 0, 0, -30],
-  );
-  const scale = useTransform(
-    progress,
-    index === 0
-      ? [0, hold, end]
-      : index === total - 1
-        ? [start, enter, 1]
-        : [start, enter, hold, end],
-    index === 0
-      ? [1, 1, 0.985]
-      : index === total - 1
-        ? [0.97, 1, 1]
-        : [0.97, 1, 1, 0.985],
-  );
-  const borderGlow = useTransform(
-    progress,
-    [start, enter, Math.min(1, enter + step * 0.22)],
-    [0.12, 0.28, 0.14],
-  );
+  const y = useTransform(relative, [-1.15, -0.2, 0, 1, 1.25], [-90, -26, 0, 70, 116]);
+  const scale = useTransform(relative, [-1.15, -0.2, 0, 1, 1.25], [0.96, 0.985, 1, 1, 0.97]);
+  const borderGlow = useTransform(relative, [-1, 0, 1], [0.12, 0.28, 0.14]);
   const borderColor = useTransform(borderGlow, (value) => `rgba(254, 1, 220, ${value})`);
+  const zIndex = useTransform(relative, (value) =>
+    Math.round(total * 10 - Math.abs(value) * 10 + (cta ? 4 : 0)),
+  );
 
   return (
     <motion.article
@@ -109,7 +71,7 @@ function ServiceCard({
         scale,
         opacity,
         borderColor,
-        zIndex: cta ? total + 2 : total - index,
+        zIndex,
       }}
       className={`absolute inset-x-0 top-0 mx-auto flex min-h-[360px] w-full max-w-[760px] flex-col justify-between overflow-hidden rounded-[32px] border bg-[linear-gradient(180deg,#6d258d_0%,#3a184f_44%,#17101f_100%)] p-7 shadow-[0_18px_60px_rgba(0,0,0,0.42)] sm:min-h-[400px] sm:p-9 ${
         cta ? "pointer-events-auto" : "pointer-events-none"
@@ -196,13 +158,14 @@ export default function WhatIDo({ content }: WhatIDoProps) {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"],
+    offset: ["start start", "end start"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 70,
-    damping: 30,
-    restDelta: 0.001
+  const panelPosition = useTransform(scrollYProgress, [0, 1], [0, panels.length - 1]);
+  const smoothPosition = useSpring(panelPosition, {
+    stiffness: 90,
+    damping: 28,
+    restDelta: 0.001,
   });
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -210,14 +173,14 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   useEffect(() => {
     const index = Math.min(
       panels.length - 1,
-      Math.floor(scrollYProgress.get() * panels.length)
+      Math.round(scrollYProgress.get() * (panels.length - 1))
     );
     setActiveIndex(index);
 
     return scrollYProgress.on("change", (latest) => {
       const index = Math.min(
         panels.length - 1,
-        Math.floor(latest * panels.length)
+        Math.round(latest * (panels.length - 1))
       );
       setActiveIndex(index);
     });
@@ -316,7 +279,11 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   }
 
   return (
-    <section ref={sectionRef} className="relative z-20 mt-[-1px] h-[400vh] bg-bg-base overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative z-20 mt-[-1px] bg-bg-base overflow-hidden"
+      style={{ height: `${panels.length * 100}vh` }}
+    >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_24%),radial-gradient(circle_at_20%_20%,var(--accent-rose-soft),transparent_28%),linear-gradient(180deg,rgba(98,15,133,0.16),rgba(6,3,10,0.02)_42%)]" />
       <div className="sticky top-0 flex h-screen items-center">
         <div className="section-shell grid w-full items-center gap-12 lg:grid-cols-[340px_minmax(0,1fr)] lg:gap-16">
@@ -367,7 +334,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
                 description={service.description}
                 support={service.support}
                 icon={service.icon}
-                progress={smoothProgress}
+                position={smoothPosition}
                 total={panels.length}
                 cta={service.cta}
                 primaryCtaLabel={content.ctaPrimaryLabel}
