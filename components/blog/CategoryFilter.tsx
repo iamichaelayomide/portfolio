@@ -11,7 +11,7 @@ interface CategoryFilterProps {
 }
 
 export default function CategoryFilter({ posts }: CategoryFilterProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedCategoryKey, setSelectedCategoryKey] = useState<string>("all");
 
   const normalizeCategory = (value: string) =>
     value.trim().replace(/\s+/g, " ").toLowerCase();
@@ -49,23 +49,28 @@ export default function CategoryFilter({ posts }: CategoryFilterProps) {
     return index;
   }, [posts]);
 
-  const categories = useMemo(
-    () => ["All", ...Array.from(categoryIndex.values()).map((item) => item.label).sort((a, b) => a.localeCompare(b))],
-    [categoryIndex],
-  );
+  const categories = useMemo(() => {
+    const items = Array.from(categoryIndex.entries())
+      .map(([key, item]) => ({ key, label: item.label, count: item.posts.length }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    return [{ key: "all", label: "All", count: posts.length }, ...items];
+  }, [categoryIndex, posts.length]);
 
   const filteredPosts = useMemo(() => {
     if (!Array.isArray(posts)) {
       return [];
     }
 
-    if (selectedCategory === "All") {
+    if (selectedCategoryKey === "all") {
       return posts;
     }
 
-    const selected = normalizeCategory(selectedCategory);
-    return categoryIndex.get(selected)?.posts ?? [];
-  }, [posts, selectedCategory, categoryIndex]);
+    return categoryIndex.get(selectedCategoryKey)?.posts ?? [];
+  }, [posts, selectedCategoryKey, categoryIndex]);
+
+  const selectedCategoryLabel =
+    categories.find((category) => category.key === selectedCategoryKey)?.label || "All";
 
   return (
     <div className="space-y-10">
@@ -79,16 +84,17 @@ export default function CategoryFilter({ posts }: CategoryFilterProps) {
           <div className="flex flex-wrap gap-2 sm:gap-3">
             {categories.map((category) => (
               <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
+                key={category.key}
+                type="button"
+                onClick={() => setSelectedCategoryKey(category.key)}
                 className={cn(
                   "rounded-full px-5 py-2 font-body text-body-sm transition-all duration-200 border",
-                  selectedCategory === category
+                  selectedCategoryKey === category.key
                     ? "bg-text-primary border-text-primary text-bg-base shadow-sm"
                     : "border-border-subtle bg-bg-elevated text-text-secondary hover:border-border-default hover:text-text-primary"
                 )}
               >
-                {category}
+                {category.label}
               </button>
             ))}
           </div>
@@ -96,7 +102,7 @@ export default function CategoryFilter({ posts }: CategoryFilterProps) {
 
         <div className="flex items-center justify-between border-b border-border-subtle pb-4">
           <p className="font-body text-body-sm text-text-muted">
-            Found {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"} in <span className="text-text-secondary font-medium">{selectedCategory}</span>
+            Found {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"} in <span className="text-text-secondary font-medium">{selectedCategoryLabel}</span>
           </p>
         </div>
       </div>
@@ -120,7 +126,8 @@ export default function CategoryFilter({ posts }: CategoryFilterProps) {
               Try exploring a different category or check back soon.
             </p>
             <button
-              onClick={() => setSelectedCategory("All")}
+              type="button"
+              onClick={() => setSelectedCategoryKey("all")}
               className="mt-8 font-body text-body-sm font-medium text-accent-rose hover:underline"
             >
               Reset all filters
