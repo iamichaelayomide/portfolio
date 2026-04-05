@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 import { EASE_DEFAULT } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
-import { createBlurDataURL, formatProjectCategory } from "@/lib/utils";
+import { createBlurDataURL } from "@/lib/utils";
 
 export default function ProjectCard({
   project,
@@ -78,28 +78,11 @@ export default function ProjectCard({
         </div>
 
         <div className="space-y-4 px-6 pb-6 pt-5">
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-[var(--accent-warm-10)] px-3 py-1 font-body text-body-xs text-text-secondary"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
           <div className="flex items-start justify-between gap-4">
-            <div className="space-y-2">
+            <div>
               <h3 className="font-display text-display-sm font-medium text-text-primary">
                 {project.title}
               </h3>
-              <p className="max-w-[32rem] font-body text-body-sm text-text-secondary">
-                {project.description}
-              </p>
-              <p className="font-body text-body-xs uppercase tracking-[0.05em] text-text-secondary">
-                {formatProjectCategory(project.tags)}
-              </p>
             </div>
             <span className="pt-1 text-text-secondary transition-all duration-200 ease-default group-hover:translate-x-1 group-hover:opacity-100 md:opacity-0">
               <ArrowUpRight className="h-5 w-5" />
