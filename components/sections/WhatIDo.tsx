@@ -23,10 +23,6 @@ const iconMap = {
 const ENTER_Y = 64;
 const EXIT_Y = -560;
 
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
-}
-
 type ServiceCardData = Pick<HomeService, "title" | "description" | "support"> & {
   icon: keyof typeof iconMap;
   cta?: boolean;
