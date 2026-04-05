@@ -54,6 +54,10 @@ export default async function CaseStudyPage({
 
   const previous = projectIndex > 0 ? projects[projectIndex - 1] : null;
   const next = projectIndex < projects.length - 1 ? projects[projectIndex + 1] : null;
+  const isComingSoonProject = project.category === "Work in Progress";
+  const sectionsToRender = isComingSoonProject
+    ? project.sections.filter((section) => section.id === "overview").slice(0, 1)
+    : project.sections;
 
   return (
     <article className="pb-16 pt-8 md:pb-24 md:pt-12">
@@ -88,7 +92,15 @@ export default async function CaseStudyPage({
 
       <CaseStudyHero project={project} />
 
-      {project.sections.map((section) => (
+      {isComingSoonProject ? (
+        <section className="section-shell mt-6">
+          <div className="rounded-xl border border-amber-300/25 bg-amber-300/10 p-4 font-body text-body-sm text-amber-100">
+            Coming soon. This case study is currently in progress.
+          </div>
+        </section>
+      ) : null}
+
+      {sectionsToRender.map((section) => (
         <CaseStudySection key={section.id} section={section} />
       ))}
 

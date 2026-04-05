@@ -18,6 +18,9 @@ export default function ProjectCard({
 }) {
   const reducedMotion = useReducedMotion();
   const eyebrow = project.category === "Live Projects" ? "Live Project" : project.category;
+  const isComingSoon =
+    project.category === "Work in Progress" ||
+    project.tags.some((tag) => tag.trim().toLowerCase() === "coming soon");
 
   return (
     <Link href={`/work/${project.slug}`} className="block focus-visible:outline-none">
@@ -72,6 +75,11 @@ export default function ProjectCard({
               <span className="inline-flex items-center rounded-full border border-border-default bg-bg-base/80 px-3 py-1 font-body text-body-xs uppercase tracking-caps text-text-secondary backdrop-blur-md">
                 <Dot className="-ml-1 h-4 w-4 text-status-online" />
                 Live
+              </span>
+            ) : null}
+            {isComingSoon ? (
+              <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 font-body text-body-xs font-medium uppercase tracking-caps text-amber-200">
+                Coming Soon
               </span>
             ) : null}
           </div>
