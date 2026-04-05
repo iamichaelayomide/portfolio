@@ -142,7 +142,7 @@ export default function Hero({ content }: HeroProps) {
                 transition: { duration: 0.35, delay: 0.2, ease: EASE_DEFAULT },
               },
             }}
-            className="mb-3 font-display text-body-md font-normal text-text-secondary sm:mb-4 sm:text-display-sm"
+            className="mb-3 font-display text-body-sm font-normal text-text-secondary sm:mb-4 sm:text-display-xs"
           >
             <AnimatedText text={content.introText} />
           </motion.div>
@@ -156,7 +156,7 @@ export default function Hero({ content }: HeroProps) {
                 transition: { duration: 0.55, delay: 0.38, ease: EASE_DEFAULT },
               },
             }}
-            className="max-w-[12ch] text-balance font-display text-display-xl text-text-primary sm:max-w-[13ch]"
+            className="max-w-[12ch] text-balance font-display text-display-lg text-text-primary sm:max-w-[13ch] lg:text-display-xl"
           >
             {content.title}
           </motion.h1>
@@ -170,7 +170,7 @@ export default function Hero({ content }: HeroProps) {
                 transition: { duration: 0.5, delay: 0.52, ease: EASE_DEFAULT },
               },
             }}
-            className="mt-5 max-w-[34rem] text-pretty font-body text-body-lg text-text-secondary sm:mt-6"
+            className="mt-5 max-w-[32rem] text-pretty font-body text-body-md text-text-secondary sm:mt-6 sm:text-body-lg"
           >
             {content.description}
           </motion.p>
@@ -210,7 +210,7 @@ export default function Hero({ content }: HeroProps) {
             {content.points.map((item) => (
               <div
                 key={item}
-                className="rounded-2xl border border-border-subtle bg-bg-surface/60 px-4 py-3.5 font-body text-body-sm leading-[1.55] text-text-secondary backdrop-blur-sm"
+                className="rounded-2xl border border-border-subtle bg-bg-surface/60 px-4 py-3.5 font-body text-body-xs leading-[1.55] text-text-secondary backdrop-blur-sm sm:text-body-sm"
               >
                 {item}
               </div>
