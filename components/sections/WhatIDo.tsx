@@ -87,7 +87,12 @@ function ServiceCard({
       return 0;
     }
 
-    return 1 - Math.abs(delta);
+    // Keep a single dominant panel visible and avoid seeing deep stack layers.
+    if (delta <= 0) {
+      return Math.abs(delta) <= 0.55 ? 1 : 0;
+    }
+
+    return Math.max(0, 1 - delta * 1.35);
   });
 
   const borderGlow = useTransform(position, (value) => {
@@ -199,7 +204,13 @@ export default function WhatIDo({ content }: WhatIDoProps) {
     offset: ["start start", "end start"],
   });
 
-  const panelPosition = useTransform(scrollYProgress, [0, 1], [0, panels.length - 1]);
+  // Keep the last card fully visible for a short hold before the section releases.
+  const revealProgressEnd = 0.82;
+  const panelPosition = useTransform(
+    scrollYProgress,
+    [0, revealProgressEnd, 1],
+    [0, panels.length - 1, panels.length - 1],
+  );
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -309,7 +320,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
     <section
       ref={sectionRef}
       className="relative z-20 mt-[-1px] bg-bg-base"
-      style={{ height: `${panels.length * 100}vh` }}
+      style={{ height: `${(panels.length + 0.85) * 100}vh` }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_24%),radial-gradient(circle_at_20%_20%,var(--accent-rose-soft),transparent_28%),linear-gradient(180deg,rgba(98,15,133,0.16),rgba(6,3,10,0.02)_42%)]" />
       <div className="sticky top-0 flex h-screen items-center">
