@@ -20,9 +20,7 @@ const iconMap = {
   designSystems: SquareStack,
 } as const;
 
-const STACK_OFFSET = 22;
-const STACK_OFFSET_SECONDARY = 16;
-const MAX_STACK_DEPTH = 3;
+const ENTER_Y = 64;
 const EXIT_Y = -560;
 
 function clamp(value: number, min: number, max: number) {
@@ -61,63 +59,39 @@ function ServiceCard({
   const y = useTransform(position, (value) => {
     const delta = value - index;
 
+    if (delta <= -1) {
+      return ENTER_Y;
+    }
+
     if (delta >= 1) {
       return EXIT_Y;
     }
 
-    if (delta >= 0) {
+    if (delta >= 0 && delta < 1) {
       return EXIT_Y * delta;
     }
 
-    const future = index - value;
-
-    if (future <= 1) {
-      return STACK_OFFSET * future;
-    }
-
-    if (future <= 2) {
-      return STACK_OFFSET + (future - 1) * STACK_OFFSET_SECONDARY;
-    }
-
-    if (future <= 3) {
-      return STACK_OFFSET + STACK_OFFSET_SECONDARY + (future - 2) * 12;
-    }
-
-    return STACK_OFFSET + STACK_OFFSET_SECONDARY + 12;
+    return ENTER_Y * -delta;
   });
 
   const scale = useTransform(position, (value) => {
     const delta = value - index;
 
-    if (delta >= 1) {
-      return 0.96;
+    if (Math.abs(delta) >= 1) {
+      return 0.98;
     }
 
-    if (delta >= 0) {
-      return 1 - delta * 0.02;
-    }
-
-    const future = clamp(index - value, 0, MAX_STACK_DEPTH);
-    return 1 - future * 0.028;
+    return 1 - Math.abs(delta) * 0.02;
   });
 
   const opacity = useTransform(position, (value) => {
     const delta = value - index;
 
-    if (delta >= 1) {
+    if (Math.abs(delta) >= 1) {
       return 0;
     }
 
-    if (delta >= 0) {
-      return 1;
-    }
-
-    const future = index - value;
-    if (future > MAX_STACK_DEPTH + 0.25) {
-      return 0;
-    }
-
-    return 1 - clamp(future - 1, 0, 2.5) * 0.12;
+    return 1 - Math.abs(delta);
   });
 
   const borderGlow = useTransform(position, (value) => {
@@ -125,9 +99,13 @@ function ServiceCard({
     return 0.12 + Math.max(0, 0.16 - delta * 0.12);
   });
   const borderColor = useTransform(borderGlow, (value) => `rgba(254, 1, 220, ${value})`);
-  const zIndex = useTransform(position, (value) =>
-    Math.round(total * 10 - Math.abs(value - index) * 10 + (cta ? 4 : 0)),
-  );
+  const zIndex = useTransform(position, (value) => {
+    const delta = Math.abs(value - index);
+    if (delta >= 1) {
+      return 0;
+    }
+    return Math.round(total * 10 - delta * 10 + (cta ? 4 : 0));
+  });
 
   return (
     <motion.article
@@ -372,12 +350,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
             </div>
           </ScrollReveal>
 
-          <div className="relative h-[430px] sm:h-[470px]">
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute inset-x-6 top-0 h-full rounded-[36px] border border-white/8 bg-white/[0.02]" />
-              <div className="absolute inset-x-3 top-6 h-full rounded-[36px] border border-white/8 bg-white/[0.02]" />
-              <div className="absolute inset-0 top-12 rounded-[36px] border border-white/8 bg-white/[0.015]" />
-            </div>
+          <div className="relative h-[430px] overflow-hidden sm:h-[470px]">
 
             {panels.map((service, index) => (
               <ServiceCard
