@@ -31,7 +31,7 @@ import {
   aboutPageContent as fallbackAboutPageContent,
   contactPageContent as fallbackContactPageContent,
 } from "@/data/site-pages";
-import { sanityClient } from "@/lib/sanity/client";
+import { hasSanityToken, sanityClient } from "@/lib/sanity/client";
 import {
   aboutPageQuery,
   contactPageQuery,
@@ -478,13 +478,25 @@ function normalizeBlogPost(post: PartialBlogPost | null | undefined): BlogPost |
 }
 
 async function fetchFromSanity<T>(query: string, params: QueryParams = {}) {
-  try {
-    return await sanityClient.fetch<T>(query, params, {
+  const fetchWithPerspective = (perspective: "drafts" | "published") =>
+    sanityClient.fetch<T>(query, params, {
       next: { revalidate: 0 },
-      perspective: "drafts",
+      perspective,
     });
+
+  try {
+    return await fetchWithPerspective(hasSanityToken ? "drafts" : "published");
   } catch (error) {
     console.error("Sanity fetch error:", error);
+
+    if (hasSanityToken) {
+      try {
+        return await fetchWithPerspective("published");
+      } catch (publishedError) {
+        console.error("Sanity published fallback error:", publishedError);
+      }
+    }
+
     return null;
   }
 }

@@ -19,7 +19,7 @@ export function buttonStyles({
   className?: string;
 }) {
   return cn(
-    "inline-flex items-center justify-center rounded-md font-body font-medium tracking-normal transition-all duration-[160ms] ease-default focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60",
+    "inline-flex items-center justify-center rounded-md font-body font-medium tracking-normal transition-all duration-150 ease-default focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60",
     variant === "primary" &&
       "bg-accent-rose text-white hover:-translate-y-px hover:brightness-95 hover:shadow-hover active:translate-y-0 active:shadow-card",
     variant === "secondary" &&

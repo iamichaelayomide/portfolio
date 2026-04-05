@@ -35,6 +35,17 @@
     --text-light-secondary-30: rgba(130, 114, 146, 0.3);
     --text-light-10: rgba(20, 13, 27, 0.1);
     --accent-warm-10: rgba(254, 1, 220, 0.1);
+    --font-size-body-xs: 0.72rem;
+    --font-size-body-sm: 0.82rem;
+    --font-size-body-md: 0.95rem;
+    --font-size-body-lg: 1.05rem;
+    --font-size-body-xl: 1.15rem;
+    --font-size-display-xs: clamp(1.05rem, 1.6vw, 1.2rem);
+    --font-size-display-sm: clamp(1.2rem, 2vw, 1.45rem);
+    --font-size-display-md: clamp(1.45rem, 2.6vw, 1.8rem);
+    --font-size-display-lg: clamp(1.8rem, 3.4vw, 2.2rem);
+    --font-size-display-xl: clamp(2.15rem, 4.5vw, 2.8rem);
+    --font-size-display-2xl: clamp(2.5rem, 5.8vw, 3.5rem);
   }
 
   * {

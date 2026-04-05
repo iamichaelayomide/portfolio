@@ -46,19 +46,19 @@ const config: Config = {
       },
       fontSize: {
         // Body Scale
-        "body-xs": ["0.75rem", { lineHeight: "1.5", letterSpacing: "0.01em" }],
-        "body-sm": ["0.875rem", { lineHeight: "1.55", letterSpacing: "0.01em" }],
-        "body-md": ["1rem", { lineHeight: "1.6", letterSpacing: "0.01em" }],
-        "body-lg": ["1.125rem", { lineHeight: "1.65", letterSpacing: "0.01em" }],
-        "body-xl": ["1.25rem", { lineHeight: "1.65", letterSpacing: "0.01em" }],
-        
+        "body-xs": ["var(--font-size-body-xs)", { lineHeight: "1.5", letterSpacing: "0.01em" }],
+        "body-sm": ["var(--font-size-body-sm)", { lineHeight: "1.55", letterSpacing: "0.01em" }],
+        "body-md": ["var(--font-size-body-md)", { lineHeight: "1.6", letterSpacing: "0.01em" }],
+        "body-lg": ["var(--font-size-body-lg)", { lineHeight: "1.65", letterSpacing: "0.01em" }],
+        "body-xl": ["var(--font-size-body-xl)", { lineHeight: "1.65", letterSpacing: "0.01em" }],
+
         // Display / Heading Scale (Tighter and more refined)
-        "display-xs": ["clamp(1.2rem, 1.8vw, 1.35rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
-        "display-sm": ["clamp(1.35rem, 2.2vw, 1.6rem)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
-        "display-md": ["clamp(1.6rem, 2.8vw, 2rem)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
-        "display-lg": ["clamp(2rem, 3.8vw, 2.5rem)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
-        "display-xl": ["clamp(2.4rem, 5vw, 3.2rem)", { lineHeight: "1.08", letterSpacing: "-0.04em" }],
-        "display-2xl": ["clamp(2.8rem, 6.5vw, 4rem)", { lineHeight: "1.05", letterSpacing: "-0.05em" }],
+        "display-xs": ["var(--font-size-display-xs)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+        "display-sm": ["var(--font-size-display-sm)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        "display-md": ["var(--font-size-display-md)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
+        "display-lg": ["var(--font-size-display-lg)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+        "display-xl": ["var(--font-size-display-xl)", { lineHeight: "1.08", letterSpacing: "-0.04em" }],
+        "display-2xl": ["var(--font-size-display-2xl)", { lineHeight: "1.05", letterSpacing: "-0.05em" }],
       },
       letterSpacing: {
         tighter: "-0.03em",

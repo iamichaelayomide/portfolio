@@ -5,9 +5,7 @@ import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/ui/Scr
 import type { BlogPostSummary } from "@/data/blog";
 
 export default function LatestPosts({ posts }: { posts: BlogPostSummary[] }) {
-  if (!posts.length) {
-    return null;
-  }
+  const hasPosts = posts.length > 0;
 
   return (
     <section className="section-space">
@@ -22,17 +20,31 @@ export default function LatestPosts({ posts }: { posts: BlogPostSummary[] }) {
           </h2>
         </ScrollReveal>
 
-        <StaggerContainer className="grid gap-6 md:grid-cols-3">
-          {posts.map((post) => (
-            <StaggerItem key={post._id}>
-              <BlogCard post={post} />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+        {hasPosts ? (
+          <StaggerContainer className="grid gap-6 md:grid-cols-3">
+            {posts.map((post) => (
+              <StaggerItem key={post._id}>
+                <BlogCard post={post} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        ) : (
+          <ScrollReveal>
+            <div className="rounded-[28px] border border-border-subtle bg-bg-surface p-8 md:p-10">
+              <h3 className="font-display text-display-sm font-medium text-text-primary">
+                The blog section is live, but there are no posts to show yet.
+              </h3>
+              <p className="mt-4 max-w-prose font-body text-body-md text-text-secondary">
+                If Sanity draft access is unavailable, the site now falls back to published posts
+                instead of hiding this section completely.
+              </p>
+            </div>
+          </ScrollReveal>
+        )}
 
         <div className="mt-10 text-center">
           <Link href="/blog" className={buttonStyles({ variant: "secondary", size: "md" })}>
-            {"Read the Blog ->"}
+            {hasPosts ? "Read the Blog ->" : "Visit the Blog ->"}
           </Link>
         </div>
       </div>
