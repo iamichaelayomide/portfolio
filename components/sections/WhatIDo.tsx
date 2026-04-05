@@ -21,6 +21,15 @@ const iconMap = {
   designSystems: SquareStack,
 } as const;
 
+const STACK_OFFSET = 22;
+const STACK_OFFSET_SECONDARY = 16;
+const MAX_STACK_DEPTH = 3;
+const EXIT_Y = -560;
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
 type ServiceCardData = Pick<HomeService, "title" | "description" | "support"> & {
   icon: keyof typeof iconMap;
   cta?: boolean;
@@ -50,18 +59,75 @@ function ServiceCard({
   secondaryCtaLabel: string;
 }) {
   const Icon = iconMap[icon];
-  const relative = useTransform(position, (value) => index - value);
-  const opacity = useTransform(
-    relative,
-    [-1.15, -0.2, 0, 0.92, 1.25],
-    [0, 0.65, 1, 1, 0],
-  );
-  const y = useTransform(relative, [-1.15, -0.2, 0, 1, 1.25], [-90, -26, 0, 70, 116]);
-  const scale = useTransform(relative, [-1.15, -0.2, 0, 1, 1.25], [0.96, 0.985, 1, 1, 0.97]);
-  const borderGlow = useTransform(relative, [-1, 0, 1], [0.12, 0.28, 0.14]);
+  const y = useTransform(position, (value) => {
+    const delta = value - index;
+
+    if (delta >= 1) {
+      return EXIT_Y;
+    }
+
+    if (delta >= 0) {
+      return EXIT_Y * delta;
+    }
+
+    const future = index - value;
+
+    if (future <= 1) {
+      return STACK_OFFSET * future;
+    }
+
+    if (future <= 2) {
+      return STACK_OFFSET + (future - 1) * STACK_OFFSET_SECONDARY;
+    }
+
+    if (future <= 3) {
+      return STACK_OFFSET + STACK_OFFSET_SECONDARY + (future - 2) * 12;
+    }
+
+    return STACK_OFFSET + STACK_OFFSET_SECONDARY + 12;
+  });
+
+  const scale = useTransform(position, (value) => {
+    const delta = value - index;
+
+    if (delta >= 1) {
+      return 0.96;
+    }
+
+    if (delta >= 0) {
+      return 1 - delta * 0.02;
+    }
+
+    const future = clamp(index - value, 0, MAX_STACK_DEPTH);
+    return 1 - future * 0.028;
+  });
+
+  const opacity = useTransform(position, (value) => {
+    const delta = value - index;
+
+    if (delta >= 1) {
+      return 0;
+    }
+
+    if (delta >= 0) {
+      return 1;
+    }
+
+    const future = index - value;
+    if (future > MAX_STACK_DEPTH + 0.25) {
+      return 0;
+    }
+
+    return 1 - clamp(future - 1, 0, 2.5) * 0.12;
+  });
+
+  const borderGlow = useTransform(position, (value) => {
+    const delta = Math.abs(value - index);
+    return 0.12 + Math.max(0, 0.16 - delta * 0.12);
+  });
   const borderColor = useTransform(borderGlow, (value) => `rgba(254, 1, 220, ${value})`);
-  const zIndex = useTransform(relative, (value) =>
-    Math.round(total * 10 - Math.abs(value) * 10 + (cta ? 4 : 0)),
+  const zIndex = useTransform(position, (value) =>
+    Math.round(total * 10 - Math.abs(value - index) * 10 + (cta ? 4 : 0)),
   );
 
   return (
@@ -171,20 +237,14 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const index = Math.min(
-      panels.length - 1,
-      Math.round(scrollYProgress.get() * (panels.length - 1))
-    );
+    const index = Math.min(panels.length - 1, Math.round(smoothPosition.get()));
     setActiveIndex(index);
 
-    return scrollYProgress.on("change", (latest) => {
-      const index = Math.min(
-        panels.length - 1,
-        Math.round(latest * (panels.length - 1))
-      );
+    return smoothPosition.on("change", (latest) => {
+      const index = Math.min(panels.length - 1, Math.round(latest));
       setActiveIndex(index);
     });
-  }, [scrollYProgress, panels.length]);
+  }, [panels.length, smoothPosition]);
 
   useEffect(() => {
     const sync = () => setMobileLayout(window.innerWidth < 1024);
