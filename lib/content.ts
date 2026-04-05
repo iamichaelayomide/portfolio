@@ -57,6 +57,10 @@ const SECTION_IDS: CaseStudySection["id"][] = [
   "reflection",
 ];
 const PROJECT_CATEGORIES: Project["category"][] = [
+  "Mobile App Product Design",
+  "Ecommerce Websites",
+  "Company Websites",
+  "Work in Progress",
   "Product Design",
   "Web",
   "Live Projects",

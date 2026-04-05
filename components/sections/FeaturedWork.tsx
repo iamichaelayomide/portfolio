@@ -6,7 +6,6 @@ import ProjectCard from "@/components/ui/ProjectCard";
 import { buttonStyles } from "@/components/ui/Button";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/ui/ScrollReveal";
 import type { Project } from "@/data/projects";
-import { projectFilters } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
 export default function FeaturedWork({ projects }: { projects: Project[] }) {
@@ -53,24 +52,40 @@ export default function FeaturedWork({ projects }: { projects: Project[] }) {
 }
 
 export function WorkShowcase({ projects }: { projects: Project[] }) {
-  const [activeFilter, setActiveFilter] = useState<(typeof projectFilters)[number]>("All");
+  const [activeFilterKey, setActiveFilterKey] = useState<string>("all");
+
+  const categoryIndex = projects.reduce((map, project) => {
+    const key = project.category.trim().toLowerCase();
+    const existing = map.get(key);
+    if (existing) {
+      existing.projects.push(project);
+      return map;
+    }
+    map.set(key, { key, label: project.category, projects: [project] });
+    return map;
+  }, new Map<string, { key: string; label: string; projects: Project[] }>());
+
+  const categories = [
+    { key: "all", label: "All", projects },
+    ...Array.from(categoryIndex.values()).sort((a, b) => a.label.localeCompare(b.label)),
+  ];
 
   const filteredProjects =
-    activeFilter === "All"
+    activeFilterKey === "all"
       ? projects
-      : projects.filter((project) => project.category === activeFilter);
+      : categoryIndex.get(activeFilterKey)?.projects ?? [];
 
   return (
     <div className="space-y-10">
       <div className="flex flex-wrap gap-6 border-b border-border-subtle pb-3">
-        {projectFilters.map((filter) => {
-          const active = filter === activeFilter;
+        {categories.map((filter) => {
+          const active = filter.key === activeFilterKey;
 
           return (
             <button
-              key={filter}
+              key={filter.key}
               type="button"
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => setActiveFilterKey(filter.key)}
               className={cn(
                 "border-b pb-2 font-body text-body-sm transition-colors duration-150 ease-default",
                 active
@@ -78,7 +93,7 @@ export function WorkShowcase({ projects }: { projects: Project[] }) {
                   : "border-transparent text-text-muted hover:text-text-secondary",
               )}
             >
-              {filter}
+              {filter.label}
             </button>
           );
         })}

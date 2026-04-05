@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import BlogCard from "@/components/blog/BlogCard";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/ui/ScrollReveal";
 import type { BlogPostSummary } from "@/data/blog";
@@ -71,6 +71,16 @@ export default function CategoryFilter({ posts }: CategoryFilterProps) {
 
   const selectedCategoryLabel =
     categories.find((category) => category.key === selectedCategoryKey)?.label || "All";
+
+  useEffect(() => {
+    if (selectedCategoryKey === "all") {
+      return;
+    }
+
+    if (!categoryIndex.has(selectedCategoryKey)) {
+      setSelectedCategoryKey("all");
+    }
+  }, [selectedCategoryKey, categoryIndex]);
 
   return (
     <div className="space-y-10">

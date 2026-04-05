@@ -203,9 +203,13 @@ export const project = defineType({
       validation: (rule) => rule.required(),
       options: {
         list: [
+          { title: "Mobile App Product Design", value: "Mobile App Product Design" },
+          { title: "Ecommerce Websites", value: "Ecommerce Websites" },
+          { title: "Company Websites", value: "Company Websites" },
           { title: "Product Design", value: "Product Design" },
           { title: "Web", value: "Web" },
           { title: "Live Projects", value: "Live Projects" },
+          { title: "Work in Progress", value: "Work in Progress" },
           { title: "Design Systems", value: "Design Systems" },
         ],
       },

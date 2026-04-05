@@ -36,7 +36,15 @@ export type Project = {
   description: string;
   tags: string[];
   type?: "featured";
-  category: "Product Design" | "Web" | "Live Projects" | "Design Systems";
+  category:
+    | "Mobile App Product Design"
+    | "Ecommerce Websites"
+    | "Company Websites"
+    | "Live Projects"
+    | "Work in Progress"
+    | "Product Design"
+    | "Web"
+    | "Design Systems";
   year: string;
   role: string;
   duration: string;
@@ -841,9 +849,13 @@ export const projects: Project[] = [
 
 export const projectFilters = [
   "All",
+  "Mobile App Product Design",
+  "Ecommerce Websites",
+  "Company Websites",
   "Product Design",
   "Web",
   "Live Projects",
+  "Work in Progress",
   "Design Systems",
 ] as const;
 
