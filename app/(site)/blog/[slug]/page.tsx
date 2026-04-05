@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import PortableTextContent from "@/components/blog/PortableTextContent";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { getHomeContent, getPostBySlug, getPosts } from "@/lib/content";
@@ -48,7 +48,7 @@ export default async function BlogPostPage({
   ]);
 
   if (!post) {
-    notFound();
+    redirect("/blog");
   }
 
   return (

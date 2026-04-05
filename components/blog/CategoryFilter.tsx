@@ -13,29 +13,39 @@ interface CategoryFilterProps {
 export default function CategoryFilter({ posts }: CategoryFilterProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  // Extract unique categories with extra safety
+  const normalizeCategory = (value: string) =>
+    value.trim().replace(/\s+/g, " ").toLowerCase();
+
+  // Extract unique categories with stronger normalization safety
   const categories = useMemo(() => {
-    const cats = new Set<string>();
+    const cats = new Map<string, string>();
     if (Array.isArray(posts)) {
       posts.forEach((post) => {
         if (Array.isArray(post.categories)) {
           post.categories.forEach((cat) => {
-            if (typeof cat === "string") {
-              cats.add(cat);
+            if (typeof cat === "string" && cat.trim().length > 0) {
+              const normalized = normalizeCategory(cat);
+              if (!cats.has(normalized)) {
+                cats.set(normalized, cat.trim());
+              }
             }
           });
         }
       });
     }
-    return ["All", ...Array.from(cats).sort()];
+    return ["All", ...Array.from(cats.values()).sort((a, b) => a.localeCompare(b))];
   }, [posts]);
 
   // Filtered posts
   const filteredPosts = useMemo(() => {
     if (!Array.isArray(posts)) return [];
     if (selectedCategory === "All") return posts;
+    const selected = normalizeCategory(selectedCategory);
     return posts.filter((post) => 
-      Array.isArray(post.categories) && post.categories.includes(selectedCategory)
+      Array.isArray(post.categories) &&
+      post.categories.some(
+        (category) => typeof category === "string" && normalizeCategory(category) === selected,
+      )
     );
   }, [posts, selectedCategory]);
 
