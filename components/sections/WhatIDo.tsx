@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Blocks, Compass, LayoutPanelTop, SquareStack } from "lucide-react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { buttonStyles } from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -228,23 +228,18 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   });
 
   const panelPosition = useTransform(scrollYProgress, [0, 1], [0, panels.length - 1]);
-  const smoothPosition = useSpring(panelPosition, {
-    stiffness: 90,
-    damping: 28,
-    restDelta: 0.001,
-  });
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const index = Math.min(panels.length - 1, Math.round(smoothPosition.get()));
+    const index = Math.min(panels.length - 1, Math.round(panelPosition.get()));
     setActiveIndex(index);
 
-    return smoothPosition.on("change", (latest) => {
+    return panelPosition.on("change", (latest) => {
       const index = Math.min(panels.length - 1, Math.round(latest));
       setActiveIndex(index);
     });
-  }, [panels.length, smoothPosition]);
+  }, [panels.length, panelPosition]);
 
   useEffect(() => {
     const sync = () => setMobileLayout(window.innerWidth < 1024);
@@ -341,7 +336,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative z-20 mt-[-1px] bg-bg-base overflow-hidden"
+      className="relative z-20 mt-[-1px] bg-bg-base"
       style={{ height: `${panels.length * 100}vh` }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-glow-strong),transparent_24%),radial-gradient(circle_at_20%_20%,var(--accent-rose-soft),transparent_28%),linear-gradient(180deg,rgba(98,15,133,0.16),rgba(6,3,10,0.02)_42%)]" />
@@ -394,7 +389,7 @@ export default function WhatIDo({ content }: WhatIDoProps) {
                 description={service.description}
                 support={service.support}
                 icon={service.icon}
-                position={smoothPosition}
+                position={panelPosition}
                 total={panels.length}
                 cta={service.cta}
                 primaryCtaLabel={content.ctaPrimaryLabel}
