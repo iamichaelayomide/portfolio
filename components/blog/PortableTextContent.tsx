@@ -57,7 +57,7 @@ const components: PortableTextComponents = {
   },
   types: {
     image: ({ value }) => {
-      const src = urlForImage(value).width(1600).fit("max").auto("format").url();
+      const src = urlForImage(value).width(1400).quality(74).fit("max").auto("format").url();
       const alt = typeof value?.alt === "string" ? value.alt : "Blog image";
       const caption = typeof value?.caption === "string" ? value.caption : "";
 

@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import PortableTextContent from "@/components/blog/PortableTextContent";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { getHomeContent, getPostBySlug, getPosts } from "@/lib/content";
-import { createBlurDataURL } from "@/lib/utils";
+import { createBlurDataURL, optimizeImageUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -95,7 +95,7 @@ export default async function BlogPostPage({
             {post.featuredImage ? (
               <div className="relative aspect-[16/9] overflow-hidden rounded-[32px] border border-border-subtle bg-bg-elevated">
                 <Image
-                  src={post.featuredImage}
+                  src={optimizeImageUrl(post.featuredImage, { width: 1400, quality: 74 })}
                   alt={post.featuredImageAlt || `${post.title} cover image`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 900px"

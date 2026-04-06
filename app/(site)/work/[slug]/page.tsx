@@ -7,7 +7,7 @@ import CaseStudyHero from "@/components/case-study/CaseStudyHero";
 import CaseStudySection from "@/components/case-study/CaseStudySection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { getHomeContent, getProjectBySlug, getProjects } from "@/lib/content";
-import { createBlurDataURL } from "@/lib/utils";
+import { createBlurDataURL, optimizeImageUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -160,7 +160,7 @@ function CaseStudyNavCard({
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
-          src={thumbnail}
+          src={optimizeImageUrl(thumbnail, { width: 1000, quality: 72 })}
           alt={`${title} preview`}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"

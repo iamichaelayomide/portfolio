@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 import { EASE_DEFAULT } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
-import { createBlurDataURL } from "@/lib/utils";
+import { createBlurDataURL, optimizeImageUrl } from "@/lib/utils";
 
 export default function ProjectCard({
   project,
@@ -21,6 +21,10 @@ export default function ProjectCard({
   const isComingSoon =
     project.category === "Work in Progress" ||
     project.tags.some((tag) => tag.trim().toLowerCase() === "coming soon");
+  const thumbnailSrc = optimizeImageUrl(project.thumbnail, {
+    width: featured ? 1400 : 900,
+    quality: 72,
+  });
 
   return (
     <Link href={`/work/${project.slug}`} className="block focus-visible:outline-none">
@@ -48,7 +52,7 @@ export default function ProjectCard({
             className="h-full w-full"
           >
             <Image
-              src={project.thumbnail}
+              src={thumbnailSrc}
               alt={`${project.title} project preview`}
               fill
               sizes={

@@ -2,10 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { BlogPostSummary } from "@/data/blog";
-import { createBlurDataURL } from "@/lib/utils";
+import { createBlurDataURL, optimizeImageUrl } from "@/lib/utils";
 
 export default function BlogCard({ post }: { post: BlogPostSummary }) {
   const isDraft = post._id.startsWith("drafts.");
+  const imageSrc = post.featuredImage
+    ? optimizeImageUrl(post.featuredImage, { width: 900, quality: 72 })
+    : null;
 
   return (
     <Link
@@ -18,9 +21,9 @@ export default function BlogCard({ post }: { post: BlogPostSummary }) {
         </div>
       )}
       <div className="relative aspect-[16/10] overflow-hidden bg-bg-elevated">
-        {post.featuredImage ? (
+        {imageSrc ? (
           <Image
-            src={post.featuredImage}
+            src={imageSrc}
             alt={post.featuredImageAlt || `${post.title} cover image`}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"

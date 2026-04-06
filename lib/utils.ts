@@ -25,3 +25,29 @@ export function createBlurDataURL(fill = "#191919") {
 export function formatProjectCategory(tags: string[]) {
   return tags.slice(0, 3).join(" · ");
 }
+
+export function optimizeImageUrl(
+  src: string,
+  { width = 1600, quality = 75 }: { width?: number; quality?: number } = {},
+) {
+  if (!src || typeof src !== "string") {
+    return src;
+  }
+
+  try {
+    const url = new URL(src);
+    const isSanityAsset = url.hostname === "cdn.sanity.io";
+
+    if (!isSanityAsset) {
+      return src;
+    }
+
+    url.searchParams.set("auto", "format");
+    url.searchParams.set("fit", "max");
+    url.searchParams.set("w", String(width));
+    url.searchParams.set("q", String(quality));
+    return url.toString();
+  } catch {
+    return src;
+  }
+}

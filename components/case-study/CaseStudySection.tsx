@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ImagePlaceholder from "@/components/case-study/ImagePlaceholder";
 import type { CaseStudySection as CaseStudySectionType } from "@/data/projects";
-import { createBlurDataURL } from "@/lib/utils";
+import { createBlurDataURL, optimizeImageUrl } from "@/lib/utils";
 import { urlForImage } from "@/lib/sanity/image";
 
 const gridClassMap = {
@@ -91,8 +91,15 @@ export default function CaseStudySection({
             >
               {section.images.map((image) => {
                 const imageUrl = image.image?.asset 
-                  ? urlForImage(image.image).url() 
-                  : image.src;
+                  ? urlForImage(image.image)
+                      .width(1400)
+                      .quality(74)
+                      .fit("max")
+                      .auto("format")
+                      .url()
+                  : image.src
+                    ? optimizeImageUrl(image.src, { width: 1400, quality: 74 })
+                    : undefined;
 
                 return imageUrl ? (
                   <div key={image.label} className="space-y-3">
